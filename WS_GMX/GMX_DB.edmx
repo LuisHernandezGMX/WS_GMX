@@ -5,6 +5,12 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="GMXModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="spD_FaseRecupera" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_Fase" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spI_FaseRecupera" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="strFase" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="spS_Aclaracion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_pv" Type="int" Mode="In" />
         </Function>
@@ -23,6 +29,10 @@
           <Parameter Name="NumOPs" Type="varchar" Mode="In" />
           <Parameter Name="TipoPersona" Type="int" Mode="In" />
           <Parameter Name="UsuFirma" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spU_FaseRecupera" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_Fase" Type="int" Mode="In" />
+          <Parameter Name="strFase" Type="varchar" Mode="In" />
         </Function>
         <Function Name="spU_RolPredeterminado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cod_usuario" Type="varchar" Mode="In" />
@@ -56,6 +66,16 @@
             <Parameter Name="strCatalogo" Mode="In" Type="String" />
             <Parameter Name="Condicion" Mode="In" Type="String" />
             <Parameter Name="strSel" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spU_FaseRecupera" ReturnType="Collection(Int32)">
+            <Parameter Name="id_Fase" Mode="In" Type="Int32" />
+            <Parameter Name="strFase" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spD_FaseRecupera" ReturnType="Collection(Int32)">
+            <Parameter Name="id_Fase" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spI_FaseRecupera" ReturnType="Collection(Int32)">
+            <Parameter Name="strFase" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spS_Aclaracion_Result">
@@ -122,6 +142,9 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spU_FaseRecupera" FunctionName="GMXModel.Store.spU_FaseRecupera" />
+          <FunctionImportMapping FunctionImportName="spD_FaseRecupera" FunctionName="GMXModel.Store.spD_FaseRecupera" />
+          <FunctionImportMapping FunctionImportName="spI_FaseRecupera" FunctionName="GMXModel.Store.spI_FaseRecupera" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
