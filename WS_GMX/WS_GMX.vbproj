@@ -120,19 +120,49 @@
     <Content Include="bin\WS_GMX.dll" />
     <Content Include="bin\WS_GMX.pdb" />
     <Content Include="bin\WS_GMX.xml" />
-    <Content Include="Generales\Generales.svc" />
-    <Content Include="GMX_DB.Context.tt">
+    <Content Include="Generales\db_Gral.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GMX_DB.edmx</DependentUpon>
-      <LastGenOutput>GMX_DB.Context.vb</LastGenOutput>
+      <DependentUpon>db_Gral.edmx</DependentUpon>
+      <LastGenOutput>db_Gral.Context.vb</LastGenOutput>
     </Content>
-    <Content Include="GMX_DB.tt">
+    <Content Include="Generales\db_Gral.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>GMX_DB.edmx</DependentUpon>
-      <LastGenOutput>GMX_DB.vb</LastGenOutput>
+      <DependentUpon>db_Gral.edmx</DependentUpon>
+      <LastGenOutput>db_Gral.vb</LastGenOutput>
+    </Content>
+    <Content Include="Generales\Generales.svc" />
+    <Content Include="Reaseguro\FirmasDigital\db_Firmas.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>db_Firmas.edmx</DependentUpon>
+      <LastGenOutput>db_Firmas.Context.vb</LastGenOutput>
+    </Content>
+    <Content Include="Reaseguro\FirmasDigital\db_Firmas.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>db_Firmas.edmx</DependentUpon>
+      <LastGenOutput>db_Firmas.vb</LastGenOutput>
     </Content>
     <Content Include="Reaseguro\FirmasDigital\FirmasDigital.svc" />
+    <Content Include="Reaseguro\OrdenPago\db_OrdenPago.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>db_OrdenPago.edmx</DependentUpon>
+      <LastGenOutput>db_OrdenPago.Context.vb</LastGenOutput>
+    </Content>
+    <Content Include="Reaseguro\OrdenPago\db_OrdenPago.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>db_OrdenPago.edmx</DependentUpon>
+      <LastGenOutput>db_OrdenPago.vb</LastGenOutput>
+    </Content>
     <Content Include="Reaseguro\OrdenPago\OrdenPago.svc" />
+    <Content Include="Reaseguro\Recordatorios\Siniestros\db_Recorda.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>db_Recorda.edmx</DependentUpon>
+      <LastGenOutput>db_Recorda.Context.vb</LastGenOutput>
+    </Content>
+    <Content Include="Reaseguro\Recordatorios\Siniestros\db_Recorda.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>db_Recorda.edmx</DependentUpon>
+      <LastGenOutput>db_Recorda.vb</LastGenOutput>
+    </Content>
     <Content Include="Reaseguro\Recordatorios\Siniestros\RecSiniestros.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -140,40 +170,85 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Code\FuncionesConversion.vb" />
-    <Compile Include="GMX_DB.Context.vb">
+    <Compile Include="Generales\db_Gral.Context.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GMX_DB.Context.tt</DependentUpon>
+      <DependentUpon>db_Gral.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="GMX_DB.Designer.vb">
+    <Compile Include="Generales\db_Gral.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GMX_DB.edmx</DependentUpon>
+      <DependentUpon>db_Gral.edmx</DependentUpon>
     </Compile>
-    <Compile Include="GMX_DB.vb">
+    <Compile Include="Generales\db_Gral.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>GMX_DB.tt</DependentUpon>
+      <DependentUpon>db_Gral.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generales\spS_CatalogosOP_Result.vb">
+      <DependentUpon>db_Gral.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\FirmasDigital\db_Firmas.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_Firmas.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\FirmasDigital\db_Firmas.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_Firmas.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\FirmasDigital\db_Firmas.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_Firmas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\FirmasDigital\spS_PermisosxUSuFirma_Result.vb">
+      <DependentUpon>db_Firmas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\FirmasDigital\spS_UsuarioFirma_Result.vb">
+      <DependentUpon>db_Firmas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\OrdenPago\db_OrdenPago.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_OrdenPago.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\OrdenPago\db_OrdenPago.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_OrdenPago.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\OrdenPago\db_OrdenPago.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_OrdenPago.tt</DependentUpon>
     </Compile>
     <Compile Include="Reaseguro\OrdenPago\IOrdenPago.vb" />
     <Compile Include="Reaseguro\OrdenPago\OrdenPago.svc.vb">
       <DependentUpon>OrdenPago.svc</DependentUpon>
     </Compile>
+    <Compile Include="Reaseguro\OrdenPago\spS_Aclaracion_Result.vb">
+      <DependentUpon>db_OrdenPago.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\Recordatorios\Siniestros\db_Recorda.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_Recorda.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\Recordatorios\Siniestros\db_Recorda.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_Recorda.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\Recordatorios\Siniestros\db_Recorda.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_Recorda.tt</DependentUpon>
+    </Compile>
     <Compile Include="Reaseguro\Recordatorios\Siniestros\IRecSiniestros.vb" />
     <Compile Include="Reaseguro\Recordatorios\Siniestros\RecSiniestros.svc.vb">
       <DependentUpon>RecSiniestros.svc</DependentUpon>
-    </Compile>
-    <Compile Include="spS_Aclaracion_Result.vb">
-      <DependentUpon>GMX_DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="spS_CatalogosOP_Result.vb">
-      <DependentUpon>GMX_DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="spS_PermisosxUSuFirma_Result.vb">
-      <DependentUpon>GMX_DB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="spS_UsuarioFirma_Result.vb">
-      <DependentUpon>GMX_DB.tt</DependentUpon>
     </Compile>
     <Compile Include="Generales\Generales.svc.vb">
       <DependentUpon>Generales.svc</DependentUpon>
@@ -208,14 +283,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="GMX_DB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>GMX_DB.Designer.vb</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="GMX_DB.edmx.diagram">
-      <DependentUpon>GMX_DB.edmx</DependentUpon>
-    </Content>
     <Content Include="bin\WS_GMX.dll.config" />
+    <EntityDeploy Include="Generales\db_Gral.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>db_Gral.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Generales\db_Gral.edmx.diagram">
+      <DependentUpon>db_Gral.edmx</DependentUpon>
+    </Content>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -226,6 +301,27 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <Content Include="packages.config" />
+    <EntityDeploy Include="Reaseguro\FirmasDigital\db_Firmas.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>db_Firmas.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Reaseguro\FirmasDigital\db_Firmas.edmx.diagram">
+      <DependentUpon>db_Firmas.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Reaseguro\OrdenPago\db_OrdenPago.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>db_OrdenPago.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Reaseguro\OrdenPago\db_OrdenPago.edmx.diagram">
+      <DependentUpon>db_OrdenPago.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Reaseguro\Recordatorios\Siniestros\db_Recorda.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>db_Recorda.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Reaseguro\Recordatorios\Siniestros\db_Recorda.edmx.diagram">
+      <DependentUpon>db_Recorda.edmx</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

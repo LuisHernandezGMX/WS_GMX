@@ -6,6 +6,7 @@ Public Class FirmasDigital
     Implements IFirmasDigital
 
     Public db As New GMXEntities
+
     Public Function ActualizaFirma(NumOp As String, TipoPer As Integer, CodUsu As String) As Integer Implements IFirmasDigital.ActualizaFirma
         Dim Resultado As Integer
         Try

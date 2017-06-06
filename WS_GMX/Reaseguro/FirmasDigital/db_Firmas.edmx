@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FirmasModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="spS_PermisosxUSuFirma" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_usuario" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spS_UsuarioFirma" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TipoUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spU_ActualizaFirmas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NumOPs" Type="varchar" Mode="In" />
+          <Parameter Name="TipoPersona" Type="int" Mode="In" />
+          <Parameter Name="UsuFirma" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spU_RolPredeterminado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_usuario" Type="varchar" Mode="In" />
+          <Parameter Name="cod_rol" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="FirmasModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FirmasModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="GMXEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="spS_PermisosxUSuFirma" ReturnType="Collection(FirmasModel.spS_PermisosxUSuFirma_Result)">
+            <Parameter Name="cod_usuario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spS_UsuarioFirma" ReturnType="Collection(FirmasModel.spS_UsuarioFirma_Result)">
+            <Parameter Name="TipoUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spU_ActualizaFirmas">
+            <Parameter Name="NumOPs" Mode="In" Type="String" />
+            <Parameter Name="TipoPersona" Mode="In" Type="Int32" />
+            <Parameter Name="UsuFirma" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spU_RolPredeterminado" ReturnType="Collection(Int32)">
+            <Parameter Name="cod_usuario" Mode="In" Type="String" />
+            <Parameter Name="cod_rol" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="spS_PermisosxUSuFirma_Result">
+          <Property Type="String" Name="cod_usuario" Nullable="false" MaxLength="30" />
+          <Property Type="Boolean" Name="GeneraOp_Solicitante" Nullable="true" />
+          <Property Type="Boolean" Name="Autoriza_JefeInmediato" Nullable="true" />
+          <Property Type="Boolean" Name="Autoriza_DirArea" Nullable="true" />
+          <Property Type="Boolean" Name="Autoriza_Conta" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spS_UsuarioFirma_Result">
+          <Property Type="String" Name="clave" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="mail" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FirmasModelStoreContainer" CdmEntityContainer="GMXEntities" >
+          <FunctionImportMapping FunctionImportName="spS_PermisosxUSuFirma" FunctionName="FirmasModel.Store.spS_PermisosxUSuFirma">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FirmasModel.spS_PermisosxUSuFirma_Result">
+                <ScalarProperty Name="cod_usuario" ColumnName="cod_usuario" />
+                <ScalarProperty Name="GeneraOp_Solicitante" ColumnName="GeneraOp_Solicitante" />
+                <ScalarProperty Name="Autoriza_JefeInmediato" ColumnName="Autoriza_JefeInmediato" />
+                <ScalarProperty Name="Autoriza_DirArea" ColumnName="Autoriza_DirArea" />
+                <ScalarProperty Name="Autoriza_Conta" ColumnName="Autoriza_Conta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_UsuarioFirma" FunctionName="FirmasModel.Store.spS_UsuarioFirma">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="FirmasModel.spS_UsuarioFirma_Result">
+                <ScalarProperty Name="clave" ColumnName="clave" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spU_ActualizaFirmas" FunctionName="FirmasModel.Store.spU_ActualizaFirmas" />
+          <FunctionImportMapping FunctionImportName="spU_RolPredeterminado" FunctionName="FirmasModel.Store.spU_RolPredeterminado" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

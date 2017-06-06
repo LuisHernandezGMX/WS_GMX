@@ -4,7 +4,7 @@
 Public Class OrdenPago
     Implements IOrdenPago
 
-    Public db As New GMXEntities
+    Public db As New OPEntities
     Public Function ObtieneAclaraciones(id_pv As Integer) As String Implements IOrdenPago.ObtieneAclaraciones
         Dim Resultado As IList = Nothing
         Dim StrResultado As String = ""
