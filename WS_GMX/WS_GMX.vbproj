@@ -133,6 +133,7 @@
     </Content>
     <Content Include="Reaseguro\FirmasDigital\FirmasDigital.svc" />
     <Content Include="Reaseguro\OrdenPago\OrdenPago.svc" />
+    <Content Include="Reaseguro\Recordatorios\Siniestros\RecSiniestros.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -157,6 +158,10 @@
     <Compile Include="Reaseguro\OrdenPago\IOrdenPago.vb" />
     <Compile Include="Reaseguro\OrdenPago\OrdenPago.svc.vb">
       <DependentUpon>OrdenPago.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\Recordatorios\Siniestros\IRecSiniestros.vb" />
+    <Compile Include="Reaseguro\Recordatorios\Siniestros\RecSiniestros.svc.vb">
+      <DependentUpon>RecSiniestros.svc</DependentUpon>
     </Compile>
     <Compile Include="spS_Aclaracion_Result.vb">
       <DependentUpon>GMX_DB.tt</DependentUpon>

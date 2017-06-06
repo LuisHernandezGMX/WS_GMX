@@ -71,4 +71,24 @@ Partial Public Class GMXEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_CatalogosOP_Result)("spS_CatalogosOP", strCatalogoParameter, condicionParameter, strSelParameter)
     End Function
 
+    Public Overridable Function spU_FaseRecupera(id_Fase As Nullable(Of Integer), strFase As String) As ObjectResult(Of Nullable(Of Integer))
+        Dim id_FaseParameter As ObjectParameter = If(id_Fase.HasValue, New ObjectParameter("id_Fase", id_Fase), New ObjectParameter("id_Fase", GetType(Integer)))
+
+        Dim strFaseParameter As ObjectParameter = If(strFase IsNot Nothing, New ObjectParameter("strFase", strFase), New ObjectParameter("strFase", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spU_FaseRecupera", id_FaseParameter, strFaseParameter)
+    End Function
+
+    Public Overridable Function spD_FaseRecupera(id_Fase As Nullable(Of Integer)) As ObjectResult(Of Nullable(Of Integer))
+        Dim id_FaseParameter As ObjectParameter = If(id_Fase.HasValue, New ObjectParameter("id_Fase", id_Fase), New ObjectParameter("id_Fase", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spD_FaseRecupera", id_FaseParameter)
+    End Function
+
+    Public Overridable Function spI_FaseRecupera(strFase As String) As ObjectResult(Of Nullable(Of Integer))
+        Dim strFaseParameter As ObjectParameter = If(strFase IsNot Nothing, New ObjectParameter("strFase", strFase), New ObjectParameter("strFase", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spI_FaseRecupera", strFaseParameter)
+    End Function
+
 End Class
