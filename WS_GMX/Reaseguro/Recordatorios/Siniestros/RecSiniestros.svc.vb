@@ -4,7 +4,7 @@ Imports WS_GMX
 
 Public Class RecSiniestros
     Implements IRecSiniestros
-    Public db As New GMXEntities
+    Public db As New RecordEntities
 
     Public Function ActualizaFaseRecup(id_Fase As Int32, strFase As String) As List(Of Nullable(Of Int32)) Implements IRecSiniestros.ActualizaFaseRecup
         Dim Resultado As IList = Nothing

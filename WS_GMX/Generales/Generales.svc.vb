@@ -4,7 +4,7 @@ Imports System.Net.Mail
 Public Class Generales
     Implements IGenerales
 
-    Public db As New GMXEntities
+    Public db As New GralEntities
     Public Function EnviaCorreo(strTo As String, strBody As String, strSubject As String, Optional strCc As String = vbNullString, Optional strBco As String = vbNullString) As Boolean Implements IGenerales.EnviaCorreo
         Dim cm = ConfigurationManager.AppSettings
         Dim Mensaje As New MailMessage

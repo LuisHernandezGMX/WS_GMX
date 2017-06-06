@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RecordModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="spD_FaseRecupera" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_Fase" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spI_FaseRecupera" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="strFase" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spU_FaseRecupera" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_Fase" Type="int" Mode="In" />
+          <Parameter Name="strFase" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="RecordModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RecordModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="RecordEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="spD_FaseRecupera" ReturnType="Collection(Int32)">
+            <Parameter Name="id_Fase" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spI_FaseRecupera" ReturnType="Collection(Int32)">
+            <Parameter Name="strFase" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spU_FaseRecupera" ReturnType="Collection(Int32)">
+            <Parameter Name="id_Fase" Mode="In" Type="Int32" />
+            <Parameter Name="strFase" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RecordModelStoreContainer" CdmEntityContainer="RecordEntities" >
+          <FunctionImportMapping FunctionImportName="spD_FaseRecupera" FunctionName="RecordModel.Store.spD_FaseRecupera" />
+          <FunctionImportMapping FunctionImportName="spI_FaseRecupera" FunctionName="RecordModel.Store.spI_FaseRecupera" />
+          <FunctionImportMapping FunctionImportName="spU_FaseRecupera" FunctionName="RecordModel.Store.spU_FaseRecupera" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

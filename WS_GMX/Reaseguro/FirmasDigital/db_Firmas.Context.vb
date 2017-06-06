@@ -25,12 +25,6 @@ Partial Public Class GMXEntities
     End Sub
 
 
-    Public Overridable Function spS_Aclaracion(id_pv As Nullable(Of Integer)) As ObjectResult(Of spS_Aclaracion_Result)
-        Dim id_pvParameter As ObjectParameter = If(id_pv.HasValue, New ObjectParameter("id_pv", id_pv), New ObjectParameter("id_pv", GetType(Integer)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_Aclaracion_Result)("spS_Aclaracion", id_pvParameter)
-    End Function
-
     Public Overridable Function spS_PermisosxUSuFirma(cod_usuario As String) As ObjectResult(Of spS_PermisosxUSuFirma_Result)
         Dim cod_usuarioParameter As ObjectParameter = If(cod_usuario IsNot Nothing, New ObjectParameter("cod_usuario", cod_usuario), New ObjectParameter("cod_usuario", GetType(String)))
 
@@ -59,36 +53,6 @@ Partial Public Class GMXEntities
         Dim cod_rolParameter As ObjectParameter = If(cod_rol.HasValue, New ObjectParameter("cod_rol", cod_rol), New ObjectParameter("cod_rol", GetType(Integer)))
 
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spU_RolPredeterminado", cod_usuarioParameter, cod_rolParameter)
-    End Function
-
-    Public Overridable Function spS_CatalogosOP(strCatalogo As String, condicion As String, strSel As String) As ObjectResult(Of spS_CatalogosOP_Result)
-        Dim strCatalogoParameter As ObjectParameter = If(strCatalogo IsNot Nothing, New ObjectParameter("strCatalogo", strCatalogo), New ObjectParameter("strCatalogo", GetType(String)))
-
-        Dim condicionParameter As ObjectParameter = If(condicion IsNot Nothing, New ObjectParameter("Condicion", condicion), New ObjectParameter("Condicion", GetType(String)))
-
-        Dim strSelParameter As ObjectParameter = If(strSel IsNot Nothing, New ObjectParameter("strSel", strSel), New ObjectParameter("strSel", GetType(String)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_CatalogosOP_Result)("spS_CatalogosOP", strCatalogoParameter, condicionParameter, strSelParameter)
-    End Function
-
-    Public Overridable Function spU_FaseRecupera(id_Fase As Nullable(Of Integer), strFase As String) As ObjectResult(Of Nullable(Of Integer))
-        Dim id_FaseParameter As ObjectParameter = If(id_Fase.HasValue, New ObjectParameter("id_Fase", id_Fase), New ObjectParameter("id_Fase", GetType(Integer)))
-
-        Dim strFaseParameter As ObjectParameter = If(strFase IsNot Nothing, New ObjectParameter("strFase", strFase), New ObjectParameter("strFase", GetType(String)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spU_FaseRecupera", id_FaseParameter, strFaseParameter)
-    End Function
-
-    Public Overridable Function spD_FaseRecupera(id_Fase As Nullable(Of Integer)) As ObjectResult(Of Nullable(Of Integer))
-        Dim id_FaseParameter As ObjectParameter = If(id_Fase.HasValue, New ObjectParameter("id_Fase", id_Fase), New ObjectParameter("id_Fase", GetType(Integer)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spD_FaseRecupera", id_FaseParameter)
-    End Function
-
-    Public Overridable Function spI_FaseRecupera(strFase As String) As ObjectResult(Of Nullable(Of Integer))
-        Dim strFaseParameter As ObjectParameter = If(strFase IsNot Nothing, New ObjectParameter("strFase", strFase), New ObjectParameter("strFase", GetType(String)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spI_FaseRecupera", strFaseParameter)
     End Function
 
 End Class
