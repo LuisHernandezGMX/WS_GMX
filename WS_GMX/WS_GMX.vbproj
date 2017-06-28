@@ -111,8 +111,6 @@
   <ItemGroup>
     <Content Include="bin\EntityFramework.dll" />
     <Content Include="bin\EntityFramework.SqlServer.dll" />
-    <Content Include="bin\EntityFramework.SqlServer.xml" />
-    <Content Include="bin\EntityFramework.xml" />
     <Content Include="bin\Itenso.Rtf.Converter.Html.dll" />
     <Content Include="bin\Itenso.Rtf.Interpreter.dll" />
     <Content Include="bin\Itenso.Rtf.Parser.dll" />
@@ -192,6 +190,9 @@
       <DependentUpon>db_Gral.tt</DependentUpon>
     </Compile>
     <Compile Include="Generales\spS_CatalogosOP_Result2.vb">
+      <DependentUpon>db_Gral.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generales\spS_ListaPoliza_Result.vb">
       <DependentUpon>db_Gral.tt</DependentUpon>
     </Compile>
     <Compile Include="Reaseguro\FirmasDigital\db_Firmas.Context.vb">
