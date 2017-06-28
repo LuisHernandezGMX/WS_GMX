@@ -25,14 +25,14 @@ Partial Public Class GralEntities
     End Sub
 
 
-    Public Overridable Function spS_CatalogosOP(strCatalogo As String, condicion As String, strSel As String) As ObjectResult(Of spS_CatalogosOP_Result)
+    Public Overridable Function spS_CatalogosOP(strCatalogo As String, condicion As String, strSel As String) As ObjectResult(Of spS_CatalogosOP_Result2)
         Dim strCatalogoParameter As ObjectParameter = If(strCatalogo IsNot Nothing, New ObjectParameter("strCatalogo", strCatalogo), New ObjectParameter("strCatalogo", GetType(String)))
 
         Dim condicionParameter As ObjectParameter = If(condicion IsNot Nothing, New ObjectParameter("Condicion", condicion), New ObjectParameter("Condicion", GetType(String)))
 
         Dim strSelParameter As ObjectParameter = If(strSel IsNot Nothing, New ObjectParameter("strSel", strSel), New ObjectParameter("strSel", GetType(String)))
 
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_CatalogosOP_Result)("spS_CatalogosOP", strCatalogoParameter, condicionParameter, strSelParameter)
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_CatalogosOP_Result2)("spS_CatalogosOP", strCatalogoParameter, condicionParameter, strSelParameter)
     End Function
 
 End Class

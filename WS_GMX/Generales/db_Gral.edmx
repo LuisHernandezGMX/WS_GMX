@@ -16,7 +16,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="GralModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="GralEntities" annotation:LazyLoadingEnabled="true" >
-          <FunctionImport Name="spS_CatalogosOP" ReturnType="Collection(GralModel.spS_CatalogosOP_Result)">
+          <FunctionImport Name="spS_CatalogosOP" ReturnType="Collection(GralModel.spS_CatalogosOP_Result2)">
             <Parameter Name="strCatalogo" Mode="In" Type="String" />
             <Parameter Name="Condicion" Mode="In" Type="String" />
             <Parameter Name="strSel" Mode="In" Type="String" />
@@ -26,6 +26,20 @@
           <Property Type="String" Name="Clave" Nullable="false" MaxLength="29" />
           <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="169" />
         </ComplexType>
+        <ComplexType Name="spS_CatalogosOP_Result1">
+          <Property Type="Decimal" Name="Clave" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="153" />
+          <Property Type="String" Name="OcultaCampo1" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="OcultaCampo2" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="OcultaCampo3" Nullable="false" MaxLength="80" />
+        </ComplexType>
+        <ComplexType Name="spS_CatalogosOP_Result2">
+          <Property Type="String" Name="Clave" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="156" />
+          <Property Type="String" Name="OcultaCampo1" Nullable="false" MaxLength="156" />
+          <Property Type="String" Name="OcultaCampo2" Nullable="false" MaxLength="156" />
+          <Property Type="String" Name="OcultaCampo3" Nullable="false" MaxLength="156" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -34,9 +48,12 @@
         <EntityContainerMapping StorageEntityContainer="GralModelStoreContainer" CdmEntityContainer="GralEntities" >
           <FunctionImportMapping FunctionImportName="spS_CatalogosOP" FunctionName="GralModel.Store.spS_CatalogosOP">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="GralModel.spS_CatalogosOP_Result">
+              <ComplexTypeMapping TypeName="GralModel.spS_CatalogosOP_Result2">
                 <ScalarProperty Name="Clave" ColumnName="Clave" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="OcultaCampo1" ColumnName="OcultaCampo1" />
+                <ScalarProperty Name="OcultaCampo2" ColumnName="OcultaCampo2" />
+                <ScalarProperty Name="OcultaCampo3" ColumnName="OcultaCampo3" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
