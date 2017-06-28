@@ -1,6 +1,10 @@
 ﻿' NOTE: You can use the "Rename" command on the context menu to change the class name "Generales" in code, svc and config file together.
 ' NOTE: In order to launch WCF Test Client for testing this service, please select Generales.svc or Generales.svc.vb at the Solution Explorer and start debugging.
 Imports System.Net.Mail
+Imports System.Web.Services.Protocols
+Imports System.Web.Script.Services
+Imports System.Data.SqlClient
+Imports System.Collections.Generic
 Public Class Generales
     Implements IGenerales
 
@@ -38,7 +42,7 @@ Public Class Generales
 
     End Function
 
-    Public Function ObtieneCatalogo(strPrefijo As String, Optional strCondicion As String = "", Optional strSel As String = "") As List(Of spS_CatalogosOP_Result) Implements IGenerales.ObtieneCatalogo
+    Public Function ObtieneCatalogo(strPrefijo As String, Optional strCondicion As String = "", Optional strSel As String = "") As List(Of spS_CatalogosOP_Result2) Implements IGenerales.ObtieneCatalogo
         Dim Resultado As IList = Nothing
         Try
             Resultado = db.spS_CatalogosOP(strPrefijo, strCondicion, strSel).ToList
@@ -48,5 +52,26 @@ Public Class Generales
         Return Resultado
     End Function
 
+    <ScriptMethod(ResponseFormat:=ResponseFormat.Json)>
+    Public Function GetRamo(ByVal Id As Integer) As String Implements IGenerales.GetRamo
+        Dim ramo As String = ""
+        Using conn As New SqlConnection()
+            'Obtiene cadena de conexión de Web Config
+            conn.ConnectionString = ConfigurationManager.ConnectionStrings("CadenaConexion").ConnectionString
+            Using cmd As New SqlCommand()
+                cmd.CommandText = "select cod_ramo, txt_desc from  tramo where sn_ramo_comercial = -1 AND cod_ramo = @SearchId"
+                cmd.Parameters.AddWithValue("@SearchId", Id)
+                cmd.Connection = conn
+                conn.Open()
+                Using sdr As SqlDataReader = cmd.ExecuteReader()
+                    While sdr.Read()
+                        ramo = sdr("txt_desc")
+                    End While
+                End Using
+                conn.Close()
+            End Using
+            Return ramo
+        End Using
+    End Function
 
 End Class

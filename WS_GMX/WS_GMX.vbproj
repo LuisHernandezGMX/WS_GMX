@@ -188,6 +188,12 @@
     <Compile Include="Generales\spS_CatalogosOP_Result.vb">
       <DependentUpon>db_Gral.tt</DependentUpon>
     </Compile>
+    <Compile Include="Generales\spS_CatalogosOP_Result1.vb">
+      <DependentUpon>db_Gral.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generales\spS_CatalogosOP_Result2.vb">
+      <DependentUpon>db_Gral.tt</DependentUpon>
+    </Compile>
     <Compile Include="Reaseguro\FirmasDigital\db_Firmas.Context.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -295,6 +301,7 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\PublishProfiles\PubliWS.pubxml" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
