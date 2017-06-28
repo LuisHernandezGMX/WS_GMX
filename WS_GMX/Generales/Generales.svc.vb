@@ -52,26 +52,16 @@ Public Class Generales
         Return Resultado
     End Function
 
-    <ScriptMethod(ResponseFormat:=ResponseFormat.Json)>
-    Public Function GetRamo(ByVal Id As Integer) As String Implements IGenerales.GetRamo
-        Dim ramo As String = ""
-        Using conn As New SqlConnection()
-            'Obtiene cadena de conexión de Web Config
-            conn.ConnectionString = ConfigurationManager.ConnectionStrings("CadenaConexion").ConnectionString
-            Using cmd As New SqlCommand()
-                cmd.CommandText = "select cod_ramo, txt_desc from  tramo where sn_ramo_comercial = -1 AND cod_ramo = @SearchId"
-                cmd.Parameters.AddWithValue("@SearchId", Id)
-                cmd.Connection = conn
-                conn.Open()
-                Using sdr As SqlDataReader = cmd.ExecuteReader()
-                    While sdr.Read()
-                        ramo = sdr("txt_desc")
-                    End While
-                End Using
-                conn.Close()
-            End Using
-            Return ramo
-        End Using
+    Public Function ObtienePolizas(cod_suc As Integer, cod_ramo As Integer, nro_pol As Double, str_pol As String, bln_garantias As Boolean,
+                                   FechaIni As String, FechaFin As String, sn_Ajuste As Integer) As List(Of spS_ListaPoliza_Result) Implements IGenerales.ObtienePolizas
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.spS_ListaPoliza(cod_suc, cod_ramo, nro_pol, str_pol, bln_garantias, FechaIni, FechaFin, sn_Ajuste).ToList
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return Resultado
     End Function
+
 
 End Class

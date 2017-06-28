@@ -35,4 +35,24 @@ Partial Public Class GralEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_CatalogosOP_Result2)("spS_CatalogosOP", strCatalogoParameter, condicionParameter, strSelParameter)
     End Function
 
+    Public Overridable Function spS_ListaPoliza(cod_suc As Nullable(Of Integer), cod_ramo As Nullable(Of Integer), nro_pol As Nullable(Of Decimal), str_pol As String, bln_Garantias As Nullable(Of Boolean), fechaIni As String, fechaFin As String, sn_Ajuste As Nullable(Of Integer)) As ObjectResult(Of spS_ListaPoliza_Result)
+        Dim cod_sucParameter As ObjectParameter = If(cod_suc.HasValue, New ObjectParameter("cod_suc", cod_suc), New ObjectParameter("cod_suc", GetType(Integer)))
+
+        Dim cod_ramoParameter As ObjectParameter = If(cod_ramo.HasValue, New ObjectParameter("cod_ramo", cod_ramo), New ObjectParameter("cod_ramo", GetType(Integer)))
+
+        Dim nro_polParameter As ObjectParameter = If(nro_pol.HasValue, New ObjectParameter("nro_pol", nro_pol), New ObjectParameter("nro_pol", GetType(Decimal)))
+
+        Dim str_polParameter As ObjectParameter = If(str_pol IsNot Nothing, New ObjectParameter("str_pol", str_pol), New ObjectParameter("str_pol", GetType(String)))
+
+        Dim bln_GarantiasParameter As ObjectParameter = If(bln_Garantias.HasValue, New ObjectParameter("bln_Garantias", bln_Garantias), New ObjectParameter("bln_Garantias", GetType(Boolean)))
+
+        Dim fechaIniParameter As ObjectParameter = If(fechaIni IsNot Nothing, New ObjectParameter("FechaIni", fechaIni), New ObjectParameter("FechaIni", GetType(String)))
+
+        Dim fechaFinParameter As ObjectParameter = If(fechaFin IsNot Nothing, New ObjectParameter("FechaFin", fechaFin), New ObjectParameter("FechaFin", GetType(String)))
+
+        Dim sn_AjusteParameter As ObjectParameter = If(sn_Ajuste.HasValue, New ObjectParameter("sn_Ajuste", sn_Ajuste), New ObjectParameter("sn_Ajuste", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_ListaPoliza_Result)("spS_ListaPoliza", cod_sucParameter, cod_ramoParameter, nro_polParameter, str_polParameter, bln_GarantiasParameter, fechaIniParameter, fechaFinParameter, sn_AjusteParameter)
+    End Function
+
 End Class

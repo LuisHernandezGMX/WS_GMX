@@ -11,5 +11,6 @@ Public Interface IGenerales
     Function ObtieneCatalogo(strPrefijo As String, Optional strCondicion As String = "", Optional strSel As String = "") As List(Of spS_CatalogosOP_Result2)
 
     <OperationContract()>
-    Function GetRamo(Id As Integer) As String
+    Function ObtienePolizas(cod_suc As Integer, cod_ramo As Integer, nro_pol As Double, str_pol As String, bln_garantias As Boolean,
+                            FechaIni As String, FechaFin As String, sn_Ajuste As Integer) As List(Of spS_ListaPoliza_Result)
 End Interface
