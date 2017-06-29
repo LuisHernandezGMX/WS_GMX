@@ -55,4 +55,10 @@ Partial Public Class GralEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_ListaPoliza_Result)("spS_ListaPoliza", cod_sucParameter, cod_ramoParameter, nro_polParameter, str_polParameter, bln_GarantiasParameter, fechaIniParameter, fechaFinParameter, sn_AjusteParameter)
     End Function
 
+    Public Overridable Function spS_cPAR_Parametros(cPAR_Id As Nullable(Of Integer)) As ObjectResult(Of String)
+        Dim cPAR_IdParameter As ObjectParameter = If(cPAR_Id.HasValue, New ObjectParameter("cPAR_Id", cPAR_Id), New ObjectParameter("cPAR_Id", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of String)("spS_cPAR_Parametros", cPAR_IdParameter)
+    End Function
+
 End Class

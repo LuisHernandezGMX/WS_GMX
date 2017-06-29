@@ -121,4 +121,12 @@ Partial Public Class RecordEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spu_taviso_Usuario", cod_usuarioParameter, cod_sectorParameter, idavParameter, nivelParameter)
     End Function
 
+    Public Overridable Function spU_ActivaJob(cPAR_Id As Nullable(Of Integer), cPAR_Value As String) As ObjectResult(Of Nullable(Of Integer))
+        Dim cPAR_IdParameter As ObjectParameter = If(cPAR_Id.HasValue, New ObjectParameter("cPAR_Id", cPAR_Id), New ObjectParameter("cPAR_Id", GetType(Integer)))
+
+        Dim cPAR_ValueParameter As ObjectParameter = If(cPAR_Value IsNot Nothing, New ObjectParameter("cPAR_Value", cPAR_Value), New ObjectParameter("cPAR_Value", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spU_ActivaJob", cPAR_IdParameter, cPAR_ValueParameter)
+    End Function
+
 End Class
