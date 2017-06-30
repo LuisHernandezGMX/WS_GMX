@@ -48,6 +48,6 @@ Public Interface IRecSiniestros
 #End Region
 #Region "Job"
     <OperationContract()>
-    Function ActualizaJobParam(cPAR_Id As Integer, cPAR_Value As String) As List(Of Nullable(Of Int32))
+    Function ActualizaJobParam(srtHora As String, blnActivo As Boolean) As List(Of Nullable(Of Int32))
 #End Region
 End Interface

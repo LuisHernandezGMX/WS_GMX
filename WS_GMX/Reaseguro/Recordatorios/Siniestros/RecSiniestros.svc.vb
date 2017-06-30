@@ -130,10 +130,10 @@ Public Class RecSiniestros
     End Function
 #End Region
 #Region "Job"
-    Public Function ActualizaJobParam(cPAR_Id As Integer, cPAR_Value As String) As List(Of Nullable(Of Int32)) Implements IRecSiniestros.ActualizaJobParam
+    Public Function ActualizaJobParam(srtHora As String, blnActivo As Boolean) As List(Of Nullable(Of Int32)) Implements IRecSiniestros.ActualizaJobParam
         Dim Resultado As IList = Nothing
         Try
-            Resultado = db.spU_ActivaJob(cPAR_Id, cPAR_Value).ToList
+            Resultado = db.spU_ActivaJob(srtHora, blnActivo).ToList
         Catch ex As Exception
             Return Nothing
         End Try

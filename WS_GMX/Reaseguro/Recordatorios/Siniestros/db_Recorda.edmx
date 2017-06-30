@@ -34,8 +34,8 @@
           <Parameter Name="id_nivel" Type="int" Mode="In" />
         </Function>
         <Function Name="spU_ActivaJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="cPAR_Id" Type="int" Mode="In" />
-          <Parameter Name="cPAR_Value" Type="varchar" Mode="In" />
+          <Parameter Name="Hora" Type="varchar" Mode="In" />
+          <Parameter Name="Activo" Type="bit" Mode="In" />
         </Function>
         <Function Name="spu_estatus_stro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_estatus" Type="int" Mode="In" />
@@ -112,8 +112,8 @@
             <Parameter Name="nivel" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spU_ActivaJob" ReturnType="Collection(Int32)">
-            <Parameter Name="cPAR_Id" Mode="In" Type="Int32" />
-            <Parameter Name="cPAR_Value" Mode="In" Type="String" />
+            <Parameter Name="Hora" Mode="In" Type="String" />
+            <Parameter Name="Activo" Mode="In" Type="Boolean" />
           </FunctionImport>
         </EntityContainer>
       </Schema>
