@@ -25,10 +25,18 @@ Partial Public Class OPEntities
     End Sub
 
 
-    Public Overridable Function spS_Aclaracion(id_pv As Nullable(Of Integer)) As ObjectResult(Of spS_Aclaracion_Result)
+    Public Overridable Function spI_PolNoPago(id_pv As Nullable(Of Integer), cod_usuario As String) As ObjectResult(Of spI_PolNoPago_Result)
         Dim id_pvParameter As ObjectParameter = If(id_pv.HasValue, New ObjectParameter("id_pv", id_pv), New ObjectParameter("id_pv", GetType(Integer)))
 
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_Aclaracion_Result)("spS_Aclaracion", id_pvParameter)
+        Dim cod_usuarioParameter As ObjectParameter = If(cod_usuario IsNot Nothing, New ObjectParameter("cod_usuario", cod_usuario), New ObjectParameter("cod_usuario", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spI_PolNoPago_Result)("spI_PolNoPago", id_pvParameter, cod_usuarioParameter)
+    End Function
+
+    Public Overridable Function spD_PolNoPago(id_pv As String) As ObjectResult(Of spD_PolNoPago_Result)
+        Dim id_pvParameter As ObjectParameter = If(id_pv IsNot Nothing, New ObjectParameter("id_pv", id_pv), New ObjectParameter("id_pv", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spD_PolNoPago_Result)("spD_PolNoPago", id_pvParameter)
     End Function
 
 End Class

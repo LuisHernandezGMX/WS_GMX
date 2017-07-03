@@ -5,6 +5,19 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="GralModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="spI_LogErrores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="hostname" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spI_OfGread" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="strTabla" Type="varchar" Mode="In" />
+          <Parameter Name="strKey" Type="varchar" Mode="In" />
+          <Parameter Name="strDatos" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spS_Aclaracion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_pv" Type="int" Mode="In" />
+        </Function>
         <Function Name="spS_CatalogosOP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="strCatalogo" Type="varchar" Mode="In" />
           <Parameter Name="Condicion" Type="varchar" Mode="In" />
@@ -12,6 +25,19 @@
         </Function>
         <Function Name="spS_cPAR_Parametros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cPAR_Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spS_DetallePagosCob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_pv" Type="int" Mode="In" />
+          <Parameter Name="cod_aseg" Type="int" Mode="In" />
+          <Parameter Name="ind_pag" Type="int" Mode="In" />
+          <Parameter Name="nro_cuota" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spS_EndososNoPagoOP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_usuario" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spS_ListaEndoso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="str_pol" Type="varchar" Mode="In" />
+          <Parameter Name="FecEmision" Type="varchar" Mode="In" />
         </Function>
         <Function Name="spS_ListaPoliza" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cod_suc" Type="int" Mode="In" />
@@ -22,6 +48,14 @@
           <Parameter Name="FechaIni" Type="varchar" Mode="In" />
           <Parameter Name="FechaFin" Type="varchar" Mode="In" />
           <Parameter Name="sn_Ajuste" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spS_Pagador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_pv" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spS_PagadorCuotas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_pv" Type="int" Mode="In" />
+          <Parameter Name="ind_pag" Type="int" Mode="In" />
+          <Parameter Name="cod_aseg" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="GralModelStoreContainer" />
       </Schema></edmx:StorageModels>
@@ -45,7 +79,41 @@
             <Parameter Name="sn_Ajuste" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spS_cPAR_Parametros" ReturnType="Collection(String)">
-            <Parameter Name="cPAR_Id" Mode="In" Type="Int32" />
+          <Parameter Name="cPAR_Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spS_ListaEndoso" ReturnType="Collection(GralModel.spS_ListaEndoso_Result)">
+            <Parameter Name="str_pol" Mode="In" Type="String" />
+            <Parameter Name="FecEmision" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spS_Pagador" ReturnType="Collection(GralModel.spS_Pagador_Result)">
+          <Parameter Name="id_pv" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spS_PagadorCuotas" ReturnType="Collection(GralModel.spS_PagadorCuotas_Result)">
+            <Parameter Name="id_pv" Mode="In" Type="Int32" />
+            <Parameter Name="ind_pag" Mode="In" Type="Int32" />
+            <Parameter Name="cod_aseg" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spS_DetallePagosCob" ReturnType="Collection(GralModel.spS_DetallePagosCob_Result)">
+            <Parameter Name="id_pv" Mode="In" Type="Int32" />
+            <Parameter Name="cod_aseg" Mode="In" Type="Int32" />
+            <Parameter Name="ind_pag" Mode="In" Type="Int32" />
+            <Parameter Name="nro_cuota" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spI_LogErrores" ReturnType="Collection(GralModel.spI_LogErrores_Result)">
+            <Parameter Name="cod_usuario" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="hostname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spI_OfGread" ReturnType="Collection(GralModel.spI_OfGread_Result)">
+            <Parameter Name="strTabla" Mode="In" Type="String" />
+            <Parameter Name="strKey" Mode="In" Type="String" />
+            <Parameter Name="strDatos" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spS_EndososNoPagoOP" ReturnType="Collection(GralModel.spS_EndososNoPagoOP_Result)">
+          <Parameter Name="cod_usuario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spS_Aclaracion" ReturnType="Collection(GralModel.spS_Aclaracion_Result)">
+            <Parameter Name="id_pv" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spS_CatalogosOP_Result">
@@ -91,6 +159,109 @@
           <Property Type="String" Name="cod_usuario_suscriptor" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="Suscriptor" Nullable="false" MaxLength="30" />
           <Property Type="Int32" Name="sn_NoPago" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spS_ListaEndoso_Result">
+          <Property Type="Int32" Name="id_pv" Nullable="false" />
+          <Property Type="Decimal" Name="cod_suc" Nullable="false" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="cod_ramo" Nullable="false" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="nro_pol" Nullable="false" Precision="9" Scale="0" />
+          <Property Type="Decimal" Name="aaaa_endoso" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="Decimal" Name="nro_endoso" Nullable="false" Precision="8" Scale="0" />
+          <Property Type="Decimal" Name="cod_grupo_endo" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="String" Name="GrupoEndoso" Nullable="false" MaxLength="60" />
+          <Property Type="Decimal" Name="cod_tipo_endo" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="String" Name="TipoEndoso" Nullable="false" MaxLength="80" />
+        </ComplexType>
+        <ComplexType Name="spS_Pagador_Result">
+          <Property Type="Int32" Name="id_pv" Nullable="false" />
+          <Property Type="Int32" Name="cod_aseg" Nullable="false" />
+          <Property Type="String" Name="pagador" Nullable="false" MaxLength="242" />
+          <Property Type="String" Name="txt_desc" Nullable="false" MaxLength="20" />
+          <Property Type="Decimal" Name="cod_ind_pagador" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="String" Name="txt_desc_cond" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ind_conducto" Nullable="true" />
+          <Property Type="String" Name="Med_Pago_Act" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Cond_Act" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spS_PagadorCuotas_Result">
+          <Property Type="Int32" Name="id_pv" Nullable="false" />
+          <Property Type="Int32" Name="cod_aseg" Nullable="false" />
+          <Property Type="Decimal" Name="cod_ind_pagador" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="Decimal" Name="nro_cuota" Nullable="false" Precision="2" Scale="0" />
+          <Property Type="DateTime" Name="inicio_vigencia" Nullable="true" Precision="16" />
+          <Property Type="DateTime" Name="fin_vigencia" Nullable="true" Precision="16" />
+          <Property Type="String" Name="fec_venc" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="imp_prima_me" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="Estado" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="txt_origen" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="imp_decreto_me" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="imp_iva_me" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="imp_rec_fin_me" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="imp_dto_me" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="imp_der_emi_me" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="cod_estado" Nullable="false" Precision="1" Scale="0" />
+          <Property Type="String" Name="nro_serie" Nullable="true" MaxLength="3" />
+          <Property Type="Int32" Name="nro_comprobante" Nullable="true" />
+          <Property Type="String" Name="Documento" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="imp_premio_me" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="imp_prima_meCoas" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="imp_decreto_meCoas" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="imp_iva_meCoas" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="imp_rec_fin_meCoas" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="imp_dto_meCoas" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="imp_der_emi_meCoas" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="imp_premio_meCoas" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="imp_pago_parcial" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="imp_compensado" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="imp_pago_devuelto" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="imp_pago_cancelado" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="imp_pago_pendiente" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="String" Name="fecha_debito" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="fec_numeracion" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="spS_DetallePagosCob_Result">
+          <Property Type="Decimal" Name="nro_correlativo" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="Int32" Name="nro_recibo" Nullable="true" />
+          <Property Type="Int32" Name="nro_recibo_anula" Nullable="false" />
+          <Property Type="DateTime" Name="fec_cobranza" Nullable="false" Precision="16" />
+          <Property Type="Decimal" Name="imp_prima" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="imp_decreto" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="imp_gastos_emision" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="imp_iva" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="imp_recargo" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="imp_descuento" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="id_cob" Nullable="false" />
+          <Property Type="String" Name="txt_desc_redu" Nullable="false" MaxLength="3" />
+          <Property Type="DateTime" Name="fec_real_pago" Nullable="true" Precision="23" />
+          <Property Type="Decimal" Name="imp_premio_bruto" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="imp_art41" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="String" Name="text_caja" Nullable="false" MaxLength="30" />
+          <Property Type="Decimal" Name="imp_comis_normal_descon" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="cod_caja" Nullable="false" Precision="2" Scale="0" />
+          <Property Type="Decimal" Name="imp_cambio" Nullable="false" Precision="9" Scale="4" />
+        </ComplexType>
+        <ComplexType Name="spI_LogErrores_Result">
+          <Property Type="String" Name="Resultado" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="spI_OfGread_Result">
+          <Property Type="String" Name="Resultado" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="spS_EndososNoPagoOP_Result">
+          <Property Type="Int32" Name="id_pv" Nullable="false" />
+          <Property Type="String" Name="Poliza" Nullable="true" MaxLength="154" />
+          <Property Type="Int32" Name="cod_aseg" Nullable="false" />
+          <Property Type="String" Name="Asegurado" Nullable="false" MaxLength="120" />
+          <Property Type="Decimal" Name="cod_grupo_endo" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="String" Name="GrupoEndoso" Nullable="false" MaxLength="60" />
+          <Property Type="Decimal" Name="cod_tipo_endo" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="String" Name="TipoEndoso" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="cod_usuario" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Usuario" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Fecha" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="spS_Aclaracion_Result">
+          <Property Type="Int32" Name="Clave" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="Max" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -140,6 +311,141 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spS_cPAR_Parametros" FunctionName="GralModel.Store.spS_cPAR_Parametros" />
+          <FunctionImportMapping FunctionImportName="spS_ListaEndoso" FunctionName="GralModel.Store.spS_ListaEndoso">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GralModel.spS_ListaEndoso_Result">
+                <ScalarProperty Name="id_pv" ColumnName="id_pv" />
+                <ScalarProperty Name="cod_suc" ColumnName="cod_suc" />
+                <ScalarProperty Name="cod_ramo" ColumnName="cod_ramo" />
+                <ScalarProperty Name="nro_pol" ColumnName="nro_pol" />
+                <ScalarProperty Name="aaaa_endoso" ColumnName="aaaa_endoso" />
+                <ScalarProperty Name="nro_endoso" ColumnName="nro_endoso" />
+                <ScalarProperty Name="cod_grupo_endo" ColumnName="cod_grupo_endo" />
+                <ScalarProperty Name="GrupoEndoso" ColumnName="GrupoEndoso" />
+                <ScalarProperty Name="cod_tipo_endo" ColumnName="cod_tipo_endo" />
+                <ScalarProperty Name="TipoEndoso" ColumnName="TipoEndoso" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_Pagador" FunctionName="GralModel.Store.spS_Pagador">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GralModel.spS_Pagador_Result">
+                <ScalarProperty Name="id_pv" ColumnName="id_pv" />
+                <ScalarProperty Name="cod_aseg" ColumnName="cod_aseg" />
+                <ScalarProperty Name="pagador" ColumnName="pagador" />
+                <ScalarProperty Name="txt_desc" ColumnName="txt_desc" />
+                <ScalarProperty Name="cod_ind_pagador" ColumnName="cod_ind_pagador" />
+                <ScalarProperty Name="txt_desc_cond" ColumnName="txt_desc_cond" />
+                <ScalarProperty Name="ind_conducto" ColumnName="ind_conducto" />
+                <ScalarProperty Name="Med_Pago_Act" ColumnName="Med_Pago_Act" />
+                <ScalarProperty Name="Cond_Act" ColumnName="Cond_Act" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_PagadorCuotas" FunctionName="GralModel.Store.spS_PagadorCuotas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GralModel.spS_PagadorCuotas_Result">
+                <ScalarProperty Name="id_pv" ColumnName="id_pv" />
+                <ScalarProperty Name="cod_aseg" ColumnName="cod_aseg" />
+                <ScalarProperty Name="cod_ind_pagador" ColumnName="cod_ind_pagador" />
+                <ScalarProperty Name="nro_cuota" ColumnName="nro_cuota" />
+                <ScalarProperty Name="inicio_vigencia" ColumnName="inicio_vigencia" />
+                <ScalarProperty Name="fin_vigencia" ColumnName="fin_vigencia" />
+                <ScalarProperty Name="fec_venc" ColumnName="fec_venc" />
+                <ScalarProperty Name="imp_prima_me" ColumnName="imp_prima_me" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="txt_origen" ColumnName="txt_origen" />
+                <ScalarProperty Name="imp_decreto_me" ColumnName="imp_decreto_me" />
+                <ScalarProperty Name="imp_iva_me" ColumnName="imp_iva_me" />
+                <ScalarProperty Name="imp_rec_fin_me" ColumnName="imp_rec_fin_me" />
+                <ScalarProperty Name="imp_dto_me" ColumnName="imp_dto_me" />
+                <ScalarProperty Name="imp_der_emi_me" ColumnName="imp_der_emi_me" />
+                <ScalarProperty Name="cod_estado" ColumnName="cod_estado" />
+                <ScalarProperty Name="nro_serie" ColumnName="nro_serie" />
+                <ScalarProperty Name="nro_comprobante" ColumnName="nro_comprobante" />
+                <ScalarProperty Name="Documento" ColumnName="Documento" />
+                <ScalarProperty Name="imp_premio_me" ColumnName="imp_premio_me" />
+                <ScalarProperty Name="imp_prima_meCoas" ColumnName="imp_prima_meCoas" />
+                <ScalarProperty Name="imp_decreto_meCoas" ColumnName="imp_decreto_meCoas" />
+                <ScalarProperty Name="imp_iva_meCoas" ColumnName="imp_iva_meCoas" />
+                <ScalarProperty Name="imp_rec_fin_meCoas" ColumnName="imp_rec_fin_meCoas" />
+                <ScalarProperty Name="imp_dto_meCoas" ColumnName="imp_dto_meCoas" />
+                <ScalarProperty Name="imp_der_emi_meCoas" ColumnName="imp_der_emi_meCoas" />
+                <ScalarProperty Name="imp_premio_meCoas" ColumnName="imp_premio_meCoas" />
+                <ScalarProperty Name="imp_pago_parcial" ColumnName="imp_pago_parcial" />
+                <ScalarProperty Name="imp_compensado" ColumnName="imp_compensado" />
+                <ScalarProperty Name="imp_pago_devuelto" ColumnName="imp_pago_devuelto" />
+                <ScalarProperty Name="imp_pago_cancelado" ColumnName="imp_pago_cancelado" />
+                <ScalarProperty Name="imp_pago_pendiente" ColumnName="imp_pago_pendiente" />
+                <ScalarProperty Name="fecha_debito" ColumnName="fecha_debito" />
+                <ScalarProperty Name="fec_numeracion" ColumnName="fec_numeracion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_DetallePagosCob" FunctionName="GralModel.Store.spS_DetallePagosCob">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GralModel.spS_DetallePagosCob_Result">
+                <ScalarProperty Name="nro_correlativo" ColumnName="nro_correlativo" />
+                <ScalarProperty Name="nro_recibo" ColumnName="nro_recibo" />
+                <ScalarProperty Name="nro_recibo_anula" ColumnName="nro_recibo_anula" />
+                <ScalarProperty Name="fec_cobranza" ColumnName="fec_cobranza" />
+                <ScalarProperty Name="imp_prima" ColumnName="imp_prima" />
+                <ScalarProperty Name="imp_decreto" ColumnName="imp_decreto" />
+                <ScalarProperty Name="imp_gastos_emision" ColumnName="imp_gastos_emision" />
+                <ScalarProperty Name="imp_iva" ColumnName="imp_iva" />
+                <ScalarProperty Name="imp_recargo" ColumnName="imp_recargo" />
+                <ScalarProperty Name="imp_descuento" ColumnName="imp_descuento" />
+                <ScalarProperty Name="id_cob" ColumnName="id_cob" />
+                <ScalarProperty Name="txt_desc_redu" ColumnName="txt_desc_redu" />
+                <ScalarProperty Name="fec_real_pago" ColumnName="fec_real_pago" />
+                <ScalarProperty Name="imp_premio_bruto" ColumnName="imp_premio_bruto" />
+                <ScalarProperty Name="imp_art41" ColumnName="imp_art41" />
+                <ScalarProperty Name="text_caja" ColumnName="text_caja" />
+                <ScalarProperty Name="imp_comis_normal_descon" ColumnName="imp_comis_normal_descon" />
+                <ScalarProperty Name="cod_caja" ColumnName="cod_caja" />
+                <ScalarProperty Name="imp_cambio" ColumnName="imp_cambio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spI_LogErrores" FunctionName="GralModel.Store.spI_LogErrores" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GralModel.spI_LogErrores_Result">
+                <ScalarProperty Name="Resultado" ColumnName="Resultado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spI_OfGread" FunctionName="GralModel.Store.spI_OfGread" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GralModel.spI_OfGread_Result">
+                <ScalarProperty Name="Resultado" ColumnName="Resultado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_EndososNoPagoOP" FunctionName="GralModel.Store.spS_EndososNoPagoOP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GralModel.spS_EndososNoPagoOP_Result">
+                <ScalarProperty Name="id_pv" ColumnName="id_pv" />
+                <ScalarProperty Name="Poliza" ColumnName="Poliza" />
+                <ScalarProperty Name="cod_aseg" ColumnName="cod_aseg" />
+                <ScalarProperty Name="Asegurado" ColumnName="Asegurado" />
+                <ScalarProperty Name="cod_grupo_endo" ColumnName="cod_grupo_endo" />
+                <ScalarProperty Name="GrupoEndoso" ColumnName="GrupoEndoso" />
+                <ScalarProperty Name="cod_tipo_endo" ColumnName="cod_tipo_endo" />
+                <ScalarProperty Name="TipoEndoso" ColumnName="TipoEndoso" />
+                <ScalarProperty Name="cod_usuario" ColumnName="cod_usuario" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_Aclaracion" FunctionName="GralModel.Store.spS_Aclaracion">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GralModel.spS_Aclaracion_Result">
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

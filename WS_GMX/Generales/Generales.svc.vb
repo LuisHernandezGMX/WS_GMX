@@ -9,6 +9,34 @@ Public Class Generales
     Implements IGenerales
 
     Public db As New GralEntities
+
+#Region "Inserciones a Base de Datos"
+    Public Function InsertaLogError(cod_usuario As String, Descripcion As String, hostname As String) As String Implements IGenerales.InsertaLogError
+        Dim Resultado As IList = Nothing
+        Dim strResultado As String = ""
+        Try
+            Resultado = db.spI_LogErrores(cod_usuario, Descripcion, hostname).ToList
+            strResultado = Resultado(0).ToString()
+        Catch ex As Exception
+            Return String.Empty
+        End Try
+        Return strResultado
+    End Function
+
+    Public Function InsertaATabla(strTabla As String, strKey As String, strDatos As String) As String Implements IGenerales.InsertaATabla
+        Dim Resultado As IList = Nothing
+        Dim strResultado As String = ""
+        Try
+            Resultado = db.spI_OfGread(strTabla, strKey, strDatos).ToList
+            strResultado = Resultado(0).ToString()
+        Catch ex As Exception
+            Return String.Empty
+        End Try
+        Return strResultado
+    End Function
+#End Region
+
+
     Public Function EnviaCorreo(strTo As String, strBody As String, strSubject As String, Optional strCc As String = vbNullString, Optional strBco As String = vbNullString) As Boolean Implements IGenerales.EnviaCorreo
         Dim cm = ConfigurationManager.AppSettings
         Dim Mensaje As New MailMessage
@@ -61,6 +89,72 @@ Public Class Generales
             Return Nothing
         End Try
         Return Resultado
+    End Function
+
+    Public Function ObtieneEndosos(str_pol As String, FecEmision As String) As List(Of spS_ListaEndoso_Result) Implements IGenerales.ObtieneEndosos
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.spS_ListaEndoso(str_pol, FecEmision).ToList
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return Resultado
+    End Function
+
+    Function ObtienePagador(id_pv As Double) As List(Of spS_Pagador_Result) Implements IGenerales.ObtienePagador
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.spS_Pagador(id_pv).ToList
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return Resultado
+    End Function
+
+    Public Function ObtienePagadorCuotas(id_pv As Double, ind_pag As Integer, cod_aseg As Double) As List(Of spS_PagadorCuotas_Result) Implements IGenerales.ObtienePagadorCuotas
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.spS_PagadorCuotas(id_pv, ind_pag, cod_aseg).ToList
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return Resultado
+    End Function
+
+    Function ObtieneDetallePagoCuota(id_pv As Double, cod_aseg As Double, ind_pag As Integer, nro_cuota As Integer) As List(Of spS_DetallePagosCob_Result) Implements IGenerales.ObtieneDetallePagoCuota
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.spS_DetallePagosCob(id_pv, cod_aseg, ind_pag, nro_cuota).ToList
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return Resultado
+    End Function
+
+    Public Function ObtieneEndososNoPago(cod_usuario As String) As List(Of spS_EndososNoPagoOP_Result) Implements IGenerales.ObtieneEndososNoPago
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.spS_EndososNoPagoOP(cod_usuario).ToList
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return Resultado
+    End Function
+
+    Public Function ObtieneAclaraciones(id_pv As Integer) As String Implements IGenerales.ObtieneAclaraciones
+        Dim Resultado As IList = Nothing
+        Dim StrResultado As String = ""
+        Dim Funcs As New FuncionesConversion
+        Try
+            Resultado = db.spS_Aclaracion(id_pv).ToList
+            For Each Item In Resultado
+                StrResultado = Funcs.RempCarEsp(Funcs.ConvertRtf2Html(Replace(Item.Descripcion.ToString(), vbCrLf, "")))
+                StrResultado = Replace(Replace(StrResultado, vbCrLf, ""), vbTab, "")
+            Next
+        Catch ex As Exception
+            Return String.Empty
+        End Try
+        Return StrResultado
     End Function
 
     Public Function ObtieneParametro(cPAR_Id As Integer) As String Implements IGenerales.ObtieneParametro
