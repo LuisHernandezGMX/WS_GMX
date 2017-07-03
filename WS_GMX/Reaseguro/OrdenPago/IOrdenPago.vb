@@ -10,6 +10,7 @@ Public Interface IOrdenPago
 #End Region
 
 #Region "Eliminación de Base de Datos"
+    <OperationContract()>
     Function EliminaPolNoPago(id_pv As String) As String
 #End Region
 End Interface
