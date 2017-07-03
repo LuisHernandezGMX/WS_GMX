@@ -33,6 +33,10 @@
           <Parameter Name="cod_sector" Type="numeric" Mode="In" />
           <Parameter Name="id_nivel" Type="int" Mode="In" />
         </Function>
+        <Function Name="spU_ActivaJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Hora" Type="varchar" Mode="In" />
+          <Parameter Name="Activo" Type="bit" Mode="In" />
+        </Function>
         <Function Name="spu_estatus_stro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_estatus" Type="int" Mode="In" />
           <Parameter Name="estatus" Type="varchar" Mode="In" />
@@ -94,7 +98,7 @@
             <Parameter Name="d_tolera" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spd_taviso_Usuario" ReturnType="Collection(Int32)">
-            <Parameter Name="idav" Mode="In" Type="Int32" />
+          <Parameter Name="idav" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spi_taviso_Usuario" ReturnType="Collection(Int32)">
             <Parameter Name="cod_usuario" Mode="In" Type="String" />
@@ -106,6 +110,10 @@
             <Parameter Name="cod_sector" Mode="In" Type="Decimal" />
             <Parameter Name="idav" Mode="In" Type="Int32" />
             <Parameter Name="nivel" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spU_ActivaJob" ReturnType="Collection(Int32)">
+            <Parameter Name="Hora" Mode="In" Type="String" />
+            <Parameter Name="Activo" Mode="In" Type="Boolean" />
           </FunctionImport>
         </EntityContainer>
       </Schema>
@@ -126,6 +134,7 @@
           <FunctionImportMapping FunctionImportName="spd_taviso_Usuario" FunctionName="RecordModel.Store.spd_taviso_Usuario" />
           <FunctionImportMapping FunctionImportName="spi_taviso_Usuario" FunctionName="RecordModel.Store.spi_taviso_Usuario" />
           <FunctionImportMapping FunctionImportName="spu_taviso_Usuario" FunctionName="RecordModel.Store.spu_taviso_Usuario" />
+          <FunctionImportMapping FunctionImportName="spU_ActivaJob" FunctionName="RecordModel.Store.spU_ActivaJob" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

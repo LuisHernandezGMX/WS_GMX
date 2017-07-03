@@ -63,5 +63,15 @@ Public Class Generales
         Return Resultado
     End Function
 
-
+    Public Function ObtieneParametro(cPAR_Id As Integer) As String Implements IGenerales.ObtieneParametro
+        Dim Resultado As IList = Nothing
+        Dim strResultado As String = ""
+        Try
+            Resultado = db.spS_cPAR_Parametros(cPAR_Id).ToList
+            strResultado = Resultado(0).ToString()
+        Catch ex As Exception
+            Return String.Empty
+        End Try
+        Return strResultado
+    End Function
 End Class

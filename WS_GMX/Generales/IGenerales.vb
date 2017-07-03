@@ -13,4 +13,7 @@ Public Interface IGenerales
     <OperationContract()>
     Function ObtienePolizas(cod_suc As Integer, cod_ramo As Integer, nro_pol As Double, str_pol As String, bln_garantias As Boolean,
                             FechaIni As String, FechaFin As String, sn_Ajuste As Integer) As List(Of spS_ListaPoliza_Result)
+
+    <OperationContract()>
+    Function ObtieneParametro(cPAR_Id As Integer) As String
 End Interface

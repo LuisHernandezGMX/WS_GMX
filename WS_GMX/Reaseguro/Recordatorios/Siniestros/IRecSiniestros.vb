@@ -46,4 +46,8 @@ Public Interface IRecSiniestros
     <OperationContract()>
     Function EliminaAvUsuario(idav As Int32) As List(Of Nullable(Of Int32))
 #End Region
+#Region "Job"
+    <OperationContract()>
+    Function ActualizaJobParam(srtHora As String, blnActivo As Boolean) As List(Of Nullable(Of Int32))
+#End Region
 End Interface

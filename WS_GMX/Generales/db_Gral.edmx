@@ -10,6 +10,9 @@
           <Parameter Name="Condicion" Type="varchar" Mode="In" />
           <Parameter Name="strSel" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="spS_cPAR_Parametros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cPAR_Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="spS_ListaPoliza" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cod_suc" Type="int" Mode="In" />
           <Parameter Name="cod_ramo" Type="int" Mode="In" />
@@ -40,6 +43,9 @@
             <Parameter Name="FechaIni" Mode="In" Type="String" />
             <Parameter Name="FechaFin" Mode="In" Type="String" />
             <Parameter Name="sn_Ajuste" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spS_cPAR_Parametros" ReturnType="Collection(String)">
+            <Parameter Name="cPAR_Id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spS_CatalogosOP_Result">
@@ -133,6 +139,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_cPAR_Parametros" FunctionName="GralModel.Store.spS_cPAR_Parametros" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -129,4 +129,15 @@ Public Class RecSiniestros
         Return Resultado
     End Function
 #End Region
+#Region "Job"
+    Public Function ActualizaJobParam(srtHora As String, blnActivo As Boolean) As List(Of Nullable(Of Int32)) Implements IRecSiniestros.ActualizaJobParam
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.spU_ActivaJob(srtHora, blnActivo).ToList
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return Resultado
+    End Function
+#End Region
 End Class
