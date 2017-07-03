@@ -61,4 +61,72 @@ Partial Public Class GralEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of String)("spS_cPAR_Parametros", cPAR_IdParameter)
     End Function
 
+    Public Overridable Function spS_ListaEndoso(str_pol As String, fecEmision As String) As ObjectResult(Of spS_ListaEndoso_Result)
+        Dim str_polParameter As ObjectParameter = If(str_pol IsNot Nothing, New ObjectParameter("str_pol", str_pol), New ObjectParameter("str_pol", GetType(String)))
+
+        Dim fecEmisionParameter As ObjectParameter = If(fecEmision IsNot Nothing, New ObjectParameter("FecEmision", fecEmision), New ObjectParameter("FecEmision", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_ListaEndoso_Result)("spS_ListaEndoso", str_polParameter, fecEmisionParameter)
+    End Function
+
+    Public Overridable Function spS_Pagador(id_pv As Nullable(Of Integer)) As ObjectResult(Of spS_Pagador_Result)
+        Dim id_pvParameter As ObjectParameter = If(id_pv.HasValue, New ObjectParameter("id_pv", id_pv), New ObjectParameter("id_pv", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_Pagador_Result)("spS_Pagador", id_pvParameter)
+    End Function
+
+    Public Overridable Function spS_PagadorCuotas(id_pv As Nullable(Of Integer), ind_pag As Nullable(Of Integer), cod_aseg As Nullable(Of Integer)) As ObjectResult(Of spS_PagadorCuotas_Result)
+        Dim id_pvParameter As ObjectParameter = If(id_pv.HasValue, New ObjectParameter("id_pv", id_pv), New ObjectParameter("id_pv", GetType(Integer)))
+
+        Dim ind_pagParameter As ObjectParameter = If(ind_pag.HasValue, New ObjectParameter("ind_pag", ind_pag), New ObjectParameter("ind_pag", GetType(Integer)))
+
+        Dim cod_asegParameter As ObjectParameter = If(cod_aseg.HasValue, New ObjectParameter("cod_aseg", cod_aseg), New ObjectParameter("cod_aseg", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_PagadorCuotas_Result)("spS_PagadorCuotas", id_pvParameter, ind_pagParameter, cod_asegParameter)
+    End Function
+
+    Public Overridable Function spS_DetallePagosCob(id_pv As Nullable(Of Integer), cod_aseg As Nullable(Of Integer), ind_pag As Nullable(Of Integer), nro_cuota As Nullable(Of Integer)) As ObjectResult(Of spS_DetallePagosCob_Result)
+        Dim id_pvParameter As ObjectParameter = If(id_pv.HasValue, New ObjectParameter("id_pv", id_pv), New ObjectParameter("id_pv", GetType(Integer)))
+
+        Dim cod_asegParameter As ObjectParameter = If(cod_aseg.HasValue, New ObjectParameter("cod_aseg", cod_aseg), New ObjectParameter("cod_aseg", GetType(Integer)))
+
+        Dim ind_pagParameter As ObjectParameter = If(ind_pag.HasValue, New ObjectParameter("ind_pag", ind_pag), New ObjectParameter("ind_pag", GetType(Integer)))
+
+        Dim nro_cuotaParameter As ObjectParameter = If(nro_cuota.HasValue, New ObjectParameter("nro_cuota", nro_cuota), New ObjectParameter("nro_cuota", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_DetallePagosCob_Result)("spS_DetallePagosCob", id_pvParameter, cod_asegParameter, ind_pagParameter, nro_cuotaParameter)
+    End Function
+
+    Public Overridable Function spI_LogErrores(cod_usuario As String, descripcion As String, hostname As String) As ObjectResult(Of spI_LogErrores_Result)
+        Dim cod_usuarioParameter As ObjectParameter = If(cod_usuario IsNot Nothing, New ObjectParameter("cod_usuario", cod_usuario), New ObjectParameter("cod_usuario", GetType(String)))
+
+        Dim descripcionParameter As ObjectParameter = If(descripcion IsNot Nothing, New ObjectParameter("Descripcion", descripcion), New ObjectParameter("Descripcion", GetType(String)))
+
+        Dim hostnameParameter As ObjectParameter = If(hostname IsNot Nothing, New ObjectParameter("hostname", hostname), New ObjectParameter("hostname", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spI_LogErrores_Result)("spI_LogErrores", cod_usuarioParameter, descripcionParameter, hostnameParameter)
+    End Function
+
+    Public Overridable Function spI_OfGread(strTabla As String, strKey As String, strDatos As String) As ObjectResult(Of spI_OfGread_Result)
+        Dim strTablaParameter As ObjectParameter = If(strTabla IsNot Nothing, New ObjectParameter("strTabla", strTabla), New ObjectParameter("strTabla", GetType(String)))
+
+        Dim strKeyParameter As ObjectParameter = If(strKey IsNot Nothing, New ObjectParameter("strKey", strKey), New ObjectParameter("strKey", GetType(String)))
+
+        Dim strDatosParameter As ObjectParameter = If(strDatos IsNot Nothing, New ObjectParameter("strDatos", strDatos), New ObjectParameter("strDatos", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spI_OfGread_Result)("spI_OfGread", strTablaParameter, strKeyParameter, strDatosParameter)
+    End Function
+
+    Public Overridable Function spS_EndososNoPagoOP(cod_usuario As String) As ObjectResult(Of spS_EndososNoPagoOP_Result)
+        Dim cod_usuarioParameter As ObjectParameter = If(cod_usuario IsNot Nothing, New ObjectParameter("cod_usuario", cod_usuario), New ObjectParameter("cod_usuario", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_EndososNoPagoOP_Result)("spS_EndososNoPagoOP", cod_usuarioParameter)
+    End Function
+
+    Public Overridable Function spS_Aclaracion(id_pv As Nullable(Of Integer)) As ObjectResult(Of spS_Aclaracion_Result)
+        Dim id_pvParameter As ObjectParameter = If(id_pv.HasValue, New ObjectParameter("id_pv", id_pv), New ObjectParameter("id_pv", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_Aclaracion_Result)("spS_Aclaracion", id_pvParameter)
+    End Function
+
 End Class

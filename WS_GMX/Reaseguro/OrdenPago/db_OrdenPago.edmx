@@ -4,24 +4,33 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <Function Name="spS_Aclaracion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Schema Namespace="OPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="spD_PolNoPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_pv" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spI_PolNoPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_pv" Type="int" Mode="In" />
+          <Parameter Name="cod_usuario" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="OPModelStoreContainer" />
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="OPEntities" annotation:LazyLoadingEnabled="true" >
-          <FunctionImport Name="spS_Aclaracion" ReturnType="Collection(OPModel.spS_Aclaracion_Result)">
+          <FunctionImport Name="spI_PolNoPago" ReturnType="Collection(OPModel.spI_PolNoPago_Result)">
             <Parameter Name="id_pv" Mode="In" Type="Int32" />
+            <Parameter Name="cod_usuario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spD_PolNoPago" ReturnType="Collection(OPModel.spD_PolNoPago_Result)">
+            <Parameter Name="id_pv" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
-        <ComplexType Name="spS_Aclaracion_Result">
-          <Property Type="Int32" Name="Clave" Nullable="false" />
-          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="Max" />
+        <ComplexType Name="spI_PolNoPago_Result">
+          <Property Type="String" Name="Resultado" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="spD_PolNoPago_Result">
+          <Property Type="String" Name="Resultado" Nullable="true" MaxLength="1000" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -29,11 +38,17 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="OPModelStoreContainer" CdmEntityContainer="OPEntities" >
-          <FunctionImportMapping FunctionImportName="spS_Aclaracion" FunctionName="OPModel.Store.spS_Aclaracion">
+          <FunctionImportMapping FunctionImportName="spI_PolNoPago" FunctionName="OPModel.Store.spI_PolNoPago" >
             <ResultMapping>
-              <ComplexTypeMapping TypeName="OPModel.spS_Aclaracion_Result">
-                <ScalarProperty Name="Clave" ColumnName="Clave" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              <ComplexTypeMapping TypeName="OPModel.spI_PolNoPago_Result">
+                <ScalarProperty Name="Resultado" ColumnName="Resultado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spD_PolNoPago" FunctionName="OPModel.Store.spD_PolNoPago" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OPModel.spD_PolNoPago_Result">
+                <ScalarProperty Name="Resultado" ColumnName="Resultado" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

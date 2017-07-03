@@ -4,7 +4,12 @@
 <ServiceContract()>
 Public Interface IOrdenPago
 
+#Region "Inserciones a Base de Datos"
     <OperationContract()>
-    Function ObtieneAclaraciones(id_pv As Integer) As String
+    Function InsertaPolNoPago(id_pv As Double, cod_usuario As String) As String
+#End Region
 
+#Region "Eliminación de Base de Datos"
+    Function EliminaPolNoPago(id_pv As String) As String
+#End Region
 End Interface
