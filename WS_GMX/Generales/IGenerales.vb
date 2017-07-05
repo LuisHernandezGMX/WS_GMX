@@ -7,12 +7,24 @@ Public Interface IGenerales
 
 #Region "Inserciones a Base de Datos"
     <OperationContract()>
-    Function InsertaLogError(cod_usuario As String, Descripcion As String, hostname As String) As String
+    Function InsertaBitacora(cod_modulo As Integer, cod_submodulo_web As Integer, cod_usuario As String, Descripcion As String) As Boolean
 
     <OperationContract()>
-    Function InsertaATabla(strTabla As String, strKey As String, strDatos As String) As String
+    Function InsertaError(cod_modulo As Integer, cod_submodulo_web As Integer, cod_usuario As String, ErrorWeb As String) As Boolean
+
+    <OperationContract()>
+    Function InsertaATabla(strTabla As String, strKey As String, strDatos As String) As Boolean
 #End Region
 
+
+    <OperationContract()>
+    Function IsAuthenticated(Domain As String, username As String, pwd As String) As Boolean
+
+    <OperationContract()>
+    Function ObtieneUsuario(cod_usuarioNT As String) As List(Of spS_Usuario_Result)
+
+    <OperationContract()>
+    Function ObtieneMenu(cod_usuario As String, cod_modulo As Integer) As List(Of spS_MenuWeb_Result)
 
     <OperationContract()>
     Function EnviaCorreo(strTo As String, strBody As String, strSubject As String, Optional strCc As String = vbNullString, Optional strBco As String = vbNullString) As Boolean

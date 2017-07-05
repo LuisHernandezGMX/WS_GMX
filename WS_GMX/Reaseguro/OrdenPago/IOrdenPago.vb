@@ -6,11 +6,11 @@ Public Interface IOrdenPago
 
 #Region "Inserciones a Base de Datos"
     <OperationContract()>
-    Function InsertaPolNoPago(id_pv As Double, cod_usuario As String) As String
+    Function InsertaPolNoPago(id_pv As Double, cod_usuario As String) As Boolean
 #End Region
 
 #Region "Eliminación de Base de Datos"
     <OperationContract()>
-    Function EliminaPolNoPago(id_pv As String) As String
+    Function EliminaPolNoPago(id_pv As String) As Boolean
 #End Region
 End Interface

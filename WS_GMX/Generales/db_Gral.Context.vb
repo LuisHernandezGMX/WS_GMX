@@ -97,16 +97,6 @@ Partial Public Class GralEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_DetallePagosCob_Result)("spS_DetallePagosCob", id_pvParameter, cod_asegParameter, ind_pagParameter, nro_cuotaParameter)
     End Function
 
-    Public Overridable Function spI_LogErrores(cod_usuario As String, descripcion As String, hostname As String) As ObjectResult(Of spI_LogErrores_Result)
-        Dim cod_usuarioParameter As ObjectParameter = If(cod_usuario IsNot Nothing, New ObjectParameter("cod_usuario", cod_usuario), New ObjectParameter("cod_usuario", GetType(String)))
-
-        Dim descripcionParameter As ObjectParameter = If(descripcion IsNot Nothing, New ObjectParameter("Descripcion", descripcion), New ObjectParameter("Descripcion", GetType(String)))
-
-        Dim hostnameParameter As ObjectParameter = If(hostname IsNot Nothing, New ObjectParameter("hostname", hostname), New ObjectParameter("hostname", GetType(String)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spI_LogErrores_Result)("spI_LogErrores", cod_usuarioParameter, descripcionParameter, hostnameParameter)
-    End Function
-
     Public Overridable Function spI_OfGread(strTabla As String, strKey As String, strDatos As String) As ObjectResult(Of spI_OfGread_Result)
         Dim strTablaParameter As ObjectParameter = If(strTabla IsNot Nothing, New ObjectParameter("strTabla", strTabla), New ObjectParameter("strTabla", GetType(String)))
 
@@ -127,6 +117,44 @@ Partial Public Class GralEntities
         Dim id_pvParameter As ObjectParameter = If(id_pv.HasValue, New ObjectParameter("id_pv", id_pv), New ObjectParameter("id_pv", GetType(Integer)))
 
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_Aclaracion_Result)("spS_Aclaracion", id_pvParameter)
+    End Function
+
+    Public Overridable Function spS_Usuario(cod_usuarioNT As String) As ObjectResult(Of spS_Usuario_Result)
+        Dim cod_usuarioNTParameter As ObjectParameter = If(cod_usuarioNT IsNot Nothing, New ObjectParameter("cod_usuarioNT", cod_usuarioNT), New ObjectParameter("cod_usuarioNT", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_Usuario_Result)("spS_Usuario", cod_usuarioNTParameter)
+    End Function
+
+    Public Overridable Function spS_MenuWeb(cod_usuario As String, cod_modulo As Nullable(Of Short)) As ObjectResult(Of spS_MenuWeb_Result)
+        Dim cod_usuarioParameter As ObjectParameter = If(cod_usuario IsNot Nothing, New ObjectParameter("cod_usuario", cod_usuario), New ObjectParameter("cod_usuario", GetType(String)))
+
+        Dim cod_moduloParameter As ObjectParameter = If(cod_modulo.HasValue, New ObjectParameter("cod_modulo", cod_modulo), New ObjectParameter("cod_modulo", GetType(Short)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_MenuWeb_Result)("spS_MenuWeb", cod_usuarioParameter, cod_moduloParameter)
+    End Function
+
+    Public Overridable Function spI_Bitacora(cod_modulo As Nullable(Of Short), cod_submodulo_web As Nullable(Of Integer), cod_usuario As String, descripcion As String) As ObjectResult(Of spI_Bitacora_Result)
+        Dim cod_moduloParameter As ObjectParameter = If(cod_modulo.HasValue, New ObjectParameter("cod_modulo", cod_modulo), New ObjectParameter("cod_modulo", GetType(Short)))
+
+        Dim cod_submodulo_webParameter As ObjectParameter = If(cod_submodulo_web.HasValue, New ObjectParameter("cod_submodulo_web", cod_submodulo_web), New ObjectParameter("cod_submodulo_web", GetType(Integer)))
+
+        Dim cod_usuarioParameter As ObjectParameter = If(cod_usuario IsNot Nothing, New ObjectParameter("cod_usuario", cod_usuario), New ObjectParameter("cod_usuario", GetType(String)))
+
+        Dim descripcionParameter As ObjectParameter = If(descripcion IsNot Nothing, New ObjectParameter("Descripcion", descripcion), New ObjectParameter("Descripcion", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spI_Bitacora_Result)("spI_Bitacora", cod_moduloParameter, cod_submodulo_webParameter, cod_usuarioParameter, descripcionParameter)
+    End Function
+
+    Public Overridable Function spI_ErrorWeb(cod_modulo As Nullable(Of Short), cod_submodulo_web As Nullable(Of Integer), cod_usuario As String, [error] As String) As ObjectResult(Of spI_ErrorWeb_Result)
+        Dim cod_moduloParameter As ObjectParameter = If(cod_modulo.HasValue, New ObjectParameter("cod_modulo", cod_modulo), New ObjectParameter("cod_modulo", GetType(Short)))
+
+        Dim cod_submodulo_webParameter As ObjectParameter = If(cod_submodulo_web.HasValue, New ObjectParameter("cod_submodulo_web", cod_submodulo_web), New ObjectParameter("cod_submodulo_web", GetType(Integer)))
+
+        Dim cod_usuarioParameter As ObjectParameter = If(cod_usuario IsNot Nothing, New ObjectParameter("cod_usuario", cod_usuario), New ObjectParameter("cod_usuario", GetType(String)))
+
+        Dim errorParameter As ObjectParameter = If([error] IsNot Nothing, New ObjectParameter("error", [error]), New ObjectParameter("error", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spI_ErrorWeb_Result)("spI_ErrorWeb", cod_moduloParameter, cod_submodulo_webParameter, cod_usuarioParameter, errorParameter)
     End Function
 
 End Class
