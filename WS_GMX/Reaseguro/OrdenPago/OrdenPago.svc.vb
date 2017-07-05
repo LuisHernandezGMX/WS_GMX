@@ -3,22 +3,31 @@
 
 Public Class OrdenPago
     Implements IOrdenPago
-
     Public db As New OPEntities
-    Public Function ObtieneAclaraciones(id_pv As Integer) As String Implements IOrdenPago.ObtieneAclaraciones
+
+#Region "Inserciones a Base de Datos"
+    Public Function InsertaPolNoPago(id_pv As Double, cod_usuario As String) As Boolean Implements IOrdenPago.InsertaPolNoPago
         Dim Resultado As IList = Nothing
-        Dim StrResultado As String = ""
-        Dim Funcs As New FuncionesConversion
         Try
-            Resultado = db.spS_Aclaracion(id_pv).ToList
-            For Each Item In Resultado
-                StrResultado = Funcs.RempCarEsp(Funcs.ConvertRtf2Html(Replace(Item.Descripcion.ToString(), vbCrLf, "")))
-                StrResultado = Replace(Replace(StrResultado, vbCrLf, ""), vbTab, "")
-            Next
+            Resultado = db.spI_PolNoPago(id_pv, cod_usuario).ToList
+            Return IIf(Resultado(0).ToString() = "1", True, False)
         Catch ex As Exception
-            Return String.Empty
+            Return False
         End Try
-        Return StrResultado
     End Function
+#End Region
+
+#Region "Eliminación de Base de Datos"
+    Public Function EliminaPolNoPago(id_pv As String) As Boolean Implements IOrdenPago.EliminaPolNoPago
+        Dim Resultado As IList = Nothing
+        Dim strResultado As String = ""
+        Try
+            Resultado = db.spD_PolNoPago(id_pv).ToList
+            Return IIf(Resultado(0).ToString() = "1", True, False)
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+#End Region
 
 End Class
