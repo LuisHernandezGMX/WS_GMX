@@ -5,37 +5,80 @@ Imports System.Web.Services.Protocols
 Imports System.Web.Script.Services
 Imports System.Data.SqlClient
 Imports System.Collections.Generic
+Imports System.DirectoryServices.AccountManagement
+Imports System.DirectoryServices
+Imports System.Net
+Imports System.Net.Dns
 Public Class Generales
     Implements IGenerales
 
     Public db As New GralEntities
 
 #Region "Inserciones a Base de Datos"
-    Public Function InsertaLogError(cod_usuario As String, Descripcion As String, hostname As String) As String Implements IGenerales.InsertaLogError
+    Public Function InsertaBitacora(cod_modulo As Integer, cod_submodulo_web As Integer, cod_usuario As String, Descripcion As String) As Boolean Implements IGenerales.InsertaBitacora
         Dim Resultado As IList = Nothing
-        Dim strResultado As String = ""
         Try
-            Resultado = db.spI_LogErrores(cod_usuario, Descripcion, hostname).ToList
-            strResultado = Resultado(0).ToString()
+            Resultado = db.spI_Bitacora(cod_modulo, cod_submodulo_web, cod_usuario, Descripcion).ToList
+            Return IIf(Resultado(0).ToString() = "1", True, False)
         Catch ex As Exception
-            Return String.Empty
+            Return False
         End Try
-        Return strResultado
     End Function
 
-    Public Function InsertaATabla(strTabla As String, strKey As String, strDatos As String) As String Implements IGenerales.InsertaATabla
+    Public Function InsertaError(cod_modulo As Integer, cod_submodulo_web As Integer, cod_usuario As String, ErrorWeb As String) As Boolean Implements IGenerales.InsertaError
         Dim Resultado As IList = Nothing
-        Dim strResultado As String = ""
+        Try
+            Resultado = db.spI_ErrorWeb(cod_modulo, cod_submodulo_web, cod_usuario, ErrorWeb).ToList
+            Return IIf(Resultado(0).ToString() = "1", True, False)
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+    Public Function InsertaATabla(strTabla As String, strKey As String, strDatos As String) As Boolean Implements IGenerales.InsertaATabla
+        Dim Resultado As IList = Nothing
         Try
             Resultado = db.spI_OfGread(strTabla, strKey, strDatos).ToList
-            strResultado = Resultado(0).ToString()
+            Return IIf(Resultado(0).ToString() = "1", True, False)
         Catch ex As Exception
-            Return String.Empty
+            Return False
         End Try
-        Return strResultado
     End Function
 #End Region
 
+    Public Function IsAuthenticated(ByVal Domain As String, ByVal username As String, ByVal pwd As String) As Boolean Implements IGenerales.IsAuthenticated
+        Dim Success As Boolean = False
+        Dim Entry As New System.DirectoryServices.DirectoryEntry("LDAP://" & Domain, username, pwd)
+        Dim Searcher As New System.DirectoryServices.DirectorySearcher(Entry)
+        Searcher.SearchScope = DirectoryServices.SearchScope.OneLevel
+        Try
+            Dim Results As System.DirectoryServices.SearchResult = Searcher.FindOne
+            Success = Not (Results Is Nothing)
+        Catch
+            Success = False
+        End Try
+        Return Success
+    End Function
+
+    Public Function ObtieneUsuario(cod_usuarioNT As String) As List(Of spS_Usuario_Result) Implements IGenerales.ObtieneUsuario
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.spS_Usuario(cod_usuarioNT).ToList
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return Resultado
+    End Function
+
+    Public Function ObtieneMenu(cod_usuario As String, cod_modulo As Integer) As List(Of spS_MenuWeb_Result) Implements IGenerales.ObtieneMenu
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.spS_MenuWeb(cod_usuario, cod_modulo).ToList
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return Resultado
+    End Function
 
     Public Function EnviaCorreo(strTo As String, strBody As String, strSubject As String, Optional strCc As String = vbNullString, Optional strBco As String = vbNullString) As Boolean Implements IGenerales.EnviaCorreo
         Dim cm = ConfigurationManager.AppSettings
@@ -101,7 +144,7 @@ Public Class Generales
         Return Resultado
     End Function
 
-    Function ObtienePagador(id_pv As Double) As List(Of spS_Pagador_Result) Implements IGenerales.ObtienePagador
+    Public Function ObtienePagador(id_pv As Double) As List(Of spS_Pagador_Result) Implements IGenerales.ObtienePagador
         Dim Resultado As IList = Nothing
         Try
             Resultado = db.spS_Pagador(id_pv).ToList
@@ -121,7 +164,7 @@ Public Class Generales
         Return Resultado
     End Function
 
-    Function ObtieneDetallePagoCuota(id_pv As Double, cod_aseg As Double, ind_pag As Integer, nro_cuota As Integer) As List(Of spS_DetallePagosCob_Result) Implements IGenerales.ObtieneDetallePagoCuota
+    Public Function ObtieneDetallePagoCuota(id_pv As Double, cod_aseg As Double, ind_pag As Integer, nro_cuota As Integer) As List(Of spS_DetallePagosCob_Result) Implements IGenerales.ObtieneDetallePagoCuota
         Dim Resultado As IList = Nothing
         Try
             Resultado = db.spS_DetallePagosCob(id_pv, cod_aseg, ind_pag, nro_cuota).ToList

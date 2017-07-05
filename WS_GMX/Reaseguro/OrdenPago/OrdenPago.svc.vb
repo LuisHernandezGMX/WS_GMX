@@ -6,30 +6,27 @@ Public Class OrdenPago
     Public db As New OPEntities
 
 #Region "Inserciones a Base de Datos"
-    Public Function InsertaPolNoPago(id_pv As Double, cod_usuario As String) As String Implements IOrdenPago.InsertaPolNoPago
+    Public Function InsertaPolNoPago(id_pv As Double, cod_usuario As String) As Boolean Implements IOrdenPago.InsertaPolNoPago
         Dim Resultado As IList = Nothing
-        Dim strResultado As String = ""
         Try
             Resultado = db.spI_PolNoPago(id_pv, cod_usuario).ToList
-            strResultado = Resultado(0).ToString()
+            Return IIf(Resultado(0).ToString() = "1", True, False)
         Catch ex As Exception
-            Return String.Empty
+            Return False
         End Try
-        Return strResultado
     End Function
 #End Region
 
 #Region "Eliminación de Base de Datos"
-    Public Function EliminaPolNoPago(id_pv As String) As String Implements IOrdenPago.EliminaPolNoPago
+    Public Function EliminaPolNoPago(id_pv As String) As Boolean Implements IOrdenPago.EliminaPolNoPago
         Dim Resultado As IList = Nothing
         Dim strResultado As String = ""
         Try
             Resultado = db.spD_PolNoPago(id_pv).ToList
-            strResultado = Resultado(0).ToString()
+            Return IIf(Resultado(0).ToString() = "1", True, False)
         Catch ex As Exception
-            Return String.Empty
+            Return False
         End Try
-        Return strResultado
     End Function
 #End Region
 

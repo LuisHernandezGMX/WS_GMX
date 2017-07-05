@@ -5,10 +5,17 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="GralModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <Function Name="spI_LogErrores" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="spI_Bitacora" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_modulo" Type="smallint" Mode="In" />
+          <Parameter Name="cod_submodulo_web" Type="int" Mode="In" />
           <Parameter Name="cod_usuario" Type="varchar" Mode="In" />
           <Parameter Name="Descripcion" Type="varchar" Mode="In" />
-          <Parameter Name="hostname" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spI_ErrorWeb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_modulo" Type="smallint" Mode="In" />
+          <Parameter Name="cod_submodulo_web" Type="int" Mode="In" />
+          <Parameter Name="cod_usuario" Type="varchar" Mode="In" />
+          <Parameter Name="error" Type="varchar" Mode="In" />
         </Function>
         <Function Name="spI_OfGread" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="strTabla" Type="varchar" Mode="In" />
@@ -49,6 +56,10 @@
           <Parameter Name="FechaFin" Type="varchar" Mode="In" />
           <Parameter Name="sn_Ajuste" Type="int" Mode="In" />
         </Function>
+        <Function Name="spS_MenuWeb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_usuario" Type="varchar" Mode="In" />
+          <Parameter Name="cod_modulo" Type="smallint" Mode="In" />
+        </Function>
         <Function Name="spS_Pagador" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_pv" Type="int" Mode="In" />
         </Function>
@@ -56,6 +67,9 @@
           <Parameter Name="id_pv" Type="int" Mode="In" />
           <Parameter Name="ind_pag" Type="int" Mode="In" />
           <Parameter Name="cod_aseg" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spS_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_usuarioNT" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="GralModelStoreContainer" />
       </Schema></edmx:StorageModels>
@@ -99,11 +113,6 @@
             <Parameter Name="ind_pag" Mode="In" Type="Int32" />
             <Parameter Name="nro_cuota" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="spI_LogErrores" ReturnType="Collection(GralModel.spI_LogErrores_Result)">
-            <Parameter Name="cod_usuario" Mode="In" Type="String" />
-            <Parameter Name="Descripcion" Mode="In" Type="String" />
-            <Parameter Name="hostname" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="spI_OfGread" ReturnType="Collection(GralModel.spI_OfGread_Result)">
             <Parameter Name="strTabla" Mode="In" Type="String" />
             <Parameter Name="strKey" Mode="In" Type="String" />
@@ -113,7 +122,26 @@
           <Parameter Name="cod_usuario" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spS_Aclaracion" ReturnType="Collection(GralModel.spS_Aclaracion_Result)">
-            <Parameter Name="id_pv" Mode="In" Type="Int32" />
+          <Parameter Name="id_pv" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spS_Usuario" ReturnType="Collection(GralModel.spS_Usuario_Result)">
+          <Parameter Name="cod_usuarioNT" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spS_MenuWeb" ReturnType="Collection(GralModel.spS_MenuWeb_Result)">
+            <Parameter Name="cod_usuario" Mode="In" Type="String" />
+            <Parameter Name="cod_modulo" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="spI_Bitacora" ReturnType="Collection(GralModel.spI_Bitacora_Result)">
+            <Parameter Name="cod_modulo" Mode="In" Type="Int16" />
+            <Parameter Name="cod_submodulo_web" Mode="In" Type="Int32" />
+            <Parameter Name="cod_usuario" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spI_ErrorWeb" ReturnType="Collection(GralModel.spI_ErrorWeb_Result)">
+            <Parameter Name="cod_modulo" Mode="In" Type="Int16" />
+            <Parameter Name="cod_submodulo_web" Mode="In" Type="Int32" />
+            <Parameter Name="cod_usuario" Mode="In" Type="String" />
+            <Parameter Name="error" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spS_CatalogosOP_Result">
@@ -263,6 +291,34 @@
           <Property Type="Int32" Name="Clave" Nullable="false" />
           <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="Max" />
         </ComplexType>
+        <ComplexType Name="spS_Usuario_Result">
+          <Property Type="String" Name="cod_usuario" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="usuario" Nullable="true" MaxLength="1000" />
+          <Property Type="Decimal" Name="cod_suc" Nullable="false" Precision="3" Scale="0" />
+          <Property Type="String" Name="sucursal" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="cod_sector" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="String" Name="sector" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="circuito_op" Nullable="true" Precision="1" Scale="0" />
+          <Property Type="Decimal" Name="limite_op" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="mail" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="spS_MenuWeb_Result">
+          <Property Type="Int16" Name="cod_modulo" Nullable="false" />
+          <Property Type="Int32" Name="nivel" Nullable="true" />
+          <Property Type="Int32" Name="cod_submodulo_web" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ubicacion" Nullable="true" MaxLength="3000" />
+          <Property Type="Decimal" Name="sn_consult" Nullable="true" Precision="1" Scale="0" />
+          <Property Type="Decimal" Name="sn_alta" Nullable="true" Precision="1" Scale="0" />
+          <Property Type="Decimal" Name="sn_baja" Nullable="true" Precision="1" Scale="0" />
+          <Property Type="Decimal" Name="sn_cambio" Nullable="true" Precision="1" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="spI_Bitacora_Result">
+          <Property Type="String" Name="Resultado" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="spI_ErrorWeb_Result">
+          <Property Type="String" Name="Resultado" Nullable="true" MaxLength="1000" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -407,13 +463,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spI_LogErrores" FunctionName="GralModel.Store.spI_LogErrores" >
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="GralModel.spI_LogErrores_Result">
-                <ScalarProperty Name="Resultado" ColumnName="Resultado" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spI_OfGread" FunctionName="GralModel.Store.spI_OfGread" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="GralModel.spI_OfGread_Result">
@@ -443,6 +492,50 @@
               <ComplexTypeMapping TypeName="GralModel.spS_Aclaracion_Result">
                 <ScalarProperty Name="Clave" ColumnName="Clave" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_Usuario" FunctionName="GralModel.Store.spS_Usuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GralModel.spS_Usuario_Result">
+                <ScalarProperty Name="cod_usuario" ColumnName="cod_usuario" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="cod_suc" ColumnName="cod_suc" />
+                <ScalarProperty Name="sucursal" ColumnName="sucursal" />
+                <ScalarProperty Name="cod_sector" ColumnName="cod_sector" />
+                <ScalarProperty Name="sector" ColumnName="sector" />
+                <ScalarProperty Name="circuito_op" ColumnName="circuito_op" />
+                <ScalarProperty Name="limite_op" ColumnName="limite_op" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_MenuWeb" FunctionName="GralModel.Store.spS_MenuWeb">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GralModel.spS_MenuWeb_Result">
+                <ScalarProperty Name="cod_modulo" ColumnName="cod_modulo" />
+                <ScalarProperty Name="nivel" ColumnName="nivel" />
+                <ScalarProperty Name="cod_submodulo_web" ColumnName="cod_submodulo_web" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="ubicacion" ColumnName="ubicacion" />
+                <ScalarProperty Name="sn_consult" ColumnName="sn_consult" />
+                <ScalarProperty Name="sn_alta" ColumnName="sn_alta" />
+                <ScalarProperty Name="sn_baja" ColumnName="sn_baja" />
+                <ScalarProperty Name="sn_cambio" ColumnName="sn_cambio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spI_Bitacora" FunctionName="GralModel.Store.spI_Bitacora" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GralModel.spI_Bitacora_Result">
+                <ScalarProperty Name="Resultado" ColumnName="Resultado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spI_ErrorWeb" FunctionName="GralModel.Store.spI_ErrorWeb" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GralModel.spI_ErrorWeb_Result">
+                <ScalarProperty Name="Resultado" ColumnName="Resultado" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
