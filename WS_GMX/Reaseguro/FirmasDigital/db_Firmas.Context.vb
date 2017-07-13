@@ -37,14 +37,14 @@ Partial Public Class GMXEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_UsuarioFirma_Result)("spS_UsuarioFirma", tipoUsuarioParameter)
     End Function
 
-    Public Overridable Function spU_ActualizaFirmas(numOPs As String, tipoPersona As Nullable(Of Integer), usuFirma As String) As Integer
+    Public Overridable Function spU_ActualizaFirmas(numOPs As String, tipoPersona As Nullable(Of Integer), usuFirma As String) As ObjectResult(Of Nullable(Of Integer))
         Dim numOPsParameter As ObjectParameter = If(numOPs IsNot Nothing, New ObjectParameter("NumOPs", numOPs), New ObjectParameter("NumOPs", GetType(String)))
 
         Dim tipoPersonaParameter As ObjectParameter = If(tipoPersona.HasValue, New ObjectParameter("TipoPersona", tipoPersona), New ObjectParameter("TipoPersona", GetType(Integer)))
 
         Dim usuFirmaParameter As ObjectParameter = If(usuFirma IsNot Nothing, New ObjectParameter("UsuFirma", usuFirma), New ObjectParameter("UsuFirma", GetType(String)))
 
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction("spU_ActualizaFirmas", numOPsParameter, tipoPersonaParameter, usuFirmaParameter)
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spU_ActualizaFirmas", numOPsParameter, tipoPersonaParameter, usuFirmaParameter)
     End Function
 
     Public Overridable Function spU_RolPredeterminado(cod_usuario As String, cod_rol As Nullable(Of Integer)) As ObjectResult(Of Nullable(Of Integer))

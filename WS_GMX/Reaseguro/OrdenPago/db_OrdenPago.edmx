@@ -12,6 +12,21 @@
           <Parameter Name="id_pv" Type="int" Mode="In" />
           <Parameter Name="cod_usuario" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="spS_OrdenPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nro_orden" Type="varchar" Mode="In" />
+          <Parameter Name="FiltroBrokerCia" Type="varchar" Mode="In" />
+          <Parameter Name="FiltroContrato" Type="varchar" Mode="In" />
+          <Parameter Name="FiltroPoliza" Type="varchar" Mode="In" />
+          <Parameter Name="FiltroFecPago" Type="varchar" Mode="In" />
+          <Parameter Name="FiltroRamoCont" Type="varchar" Mode="In" />
+          <Parameter Name="FiltroUsuario" Type="varchar" Mode="In" />
+          <Parameter Name="FiltroEstatus" Type="varchar" Mode="In" />
+          <Parameter Name="FiltroFecGen" Type="varchar" Mode="In" />
+          <Parameter Name="cod_moneda" Type="int" Mode="In" />
+          <Parameter Name="FiltroAseg" Type="varchar" Mode="In" />
+          <Parameter Name="FiltroMonto" Type="varchar" Mode="In" />
+          <Parameter Name="CodUsuPermiso" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="OPModelStoreContainer" />
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -23,7 +38,22 @@
             <Parameter Name="cod_usuario" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spD_PolNoPago" ReturnType="Collection(OPModel.spD_PolNoPago_Result)">
-            <Parameter Name="id_pv" Mode="In" Type="String" />
+          <Parameter Name="id_pv" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spS_OrdenPago" ReturnType="Collection(OPModel.spS_OrdenPago_Result)">
+            <Parameter Name="nro_orden" Mode="In" Type="String" />
+            <Parameter Name="FiltroBrokerCia" Mode="In" Type="String" />
+            <Parameter Name="FiltroContrato" Mode="In" Type="String" />
+            <Parameter Name="FiltroPoliza" Mode="In" Type="String" />
+            <Parameter Name="FiltroFecPago" Mode="In" Type="String" />
+            <Parameter Name="FiltroRamoCont" Mode="In" Type="String" />
+            <Parameter Name="FiltroUsuario" Mode="In" Type="String" />
+            <Parameter Name="FiltroEstatus" Mode="In" Type="String" />
+            <Parameter Name="FiltroFecGen" Mode="In" Type="String" />
+            <Parameter Name="cod_moneda" Mode="In" Type="Int32" />
+            <Parameter Name="FiltroAseg" Mode="In" Type="String" />
+            <Parameter Name="FiltroMonto" Mode="In" Type="String" />
+            <Parameter Name="CodUsuPermiso" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spI_PolNoPago_Result">
@@ -31,6 +61,89 @@
         </ComplexType>
         <ComplexType Name="spD_PolNoPago_Result">
           <Property Type="String" Name="Resultado" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="spS_OrdenPago_Result">
+          <Property Type="Boolean" Name="tSEl_Val" Nullable="true" />
+          <Property Type="Int32" Name="nro_op" Nullable="false" />
+          <Property Type="DateTime" Name="fec_estim_pago" Nullable="false" Precision="16" />
+          <Property Type="Decimal" Name="cod_suc" Nullable="false" Precision="3" Scale="0" />
+          <Property Type="String" Name="SucEmision" Nullable="false" MaxLength="40" />
+          <Property Type="Decimal" Name="cod_sector" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="String" Name="Sector" Nullable="false" MaxLength="30" />
+          <Property Type="Decimal" Name="cod_moneda" Nullable="false" Precision="2" Scale="0" />
+          <Property Type="String" Name="SigMon" Nullable="false" MaxLength="3" />
+          <Property Type="String" Name="Moneda" Nullable="false" MaxLength="20" />
+          <Property Type="Decimal" Name="imp_cambio" Nullable="false" Precision="9" Scale="4" />
+          <Property Type="Decimal" Name="cod_abona" Nullable="false" Precision="2" Scale="0" />
+          <Property Type="String" Name="Abona" Nullable="false" MaxLength="20" />
+          <Property Type="Decimal" Name="cod_tipo_agente" Nullable="true" Precision="1" Scale="0" />
+          <Property Type="Int32" Name="cod_agente" Nullable="true" />
+          <Property Type="Decimal" Name="cod_cobrador" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="Int32" Name="cod_abona_vrs" Nullable="true" />
+          <Property Type="Int32" Name="id_imputacion" Nullable="false" />
+          <Property Type="String" Name="txt_otros" Nullable="false" MaxLength="70" />
+          <Property Type="String" Name="nro_nit" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="fec_baja" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="txt_cheque_a_nom" Nullable="false" MaxLength="120" />
+          <Property Type="Decimal" Name="nro_ch" Nullable="true" Precision="9" Scale="0" />
+          <Property Type="String" Name="txt_nombre_modifica" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Solicitante" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="txt_nombre_autoriz_sector" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Tesoreria" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="txt_nombre_autoriz_contab" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Contabilidad" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="txt_nombre_baja" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Baja" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="nro_doc" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="cod_tipo_doc" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="Int32" Name="cod_concepto_anulacion" Nullable="true" />
+          <Property Type="Int32" Name="cod_origen_pago" Nullable="true" />
+          <Property Type="String" Name="OrigenPago" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="id_persona" Nullable="true" />
+          <Property Type="Int32" Name="id_cuenta_bancaria" Nullable="true" />
+          <Property Type="Decimal" Name="sn_transferencia" Nullable="false" Precision="1" Scale="0" />
+          <Property Type="Decimal" Name="cod_suc_pago" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="String" Name="SucPago" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="nro_cuenta_transferencia" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="cod_banco_transferencia" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="String" Name="Banco" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="nro_recibo_imputacion" Nullable="true" />
+          <Property Type="Decimal" Name="Monto" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="String" Name="fec_generacion" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Solicitud" Nullable="false" MaxLength="13" />
+          <Property Type="String" Name="fec_autoriz_cobranzas" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="fec_autoriz_sector" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="fec_autoriz_contab" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="fec_pago" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="cod_estatus_op" Nullable="false" />
+          <Property Type="String" Name="estatus" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Texto" Nullable="true" MaxLength="8000" />
+          <Property Type="String" Name="Cheque" Nullable="true" MaxLength="8000" />
+          <Property Type="Int32" Name="cod_Aseg" Nullable="true" />
+          <Property Type="String" Name="Asegurado" Nullable="false" MaxLength="120" />
+          <Property Type="Int32" Name="id_pv" Nullable="true" />
+          <Property Type="String" Name="Ramos" Nullable="true" MaxLength="8000" />
+          <Property Type="Boolean" Name="sn_impresion" Nullable="true" />
+          <Property Type="Boolean" Name="sn_Solicita" Nullable="false" />
+          <Property Type="Boolean" Name="sn_Solicita_Aux" Nullable="false" />
+          <Property Type="String" Name="cod_usuario_solicita" Nullable="false" MaxLength="30" />
+          <Property Type="Boolean" Name="sn_JefeDirecto" Nullable="false" />
+          <Property Type="Boolean" Name="sn_JefeDirecto_Aux" Nullable="false" />
+          <Property Type="String" Name="cod_usuario_jefe" Nullable="false" MaxLength="30" />
+          <Property Type="Boolean" Name="sn_DireccionArea" Nullable="false" />
+          <Property Type="Boolean" Name="sn_DireccionArea_Aux" Nullable="false" />
+          <Property Type="String" Name="cod_usuario_director" Nullable="false" MaxLength="30" />
+          <Property Type="Boolean" Name="sn_Contabilidad" Nullable="false" />
+          <Property Type="Boolean" Name="sn_Contabilidad_Aux" Nullable="false" />
+          <Property Type="String" Name="cod_usuario_contabilidad" Nullable="false" MaxLength="30" />
+          <Property Type="Int32" Name="GeneraOp_Solicitante" Nullable="false" />
+          <Property Type="Int32" Name="Autoriza_JefeInmediato" Nullable="false" />
+          <Property Type="Int32" Name="Autoriza_DirArea" Nullable="false" />
+          <Property Type="Int32" Name="Autoriza_Conta" Nullable="false" />
+          <Property Type="Int32" Name="Autoriza_Subdirector" Nullable="false" />
+          <Property Type="Boolean" Name="sn_Subdirector" Nullable="false" />
+          <Property Type="Boolean" Name="sn_Subdirector_Aux" Nullable="false" />
+          <Property Type="String" Name="cod_usuario_subdir" Nullable="false" MaxLength="30" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -49,6 +162,93 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="OPModel.spD_PolNoPago_Result">
                 <ScalarProperty Name="Resultado" ColumnName="Resultado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_OrdenPago" FunctionName="OPModel.Store.spS_OrdenPago">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OPModel.spS_OrdenPago_Result">
+                <ScalarProperty Name="tSEl_Val" ColumnName="tSEl_Val" />
+                <ScalarProperty Name="nro_op" ColumnName="nro_op" />
+                <ScalarProperty Name="fec_estim_pago" ColumnName="fec_estim_pago" />
+                <ScalarProperty Name="cod_suc" ColumnName="cod_suc" />
+                <ScalarProperty Name="SucEmision" ColumnName="SucEmision" />
+                <ScalarProperty Name="cod_sector" ColumnName="cod_sector" />
+                <ScalarProperty Name="Sector" ColumnName="Sector" />
+                <ScalarProperty Name="cod_moneda" ColumnName="cod_moneda" />
+                <ScalarProperty Name="SigMon" ColumnName="SigMon" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="imp_cambio" ColumnName="imp_cambio" />
+                <ScalarProperty Name="cod_abona" ColumnName="cod_abona" />
+                <ScalarProperty Name="Abona" ColumnName="Abona" />
+                <ScalarProperty Name="cod_tipo_agente" ColumnName="cod_tipo_agente" />
+                <ScalarProperty Name="cod_agente" ColumnName="cod_agente" />
+                <ScalarProperty Name="cod_cobrador" ColumnName="cod_cobrador" />
+                <ScalarProperty Name="cod_abona_vrs" ColumnName="cod_abona_vrs" />
+                <ScalarProperty Name="id_imputacion" ColumnName="id_imputacion" />
+                <ScalarProperty Name="txt_otros" ColumnName="txt_otros" />
+                <ScalarProperty Name="nro_nit" ColumnName="nro_nit" />
+                <ScalarProperty Name="fec_baja" ColumnName="fec_baja" />
+                <ScalarProperty Name="txt_cheque_a_nom" ColumnName="txt_cheque_a_nom" />
+                <ScalarProperty Name="nro_ch" ColumnName="nro_ch" />
+                <ScalarProperty Name="txt_nombre_modifica" ColumnName="txt_nombre_modifica" />
+                <ScalarProperty Name="Solicitante" ColumnName="Solicitante" />
+                <ScalarProperty Name="txt_nombre_autoriz_sector" ColumnName="txt_nombre_autoriz_sector" />
+                <ScalarProperty Name="Tesoreria" ColumnName="Tesoreria" />
+                <ScalarProperty Name="txt_nombre_autoriz_contab" ColumnName="txt_nombre_autoriz_contab" />
+                <ScalarProperty Name="Contabilidad" ColumnName="Contabilidad" />
+                <ScalarProperty Name="txt_nombre_baja" ColumnName="txt_nombre_baja" />
+                <ScalarProperty Name="Baja" ColumnName="Baja" />
+                <ScalarProperty Name="nro_doc" ColumnName="nro_doc" />
+                <ScalarProperty Name="cod_tipo_doc" ColumnName="cod_tipo_doc" />
+                <ScalarProperty Name="cod_concepto_anulacion" ColumnName="cod_concepto_anulacion" />
+                <ScalarProperty Name="cod_origen_pago" ColumnName="cod_origen_pago" />
+                <ScalarProperty Name="OrigenPago" ColumnName="OrigenPago" />
+                <ScalarProperty Name="id_persona" ColumnName="id_persona" />
+                <ScalarProperty Name="id_cuenta_bancaria" ColumnName="id_cuenta_bancaria" />
+                <ScalarProperty Name="sn_transferencia" ColumnName="sn_transferencia" />
+                <ScalarProperty Name="cod_suc_pago" ColumnName="cod_suc_pago" />
+                <ScalarProperty Name="SucPago" ColumnName="SucPago" />
+                <ScalarProperty Name="nro_cuenta_transferencia" ColumnName="nro_cuenta_transferencia" />
+                <ScalarProperty Name="cod_banco_transferencia" ColumnName="cod_banco_transferencia" />
+                <ScalarProperty Name="Banco" ColumnName="Banco" />
+                <ScalarProperty Name="nro_recibo_imputacion" ColumnName="nro_recibo_imputacion" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="fec_generacion" ColumnName="fec_generacion" />
+                <ScalarProperty Name="Solicitud" ColumnName="Solicitud" />
+                <ScalarProperty Name="fec_autoriz_cobranzas" ColumnName="fec_autoriz_cobranzas" />
+                <ScalarProperty Name="fec_autoriz_sector" ColumnName="fec_autoriz_sector" />
+                <ScalarProperty Name="fec_autoriz_contab" ColumnName="fec_autoriz_contab" />
+                <ScalarProperty Name="fec_pago" ColumnName="fec_pago" />
+                <ScalarProperty Name="cod_estatus_op" ColumnName="cod_estatus_op" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="Texto" ColumnName="Texto" />
+                <ScalarProperty Name="Cheque" ColumnName="Cheque" />
+                <ScalarProperty Name="cod_Aseg" ColumnName="cod_Aseg" />
+                <ScalarProperty Name="Asegurado" ColumnName="Asegurado" />
+                <ScalarProperty Name="id_pv" ColumnName="id_pv" />
+                <ScalarProperty Name="Ramos" ColumnName="Ramos" />
+                <ScalarProperty Name="sn_impresion" ColumnName="sn_impresion" />
+                <ScalarProperty Name="sn_Solicita" ColumnName="sn_Solicita" />
+                <ScalarProperty Name="sn_Solicita_Aux" ColumnName="sn_Solicita_Aux" />
+                <ScalarProperty Name="cod_usuario_solicita" ColumnName="cod_usuario_solicita" />
+                <ScalarProperty Name="sn_JefeDirecto" ColumnName="sn_JefeDirecto" />
+                <ScalarProperty Name="sn_JefeDirecto_Aux" ColumnName="sn_JefeDirecto_Aux" />
+                <ScalarProperty Name="cod_usuario_jefe" ColumnName="cod_usuario_jefe" />
+                <ScalarProperty Name="sn_DireccionArea" ColumnName="sn_DireccionArea" />
+                <ScalarProperty Name="sn_DireccionArea_Aux" ColumnName="sn_DireccionArea_Aux" />
+                <ScalarProperty Name="cod_usuario_director" ColumnName="cod_usuario_director" />
+                <ScalarProperty Name="sn_Contabilidad" ColumnName="sn_Contabilidad" />
+                <ScalarProperty Name="sn_Contabilidad_Aux" ColumnName="sn_Contabilidad_Aux" />
+                <ScalarProperty Name="cod_usuario_contabilidad" ColumnName="cod_usuario_contabilidad" />
+                <ScalarProperty Name="GeneraOp_Solicitante" ColumnName="GeneraOp_Solicitante" />
+                <ScalarProperty Name="Autoriza_JefeInmediato" ColumnName="Autoriza_JefeInmediato" />
+                <ScalarProperty Name="Autoriza_DirArea" ColumnName="Autoriza_DirArea" />
+                <ScalarProperty Name="Autoriza_Conta" ColumnName="Autoriza_Conta" />
+                <ScalarProperty Name="Autoriza_Subdirector" ColumnName="Autoriza_Subdirector" />
+                <ScalarProperty Name="sn_Subdirector" ColumnName="sn_Subdirector" />
+                <ScalarProperty Name="sn_Subdirector_Aux" ColumnName="sn_Subdirector_Aux" />
+                <ScalarProperty Name="cod_usuario_subdir" ColumnName="cod_usuario_subdir" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
