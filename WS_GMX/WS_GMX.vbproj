@@ -67,6 +67,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Runtime.Serialization" />
@@ -183,6 +185,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>db_Gral.tt</DependentUpon>
     </Compile>
+    <Compile Include="Generales\spI_Bitacora_Result.vb">
+      <DependentUpon>db_Gral.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generales\spI_ErrorWeb_Result.vb">
+      <DependentUpon>db_Gral.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generales\spI_LogErrores_Result.vb">
+      <DependentUpon>db_Gral.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generales\spI_OfGread_Result.vb">
+      <DependentUpon>db_Gral.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generales\spS_Aclaracion_Result.vb">
+      <DependentUpon>db_Gral.tt</DependentUpon>
+    </Compile>
     <Compile Include="Generales\spS_CatalogosOP_Result.vb">
       <DependentUpon>db_Gral.tt</DependentUpon>
     </Compile>
@@ -192,7 +209,28 @@
     <Compile Include="Generales\spS_CatalogosOP_Result2.vb">
       <DependentUpon>db_Gral.tt</DependentUpon>
     </Compile>
+    <Compile Include="Generales\spS_DetallePagosCob_Result.vb">
+      <DependentUpon>db_Gral.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generales\spS_EndososNoPagoOP_Result.vb">
+      <DependentUpon>db_Gral.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generales\spS_ListaEndoso_Result.vb">
+      <DependentUpon>db_Gral.tt</DependentUpon>
+    </Compile>
     <Compile Include="Generales\spS_ListaPoliza_Result.vb">
+      <DependentUpon>db_Gral.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generales\spS_MenuWeb_Result.vb">
+      <DependentUpon>db_Gral.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generales\spS_PagadorCuotas_Result.vb">
+      <DependentUpon>db_Gral.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generales\spS_Pagador_Result.vb">
+      <DependentUpon>db_Gral.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Generales\spS_Usuario_Result.vb">
       <DependentUpon>db_Gral.tt</DependentUpon>
     </Compile>
     <Compile Include="Reaseguro\FirmasDigital\db_Firmas.Context.vb">
@@ -235,7 +273,13 @@
     <Compile Include="Reaseguro\OrdenPago\OrdenPago.svc.vb">
       <DependentUpon>OrdenPago.svc</DependentUpon>
     </Compile>
-    <Compile Include="Reaseguro\OrdenPago\spS_Aclaracion_Result.vb">
+    <Compile Include="Reaseguro\OrdenPago\spD_PolNoPago_Result.vb">
+      <DependentUpon>db_OrdenPago.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\OrdenPago\spI_PolNoPago_Result.vb">
+      <DependentUpon>db_OrdenPago.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\OrdenPago\spS_OrdenPago_Result.vb">
       <DependentUpon>db_OrdenPago.tt</DependentUpon>
     </Compile>
     <Compile Include="Reaseguro\Recordatorios\Siniestros\db_Recorda.Context.vb">

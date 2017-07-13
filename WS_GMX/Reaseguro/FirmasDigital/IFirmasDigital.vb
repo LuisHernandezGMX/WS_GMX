@@ -5,7 +5,7 @@
 Public Interface IFirmasDigital
 
     <OperationContract()>
-    Function ActualizaFirma(NumOp As String, TipoPer As Integer, CodUsu As String) As Integer
+    Function ActualizaFirma(NumOp As String, TipoPer As Integer, CodUsu As String) As List(Of Nullable(Of Int32))
 
     <OperationContract()>
     Function ObtieneUsuarioFirmaE(TipoUsuario As Integer) As List(Of spS_UsuarioFirma_Result)

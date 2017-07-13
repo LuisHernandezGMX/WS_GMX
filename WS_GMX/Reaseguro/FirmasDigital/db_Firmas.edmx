@@ -33,7 +33,7 @@
           <FunctionImport Name="spS_UsuarioFirma" ReturnType="Collection(FirmasModel.spS_UsuarioFirma_Result)">
             <Parameter Name="TipoUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="spU_ActualizaFirmas">
+          <FunctionImport Name="spU_ActualizaFirmas" ReturnType="Collection(Int32)">
             <Parameter Name="NumOPs" Mode="In" Type="String" />
             <Parameter Name="TipoPersona" Mode="In" Type="Int32" />
             <Parameter Name="UsuFirma" Mode="In" Type="String" />
