@@ -71,6 +71,10 @@
         <Function Name="spS_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cod_usuarioNT" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="spU_cPAR_Parametro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cPAR_Id" Type="int" Mode="In" />
+          <Parameter Name="cPAR_Value" Type="varchar(max)" Mode="In" />
+        </Function>
         <EntityContainer Name="GralModelStoreContainer" />
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -142,6 +146,10 @@
             <Parameter Name="cod_submodulo_web" Mode="In" Type="Int32" />
             <Parameter Name="cod_usuario" Mode="In" Type="String" />
             <Parameter Name="error" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spU_cPAR_Parametro" ReturnType="Collection(Int32)">
+            <Parameter Name="cPAR_Id" Mode="In" Type="Int32" />
+            <Parameter Name="cPAR_Value" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spS_CatalogosOP_Result">
@@ -539,6 +547,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spU_cPAR_Parametro" FunctionName="GralModel.Store.spU_cPAR_Parametro" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
