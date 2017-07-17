@@ -43,6 +43,7 @@ Public Class Generales
         Catch ex As Exception
             Return False
         End Try
+
     End Function
 #End Region
 
@@ -210,5 +211,15 @@ Public Class Generales
             Return String.Empty
         End Try
         Return strResultado
+    End Function
+
+    Public Function ActualizaParametro(cPAR_Id As Int32, cPAR_Value As String) As List(Of Nullable(Of Int32)) Implements IGenerales.ActualizaParametro
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.spU_cPAR_Parametro(cPAR_Id, cPAR_Value).ToList
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return Resultado
     End Function
 End Class

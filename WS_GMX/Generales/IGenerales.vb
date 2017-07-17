@@ -56,4 +56,7 @@ Public Interface IGenerales
 
     <OperationContract()>
     Function ObtieneParametro(cPAR_Id As Integer) As String
+
+    <OperationContract()>
+    Function ActualizaParametro(cPAR_Id As Int32, cPAR_Value As String) As List(Of Nullable(Of Int32))
 End Interface
