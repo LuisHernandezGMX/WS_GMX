@@ -25,6 +25,8 @@
           <Parameter Name="cod_moneda" Type="int" Mode="In" />
           <Parameter Name="FiltroAseg" Type="varchar" Mode="In" />
           <Parameter Name="FiltroMonto" Type="varchar" Mode="In" />
+          <Parameter Name="FitroNatOP" Type="varchar" Mode="In" />
+          <Parameter Name="intFirmas" Type="int" Mode="In" />
           <Parameter Name="CodUsuPermiso" Type="varchar" Mode="In" />
         </Function>
         <EntityContainer Name="OPModelStoreContainer" />
@@ -53,6 +55,8 @@
             <Parameter Name="cod_moneda" Mode="In" Type="Int32" />
             <Parameter Name="FiltroAseg" Mode="In" Type="String" />
             <Parameter Name="FiltroMonto" Mode="In" Type="String" />
+            <Parameter Name="FitroNatOP" Mode="In" Type="String" />
+            <Parameter Name="intFirmas" Mode="In" Type="Int32" />
             <Parameter Name="CodUsuPermiso" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
@@ -107,7 +111,7 @@
           <Property Type="String" Name="nro_cuenta_transferencia" Nullable="true" MaxLength="20" />
           <Property Type="Decimal" Name="cod_banco_transferencia" Nullable="true" Precision="3" Scale="0" />
           <Property Type="String" Name="Banco" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="nro_recibo_imputacion" Nullable="true" />
+          <Property Type="Int32" Name="nro_recibo" Nullable="true" />
           <Property Type="Decimal" Name="Monto" Nullable="false" Precision="18" Scale="2" />
           <Property Type="String" Name="fec_generacion" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="Solicitud" Nullable="false" MaxLength="13" />
@@ -136,14 +140,17 @@
           <Property Type="Boolean" Name="sn_Contabilidad" Nullable="false" />
           <Property Type="Boolean" Name="sn_Contabilidad_Aux" Nullable="false" />
           <Property Type="String" Name="cod_usuario_contabilidad" Nullable="false" MaxLength="30" />
-          <Property Type="Int32" Name="GeneraOp_Solicitante" Nullable="false" />
-          <Property Type="Int32" Name="Autoriza_JefeInmediato" Nullable="false" />
-          <Property Type="Int32" Name="Autoriza_DirArea" Nullable="false" />
-          <Property Type="Int32" Name="Autoriza_Conta" Nullable="false" />
-          <Property Type="Int32" Name="Autoriza_Subdirector" Nullable="false" />
+          <Property Type="Boolean" Name="GeneraOp_Solicitante" Nullable="true" />
+          <Property Type="Boolean" Name="Autoriza_JefeInmediato" Nullable="true" />
+          <Property Type="Boolean" Name="Autoriza_DirArea" Nullable="true" />
+          <Property Type="Boolean" Name="Autoriza_Conta" Nullable="true" />
+          <Property Type="Boolean" Name="Autoriza_Subdirector" Nullable="true" />
           <Property Type="Boolean" Name="sn_Subdirector" Nullable="false" />
           <Property Type="Boolean" Name="sn_Subdirector_Aux" Nullable="false" />
           <Property Type="String" Name="cod_usuario_subdir" Nullable="false" MaxLength="30" />
+          <Property Type="Decimal" Name="Impuesto" Nullable="true" Precision="18" Scale="4" />
+          <Property Type="String" Name="PathFirma" Nullable="true" MaxLength="8000" />
+          <Property Type="Int32" Name="sn_devolucion" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -212,7 +219,7 @@
                 <ScalarProperty Name="nro_cuenta_transferencia" ColumnName="nro_cuenta_transferencia" />
                 <ScalarProperty Name="cod_banco_transferencia" ColumnName="cod_banco_transferencia" />
                 <ScalarProperty Name="Banco" ColumnName="Banco" />
-                <ScalarProperty Name="nro_recibo_imputacion" ColumnName="nro_recibo_imputacion" />
+                <ScalarProperty Name="nro_recibo" ColumnName="nro_recibo" />
                 <ScalarProperty Name="Monto" ColumnName="Monto" />
                 <ScalarProperty Name="fec_generacion" ColumnName="fec_generacion" />
                 <ScalarProperty Name="Solicitud" ColumnName="Solicitud" />
@@ -249,6 +256,9 @@
                 <ScalarProperty Name="sn_Subdirector" ColumnName="sn_Subdirector" />
                 <ScalarProperty Name="sn_Subdirector_Aux" ColumnName="sn_Subdirector_Aux" />
                 <ScalarProperty Name="cod_usuario_subdir" ColumnName="cod_usuario_subdir" />
+                <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+                <ScalarProperty Name="PathFirma" ColumnName="PathFirma" />
+                <ScalarProperty Name="sn_devolucion" ColumnName="sn_devolucion" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

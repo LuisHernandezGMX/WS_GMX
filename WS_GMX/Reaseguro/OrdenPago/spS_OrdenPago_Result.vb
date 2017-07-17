@@ -55,7 +55,7 @@ Partial Public Class spS_OrdenPago_Result
     Public Property nro_cuenta_transferencia As String
     Public Property cod_banco_transferencia As Nullable(Of Decimal)
     Public Property Banco As String
-    Public Property nro_recibo_imputacion As Nullable(Of Integer)
+    Public Property nro_recibo As Nullable(Of Integer)
     Public Property Monto As Decimal
     Public Property fec_generacion As String
     Public Property Solicitud As String
@@ -84,13 +84,16 @@ Partial Public Class spS_OrdenPago_Result
     Public Property sn_Contabilidad As Boolean
     Public Property sn_Contabilidad_Aux As Boolean
     Public Property cod_usuario_contabilidad As String
-    Public Property GeneraOp_Solicitante As Integer
-    Public Property Autoriza_JefeInmediato As Integer
-    Public Property Autoriza_DirArea As Integer
-    Public Property Autoriza_Conta As Integer
-    Public Property Autoriza_Subdirector As Integer
+    Public Property GeneraOp_Solicitante As Nullable(Of Boolean)
+    Public Property Autoriza_JefeInmediato As Nullable(Of Boolean)
+    Public Property Autoriza_DirArea As Nullable(Of Boolean)
+    Public Property Autoriza_Conta As Nullable(Of Boolean)
+    Public Property Autoriza_Subdirector As Nullable(Of Boolean)
     Public Property sn_Subdirector As Boolean
     Public Property sn_Subdirector_Aux As Boolean
     Public Property cod_usuario_subdir As String
+    Public Property Impuesto As Nullable(Of Decimal)
+    Public Property PathFirma As String
+    Public Property sn_devolucion As Integer
 
 End Class
