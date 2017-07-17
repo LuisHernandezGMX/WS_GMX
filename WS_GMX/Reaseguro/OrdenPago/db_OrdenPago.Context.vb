@@ -39,4 +39,38 @@ Partial Public Class OPEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spD_PolNoPago_Result)("spD_PolNoPago", id_pvParameter)
     End Function
 
+    Public Overridable Function spS_OrdenPago(nro_orden As String, filtroBrokerCia As String, filtroContrato As String, filtroPoliza As String, filtroFecPago As String, filtroRamoCont As String, filtroUsuario As String, filtroEstatus As String, filtroFecGen As String, cod_moneda As Nullable(Of Integer), filtroAseg As String, filtroMonto As String, fitroNatOP As String, intFirmas As Nullable(Of Integer), codUsuPermiso As String) As ObjectResult(Of spS_OrdenPago_Result)
+        Dim nro_ordenParameter As ObjectParameter = If(nro_orden IsNot Nothing, New ObjectParameter("nro_orden", nro_orden), New ObjectParameter("nro_orden", GetType(String)))
+
+        Dim filtroBrokerCiaParameter As ObjectParameter = If(filtroBrokerCia IsNot Nothing, New ObjectParameter("FiltroBrokerCia", filtroBrokerCia), New ObjectParameter("FiltroBrokerCia", GetType(String)))
+
+        Dim filtroContratoParameter As ObjectParameter = If(filtroContrato IsNot Nothing, New ObjectParameter("FiltroContrato", filtroContrato), New ObjectParameter("FiltroContrato", GetType(String)))
+
+        Dim filtroPolizaParameter As ObjectParameter = If(filtroPoliza IsNot Nothing, New ObjectParameter("FiltroPoliza", filtroPoliza), New ObjectParameter("FiltroPoliza", GetType(String)))
+
+        Dim filtroFecPagoParameter As ObjectParameter = If(filtroFecPago IsNot Nothing, New ObjectParameter("FiltroFecPago", filtroFecPago), New ObjectParameter("FiltroFecPago", GetType(String)))
+
+        Dim filtroRamoContParameter As ObjectParameter = If(filtroRamoCont IsNot Nothing, New ObjectParameter("FiltroRamoCont", filtroRamoCont), New ObjectParameter("FiltroRamoCont", GetType(String)))
+
+        Dim filtroUsuarioParameter As ObjectParameter = If(filtroUsuario IsNot Nothing, New ObjectParameter("FiltroUsuario", filtroUsuario), New ObjectParameter("FiltroUsuario", GetType(String)))
+
+        Dim filtroEstatusParameter As ObjectParameter = If(filtroEstatus IsNot Nothing, New ObjectParameter("FiltroEstatus", filtroEstatus), New ObjectParameter("FiltroEstatus", GetType(String)))
+
+        Dim filtroFecGenParameter As ObjectParameter = If(filtroFecGen IsNot Nothing, New ObjectParameter("FiltroFecGen", filtroFecGen), New ObjectParameter("FiltroFecGen", GetType(String)))
+
+        Dim cod_monedaParameter As ObjectParameter = If(cod_moneda.HasValue, New ObjectParameter("cod_moneda", cod_moneda), New ObjectParameter("cod_moneda", GetType(Integer)))
+
+        Dim filtroAsegParameter As ObjectParameter = If(filtroAseg IsNot Nothing, New ObjectParameter("FiltroAseg", filtroAseg), New ObjectParameter("FiltroAseg", GetType(String)))
+
+        Dim filtroMontoParameter As ObjectParameter = If(filtroMonto IsNot Nothing, New ObjectParameter("FiltroMonto", filtroMonto), New ObjectParameter("FiltroMonto", GetType(String)))
+
+        Dim fitroNatOPParameter As ObjectParameter = If(fitroNatOP IsNot Nothing, New ObjectParameter("FitroNatOP", fitroNatOP), New ObjectParameter("FitroNatOP", GetType(String)))
+
+        Dim intFirmasParameter As ObjectParameter = If(intFirmas.HasValue, New ObjectParameter("intFirmas", intFirmas), New ObjectParameter("intFirmas", GetType(Integer)))
+
+        Dim codUsuPermisoParameter As ObjectParameter = If(codUsuPermiso IsNot Nothing, New ObjectParameter("CodUsuPermiso", codUsuPermiso), New ObjectParameter("CodUsuPermiso", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_OrdenPago_Result)("spS_OrdenPago", nro_ordenParameter, filtroBrokerCiaParameter, filtroContratoParameter, filtroPolizaParameter, filtroFecPagoParameter, filtroRamoContParameter, filtroUsuarioParameter, filtroEstatusParameter, filtroFecGenParameter, cod_monedaParameter, filtroAsegParameter, filtroMontoParameter, fitroNatOPParameter, intFirmasParameter, codUsuPermisoParameter)
+    End Function
+
 End Class

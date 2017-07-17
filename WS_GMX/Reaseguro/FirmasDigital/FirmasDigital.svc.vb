@@ -7,10 +7,10 @@ Public Class FirmasDigital
 
     Public db As New GMXEntities
 
-    Public Function ActualizaFirma(NumOp As String, TipoPer As Integer, CodUsu As String) As Integer Implements IFirmasDigital.ActualizaFirma
-        Dim Resultado As Integer
+    Public Function ActualizaFirma(NumOp As String, TipoPer As Integer, CodUsu As String) As List(Of Nullable(Of Int32)) Implements IFirmasDigital.ActualizaFirma
+        Dim Resultado As IList = Nothing
         Try
-            Resultado = db.spU_ActualizaFirmas(NumOp, TipoPer, CodUsu)
+            Resultado = db.spU_ActualizaFirmas(NumOp, TipoPer, CodUsu).ToList
         Catch ex As Exception
             Return Nothing
         End Try
