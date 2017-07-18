@@ -164,6 +164,17 @@
       <LastGenOutput>db_Recorda.vb</LastGenOutput>
     </Content>
     <Content Include="Reaseguro\Recordatorios\Siniestros\RecSiniestros.svc" />
+    <Content Include="Reaseguro\Reporteador\db_Reporteador.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>db_Reporteador.edmx</DependentUpon>
+      <LastGenOutput>db_Reporteador.Context.vb</LastGenOutput>
+    </Content>
+    <Content Include="Reaseguro\Reporteador\db_Reporteador.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>db_Reporteador.edmx</DependentUpon>
+      <LastGenOutput>db_Reporteador.vb</LastGenOutput>
+    </Content>
+    <Content Include="Reaseguro\Reporteador\Reporteador.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -324,6 +335,25 @@
       <DependentUpon>FirmasDigital.svc</DependentUpon>
     </Compile>
     <Compile Include="Reaseguro\FirmasDigital\IFirmasDigital.vb" />
+    <Compile Include="Reaseguro\Reporteador\db_Reporteador.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_Reporteador.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\Reporteador\db_Reporteador.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_Reporteador.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\Reporteador\db_Reporteador.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_Reporteador.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\Reporteador\IReporteador.vb" />
+    <Compile Include="Reaseguro\Reporteador\Reporteador.svc.vb">
+      <DependentUpon>Reporteador.svc</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -373,6 +403,13 @@
     </EntityDeploy>
     <Content Include="Reaseguro\Recordatorios\Siniestros\db_Recorda.edmx.diagram">
       <DependentUpon>db_Recorda.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Reaseguro\Reporteador\db_Reporteador.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>db_Reporteador.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Reaseguro\Reporteador\db_Reporteador.edmx.diagram">
+      <DependentUpon>db_Reporteador.edmx</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
