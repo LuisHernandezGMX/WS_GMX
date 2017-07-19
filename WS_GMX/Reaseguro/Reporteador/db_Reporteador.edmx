@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ReportModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ReportModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <Function Name="spI_VersionReporte" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cod_modulo" Type="int" Mode="In" />
           <Parameter Name="cod_submodulo_web" Type="int" Mode="In" />
@@ -15,9 +15,13 @@
           <Parameter Name="formato" Type="varchar" Mode="In" />
           <Parameter Name="sn_Temporal" Type="int" Mode="In" />
         </Function>
+        <Function Name="spS_VersionReporte" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_reporte" Type="int" Mode="In" />
+          <Parameter Name="cod_config" Type="int" Mode="In" />
+          <Parameter Name="cod_usuario" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="ReportModelStoreContainer" />
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ReportModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -32,7 +36,24 @@
             <Parameter Name="formato" Mode="In" Type="String" />
             <Parameter Name="sn_Temporal" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="spS_VersionReporte" ReturnType="Collection(ReportModel.spS_VersionReporte_Result)">
+            <Parameter Name="cod_reporte" Mode="In" Type="Int32" />
+            <Parameter Name="cod_config" Mode="In" Type="Int32" />
+            <Parameter Name="cod_usuario" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="spS_VersionReporte_Result">
+          <Property Type="Int32" Name="cod_config" Nullable="false" />
+          <Property Type="Int32" Name="cod_reporte" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="true" />
+          <Property Type="String" Name="fecha" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="cod_usuario" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Usuario" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Url" Nullable="true" MaxLength="8000" />
+          <Property Type="String" Name="filtros" Nullable="true" />
+          <Property Type="String" Name="formato" Nullable="true" MaxLength="70" />
+          <Property Type="Int32" Name="Temporal" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -40,6 +61,22 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ReportModelStoreContainer" CdmEntityContainer="ReportEntities" >
           <FunctionImportMapping FunctionImportName="spI_VersionReporte" FunctionName="ReportModel.Store.spI_VersionReporte" />
+          <FunctionImportMapping FunctionImportName="spS_VersionReporte" FunctionName="ReportModel.Store.spS_VersionReporte">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ReportModel.spS_VersionReporte_Result">
+                <ScalarProperty Name="cod_config" ColumnName="cod_config" />
+                <ScalarProperty Name="cod_reporte" ColumnName="cod_reporte" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="cod_usuario" ColumnName="cod_usuario" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="filtros" ColumnName="filtros" />
+                <ScalarProperty Name="formato" ColumnName="formato" />
+                <ScalarProperty Name="Temporal" ColumnName="Temporal" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

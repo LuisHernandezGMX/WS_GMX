@@ -45,4 +45,14 @@ Partial Public Class ReportEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spI_VersionReporte", cod_moduloParameter, cod_submodulo_webParameter, cod_reporteParameter, cod_usuarioParameter, descripcionParameter, filtrosParameter, formatoParameter, sn_TemporalParameter)
     End Function
 
+    Public Overridable Function spS_VersionReporte(cod_reporte As Nullable(Of Integer), cod_config As Nullable(Of Integer), cod_usuario As String) As ObjectResult(Of spS_VersionReporte_Result)
+        Dim cod_reporteParameter As ObjectParameter = If(cod_reporte.HasValue, New ObjectParameter("cod_reporte", cod_reporte), New ObjectParameter("cod_reporte", GetType(Integer)))
+
+        Dim cod_configParameter As ObjectParameter = If(cod_config.HasValue, New ObjectParameter("cod_config", cod_config), New ObjectParameter("cod_config", GetType(Integer)))
+
+        Dim cod_usuarioParameter As ObjectParameter = If(cod_usuario IsNot Nothing, New ObjectParameter("cod_usuario", cod_usuario), New ObjectParameter("cod_usuario", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_VersionReporte_Result)("spS_VersionReporte", cod_reporteParameter, cod_configParameter, cod_usuarioParameter)
+    End Function
+
 End Class
