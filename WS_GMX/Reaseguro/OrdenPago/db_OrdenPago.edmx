@@ -12,6 +12,9 @@
           <Parameter Name="id_pv" Type="int" Mode="In" />
           <Parameter Name="cod_usuario" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="spS_ContabilidadOP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nro_op" Type="int" Mode="In" />
+        </Function>
         <Function Name="spS_OrdenPago" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nro_orden" Type="varchar" Mode="In" />
           <Parameter Name="FiltroBrokerCia" Type="varchar" Mode="In" />
@@ -58,6 +61,9 @@
             <Parameter Name="FitroNatOP" Mode="In" Type="String" />
             <Parameter Name="intFirmas" Mode="In" Type="Int32" />
             <Parameter Name="CodUsuPermiso" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spS_ContabilidadOP" ReturnType="Collection(OPModel.spS_ContabilidadOP_Result)">
+            <Parameter Name="nro_op" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spI_PolNoPago_Result">
@@ -151,6 +157,48 @@
           <Property Type="Decimal" Name="Impuesto" Nullable="true" Precision="18" Scale="4" />
           <Property Type="String" Name="PathFirma" Nullable="true" MaxLength="8000" />
           <Property Type="Int32" Name="sn_devolucion" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spS_ContabilidadOP_Result">
+          <Property Type="Int32" Name="nro_reas" Nullable="false" />
+          <Property Type="Int32" Name="id_imputacion" Nullable="false" />
+          <Property Type="String" Name="txt_clave" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="txt_clave_isr" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="cod_cpto_pri" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="String" Name="cod_deb_cred_pri" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="prima_cedida" Nullable="true" Precision="38" Scale="4" />
+          <Property Type="Decimal" Name="pje_pri" Nullable="true" Precision="38" Scale="4" />
+          <Property Type="Decimal" Name="prima" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="cod_cpto_com" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="String" Name="cod_deb_cred_com" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="comisiones" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="pje_com" Nullable="true" Precision="38" Scale="4" />
+          <Property Type="Decimal" Name="comision" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="prima_neta" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="pje_isr" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="Decimal" Name="monto_isr" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="cod_broker" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="String" Name="broker" Nullable="false" MaxLength="120" />
+          <Property Type="Decimal" Name="cod_cia" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="String" Name="compañia" Nullable="false" MaxLength="120" />
+          <Property Type="Decimal" Name="cod_profit_center" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="Decimal" Name="cod_subprofit_center" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="String" Name="id_contrato" Nullable="false" MaxLength="10" />
+          <Property Type="Decimal" Name="nro_tramo" Nullable="false" Precision="2" Scale="0" />
+          <Property Type="Int32" Name="id_pv" Nullable="false" />
+          <Property Type="String" Name="Poliza" Nullable="true" MaxLength="154" />
+          <Property Type="Decimal" Name="cod_suc_stro" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="aaaa_ejercicio_stro" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="Int32" Name="nro_stro" Nullable="true" />
+          <Property Type="Decimal" Name="aaaamm_movimiento" Nullable="true" Precision="6" Scale="0" />
+          <Property Type="Int32" Name="cod_ramo_contable" Nullable="true" />
+          <Property Type="String" Name="ramo_contable" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="nro_cuota" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="DateTime" Name="fecha_fac" Nullable="true" Precision="16" />
+          <Property Type="Decimal" Name="cod_major" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="cod_minor" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="cod_class_peril" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="sn_ogis" Nullable="true" Precision="1" Scale="0" />
+          <Property Type="Int16" Name="nro_layer" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -259,6 +307,52 @@
                 <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
                 <ScalarProperty Name="PathFirma" ColumnName="PathFirma" />
                 <ScalarProperty Name="sn_devolucion" ColumnName="sn_devolucion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_ContabilidadOP" FunctionName="OPModel.Store.spS_ContabilidadOP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OPModel.spS_ContabilidadOP_Result">
+                <ScalarProperty Name="nro_reas" ColumnName="nro_reas" />
+                <ScalarProperty Name="id_imputacion" ColumnName="id_imputacion" />
+                <ScalarProperty Name="txt_clave" ColumnName="txt_clave" />
+                <ScalarProperty Name="txt_clave_isr" ColumnName="txt_clave_isr" />
+                <ScalarProperty Name="cod_cpto_pri" ColumnName="cod_cpto_pri" />
+                <ScalarProperty Name="cod_deb_cred_pri" ColumnName="cod_deb_cred_pri" />
+                <ScalarProperty Name="prima_cedida" ColumnName="prima_cedida" />
+                <ScalarProperty Name="pje_pri" ColumnName="pje_pri" />
+                <ScalarProperty Name="prima" ColumnName="prima" />
+                <ScalarProperty Name="cod_cpto_com" ColumnName="cod_cpto_com" />
+                <ScalarProperty Name="cod_deb_cred_com" ColumnName="cod_deb_cred_com" />
+                <ScalarProperty Name="comisiones" ColumnName="comisiones" />
+                <ScalarProperty Name="pje_com" ColumnName="pje_com" />
+                <ScalarProperty Name="comision" ColumnName="comision" />
+                <ScalarProperty Name="prima_neta" ColumnName="prima_neta" />
+                <ScalarProperty Name="pje_isr" ColumnName="pje_isr" />
+                <ScalarProperty Name="monto_isr" ColumnName="monto_isr" />
+                <ScalarProperty Name="cod_broker" ColumnName="cod_broker" />
+                <ScalarProperty Name="broker" ColumnName="broker" />
+                <ScalarProperty Name="cod_cia" ColumnName="cod_cia" />
+                <ScalarProperty Name="compañia" ColumnName="compañia" />
+                <ScalarProperty Name="cod_profit_center" ColumnName="cod_profit_center" />
+                <ScalarProperty Name="cod_subprofit_center" ColumnName="cod_subprofit_center" />
+                <ScalarProperty Name="id_contrato" ColumnName="id_contrato" />
+                <ScalarProperty Name="nro_tramo" ColumnName="nro_tramo" />
+                <ScalarProperty Name="id_pv" ColumnName="id_pv" />
+                <ScalarProperty Name="Poliza" ColumnName="Poliza" />
+                <ScalarProperty Name="cod_suc_stro" ColumnName="cod_suc_stro" />
+                <ScalarProperty Name="aaaa_ejercicio_stro" ColumnName="aaaa_ejercicio_stro" />
+                <ScalarProperty Name="nro_stro" ColumnName="nro_stro" />
+                <ScalarProperty Name="aaaamm_movimiento" ColumnName="aaaamm_movimiento" />
+                <ScalarProperty Name="cod_ramo_contable" ColumnName="cod_ramo_contable" />
+                <ScalarProperty Name="ramo_contable" ColumnName="ramo_contable" />
+                <ScalarProperty Name="nro_cuota" ColumnName="nro_cuota" />
+                <ScalarProperty Name="fecha_fac" ColumnName="fecha_fac" />
+                <ScalarProperty Name="cod_major" ColumnName="cod_major" />
+                <ScalarProperty Name="cod_minor" ColumnName="cod_minor" />
+                <ScalarProperty Name="cod_class_peril" ColumnName="cod_class_peril" />
+                <ScalarProperty Name="sn_ogis" ColumnName="sn_ogis" />
+                <ScalarProperty Name="nro_layer" ColumnName="nro_layer" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

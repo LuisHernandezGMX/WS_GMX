@@ -46,4 +46,13 @@ Public Class OrdenPago
         Return Resultado
     End Function
 
+    Public Function ObtieneContabilidadOP(nro_op As Integer) As List(Of spS_ContabilidadOP_Result) Implements IOrdenPago.ObtieneContabilidadOP
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.spS_ContabilidadOP(nro_op).ToList
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return Resultado
+    End Function
 End Class
