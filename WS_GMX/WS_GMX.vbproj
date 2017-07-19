@@ -354,6 +354,9 @@
     <Compile Include="Reaseguro\Reporteador\Reporteador.svc.vb">
       <DependentUpon>Reporteador.svc</DependentUpon>
     </Compile>
+    <Compile Include="Reaseguro\Reporteador\spS_VersionReporte_Result.vb">
+      <DependentUpon>db_Reporteador.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

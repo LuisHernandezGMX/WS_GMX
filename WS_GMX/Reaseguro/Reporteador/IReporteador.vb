@@ -9,4 +9,8 @@ Public Interface IReporteador
                                           cod_usuario As String, descripcion As String, filtros As String, formato As String,
                                           Optional sn_Temporal As Integer = 0) As List(Of Nullable(Of Int32))
 
+    <OperationContract()>
+    Function ObtieneVersionReporte(cod_reporte As Integer, Optional cod_config As Integer = -1, Optional cod_usuario As String = "") As List(Of spS_VersionReporte_Result)
+
+
 End Interface
