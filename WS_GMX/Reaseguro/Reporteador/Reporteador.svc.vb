@@ -17,4 +17,14 @@ Public Class Reporteador
         Return Resultado
     End Function
 
+    Public Function ObtieneVersionReporte(cod_reporte As Integer, Optional cod_config As Integer = -1, Optional cod_usuario As String = "") As List(Of spS_VersionReporte_Result) Implements IReporteador.ObtieneVersionReporte
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.spS_VersionReporte(cod_reporte, cod_config, cod_usuario).ToList
+
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return Resultado
+    End Function
 End Class
