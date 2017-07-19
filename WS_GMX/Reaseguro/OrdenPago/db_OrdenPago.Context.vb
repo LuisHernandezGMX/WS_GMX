@@ -73,4 +73,10 @@ Partial Public Class OPEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_OrdenPago_Result)("spS_OrdenPago", nro_ordenParameter, filtroBrokerCiaParameter, filtroContratoParameter, filtroPolizaParameter, filtroFecPagoParameter, filtroRamoContParameter, filtroUsuarioParameter, filtroEstatusParameter, filtroFecGenParameter, cod_monedaParameter, filtroAsegParameter, filtroMontoParameter, fitroNatOPParameter, intFirmasParameter, codUsuPermisoParameter)
     End Function
 
+    Public Overridable Function spS_ContabilidadOP(nro_op As Nullable(Of Integer)) As ObjectResult(Of spS_ContabilidadOP_Result)
+        Dim nro_opParameter As ObjectParameter = If(nro_op.HasValue, New ObjectParameter("nro_op", nro_op), New ObjectParameter("nro_op", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_ContabilidadOP_Result)("spS_ContabilidadOP", nro_opParameter)
+    End Function
+
 End Class
