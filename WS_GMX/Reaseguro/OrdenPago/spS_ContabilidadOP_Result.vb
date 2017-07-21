@@ -28,6 +28,7 @@ Partial Public Class spS_ContabilidadOP_Result
     Public Property prima_neta As Nullable(Of Decimal)
     Public Property pje_isr As Nullable(Of Decimal)
     Public Property monto_isr As Nullable(Of Decimal)
+    Public Property monto_isr_dev As Nullable(Of Decimal)
     Public Property cod_broker As Decimal
     Public Property broker As String
     Public Property cod_cia As Decimal
