@@ -293,6 +293,9 @@
     <Compile Include="Reaseguro\OrdenPago\spS_OrdenPago_Result.vb">
       <DependentUpon>db_OrdenPago.tt</DependentUpon>
     </Compile>
+	<Compile Include="Reaseguro\OrdenPago\spS_ContabilidadOP_Result.vb">
+      <DependentUpon>db_OrdenPago.tt</DependentUpon>
+    </Compile>
     <Compile Include="Reaseguro\Recordatorios\Siniestros\db_Recorda.Context.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

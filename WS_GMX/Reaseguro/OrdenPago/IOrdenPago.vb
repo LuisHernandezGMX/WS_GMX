@@ -21,4 +21,7 @@ Public Interface IOrdenPago
                               Optional ByVal FiltroFecGen As String = "", Optional ByVal cod_moneda As Integer = -1, Optional ByVal FiltroAseg As String = "", Optional ByVal FiltroMonto As String = "",
                               Optional ByVal FitroNatOP As String = "", Optional ByVal intFirmas As Integer = -1,
                               Optional ByVal CodUsuPermiso As String = "") As List(Of spS_OrdenPago_Result)
+
+    <OperationContract()>
+    Function ObtieneContabilidadOP(nro_op As Integer) As List(Of spS_ContabilidadOP_Result)
 End Interface
