@@ -176,6 +176,7 @@
           <Property Type="Decimal" Name="prima_neta" Nullable="true" Precision="38" Scale="2" />
           <Property Type="Decimal" Name="pje_isr" Nullable="true" Precision="4" Scale="0" />
           <Property Type="Decimal" Name="monto_isr" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="monto_isr_dev" Nullable="true" Precision="38" Scale="2" />
           <Property Type="Decimal" Name="cod_broker" Nullable="false" Precision="4" Scale="0" />
           <Property Type="String" Name="broker" Nullable="false" MaxLength="120" />
           <Property Type="Decimal" Name="cod_cia" Nullable="false" Precision="4" Scale="0" />
@@ -330,6 +331,7 @@
                 <ScalarProperty Name="prima_neta" ColumnName="prima_neta" />
                 <ScalarProperty Name="pje_isr" ColumnName="pje_isr" />
                 <ScalarProperty Name="monto_isr" ColumnName="monto_isr" />
+                <ScalarProperty Name="monto_isr_dev" ColumnName="monto_isr_dev" />
                 <ScalarProperty Name="cod_broker" ColumnName="cod_broker" />
                 <ScalarProperty Name="broker" ColumnName="broker" />
                 <ScalarProperty Name="cod_cia" ColumnName="cod_cia" />
