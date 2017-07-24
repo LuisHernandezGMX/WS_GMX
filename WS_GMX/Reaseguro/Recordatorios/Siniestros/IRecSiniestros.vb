@@ -25,7 +25,6 @@ Public Interface IRecSiniestros
     <OperationContract()>
     Function EliminaEstatusStro(id_Estatus As Int32) As List(Of Nullable(Of Int32))
 #End Region
-
 #Region "Niveles"
     <OperationContract()>
     Function InsertaNivel(strNivel As String, DiasT As Integer) As List(Of Nullable(Of Int32))
@@ -49,5 +48,11 @@ Public Interface IRecSiniestros
 #Region "Job"
     <OperationContract()>
     Function ActualizaJobParam(srtHora As String, blnActivo As Boolean) As List(Of Nullable(Of Int32))
+#End Region
+#Region "ConsultaSiniestros"
+    <OperationContract()>
+    Function ObtieneSiniestros(tipo_mov As Integer, nro_stro As String, broker As String, aseg As String, reaseg As String,
+                                      cod_ramo_conta As String, poliza As String, Optional fec_desde As String = vbNullString,
+                                      Optional fec_hasta As String = vbNullString) As List(Of sp_rptMovSinxReas_Result)
 #End Region
 End Interface
