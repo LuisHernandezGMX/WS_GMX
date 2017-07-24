@@ -129,4 +129,26 @@ Partial Public Class RecordEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spU_ActivaJob", horaParameter, activoParameter)
     End Function
 
+    Public Overridable Function sp_rptMovSinxReas(tipo_mov As Nullable(Of Integer), nro_stro As String, broker As String, aseg As String, reaseg As String, cod_ramo_conta As String, fec_desde As String, fec_hasta As String, poliza As String) As ObjectResult(Of sp_rptMovSinxReas_Result)
+        Dim tipo_movParameter As ObjectParameter = If(tipo_mov.HasValue, New ObjectParameter("tipo_mov", tipo_mov), New ObjectParameter("tipo_mov", GetType(Integer)))
+
+        Dim nro_stroParameter As ObjectParameter = If(nro_stro IsNot Nothing, New ObjectParameter("nro_stro", nro_stro), New ObjectParameter("nro_stro", GetType(String)))
+
+        Dim brokerParameter As ObjectParameter = If(broker IsNot Nothing, New ObjectParameter("broker", broker), New ObjectParameter("broker", GetType(String)))
+
+        Dim asegParameter As ObjectParameter = If(aseg IsNot Nothing, New ObjectParameter("aseg", aseg), New ObjectParameter("aseg", GetType(String)))
+
+        Dim reasegParameter As ObjectParameter = If(reaseg IsNot Nothing, New ObjectParameter("reaseg", reaseg), New ObjectParameter("reaseg", GetType(String)))
+
+        Dim cod_ramo_contaParameter As ObjectParameter = If(cod_ramo_conta IsNot Nothing, New ObjectParameter("cod_ramo_conta", cod_ramo_conta), New ObjectParameter("cod_ramo_conta", GetType(String)))
+
+        Dim fec_desdeParameter As ObjectParameter = If(fec_desde IsNot Nothing, New ObjectParameter("fec_desde", fec_desde), New ObjectParameter("fec_desde", GetType(String)))
+
+        Dim fec_hastaParameter As ObjectParameter = If(fec_hasta IsNot Nothing, New ObjectParameter("fec_hasta", fec_hasta), New ObjectParameter("fec_hasta", GetType(String)))
+
+        Dim polizaParameter As ObjectParameter = If(poliza IsNot Nothing, New ObjectParameter("poliza", poliza), New ObjectParameter("poliza", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of sp_rptMovSinxReas_Result)("sp_rptMovSinxReas", tipo_movParameter, nro_stroParameter, brokerParameter, asegParameter, reasegParameter, cod_ramo_contaParameter, fec_desdeParameter, fec_hastaParameter, polizaParameter)
+    End Function
+
 End Class
