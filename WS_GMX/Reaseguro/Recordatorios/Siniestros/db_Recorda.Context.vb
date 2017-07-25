@@ -151,4 +151,14 @@ Partial Public Class RecordEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of sp_rptMovSinxReas_Result)("sp_rptMovSinxReas", tipo_movParameter, nro_stroParameter, brokerParameter, asegParameter, reasegParameter, cod_ramo_contaParameter, fec_desdeParameter, fec_hastaParameter, polizaParameter)
     End Function
 
+    Public Overridable Function ModJob(hora As String, fecha As String, habilita As Nullable(Of Boolean)) As ObjectResult(Of Nullable(Of Integer))
+        Dim horaParameter As ObjectParameter = If(hora IsNot Nothing, New ObjectParameter("hora", hora), New ObjectParameter("hora", GetType(String)))
+
+        Dim fechaParameter As ObjectParameter = If(fecha IsNot Nothing, New ObjectParameter("fecha", fecha), New ObjectParameter("fecha", GetType(String)))
+
+        Dim habilitaParameter As ObjectParameter = If(habilita.HasValue, New ObjectParameter("habilita", habilita), New ObjectParameter("habilita", GetType(Boolean)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("ModJob", horaParameter, fechaParameter, habilitaParameter)
+    End Function
+
 End Class

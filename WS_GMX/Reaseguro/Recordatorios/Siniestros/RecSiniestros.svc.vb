@@ -139,6 +139,16 @@ Public Class RecSiniestros
         End Try
         Return Resultado
     End Function
+
+    Public Function ActualizaHoraJob(strHoraIni As String, strFechaIni As String, Activado As Boolean) As List(Of Nullable(Of Int32)) Implements IRecSiniestros.ActualizaHoraJob
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.ModJob(strHoraIni, strFechaIni, Activado).ToList
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return Resultado
+    End Function
 #End Region
 #Region "ConsultaSiniestros"
     Public Function ObtieneSiniestros(tipo_mov As Integer, nro_stro As String, broker As String, aseg As String, reaseg As String,

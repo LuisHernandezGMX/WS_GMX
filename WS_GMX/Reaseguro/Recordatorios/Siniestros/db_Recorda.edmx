@@ -5,6 +5,11 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="RecordModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="ModJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="hora" Type="varchar" Mode="In" />
+          <Parameter Name="fecha" Type="varchar" Mode="In" />
+          <Parameter Name="habilita" Type="bit" Mode="In" />
+        </Function>
         <Function Name="sp_rptMovSinxReas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tipo_mov" Type="int" Mode="In" />
           <Parameter Name="nro_stro" Type="varchar" Mode="In" />
@@ -128,6 +133,11 @@
             <Parameter Name="fec_hasta" Mode="In" Type="String" />
             <Parameter Name="poliza" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="ModJob" ReturnType="Collection(Int32)">
+            <Parameter Name="hora" Mode="In" Type="String" />
+            <Parameter Name="fecha" Mode="In" Type="String" />
+            <Parameter Name="habilita" Mode="In" Type="Boolean" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_rptMovSinxReas_Result">
           <Property Type="Int32" Name="SINIESTRO" Nullable="false" />
@@ -239,6 +249,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ModJob" FunctionName="RecordModel.Store.ModJob" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

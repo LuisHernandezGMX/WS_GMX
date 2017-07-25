@@ -48,6 +48,9 @@ Public Interface IRecSiniestros
 #Region "Job"
     <OperationContract()>
     Function ActualizaJobParam(srtHora As String, blnActivo As Boolean) As List(Of Nullable(Of Int32))
+
+    <OperationContract()>
+    Function ActualizaHoraJob(srtHoraIni As String, strFechaIni As String, Activado As Boolean) As List(Of Nullable(Of Int32))
 #End Region
 #Region "ConsultaSiniestros"
     <OperationContract()>
