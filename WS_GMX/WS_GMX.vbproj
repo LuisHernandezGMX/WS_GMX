@@ -293,7 +293,7 @@
     <Compile Include="Reaseguro\OrdenPago\spS_OrdenPago_Result.vb">
       <DependentUpon>db_OrdenPago.tt</DependentUpon>
     </Compile>
-	<Compile Include="Reaseguro\OrdenPago\spS_ContabilidadOP_Result.vb">
+    <Compile Include="Reaseguro\OrdenPago\spS_ContabilidadOP_Result.vb">
       <DependentUpon>db_OrdenPago.tt</DependentUpon>
     </Compile>
     <Compile Include="Reaseguro\Recordatorios\Siniestros\db_Recorda.Context.vb">
@@ -338,6 +338,9 @@
       <DependentUpon>FirmasDigital.svc</DependentUpon>
     </Compile>
     <Compile Include="Reaseguro\FirmasDigital\IFirmasDigital.vb" />
+    <Compile Include="Reaseguro\Recordatorios\Siniestros\sp_rptMovSinxReas_Result.vb">
+      <DependentUpon>db_Recorda.tt</DependentUpon>
+    </Compile>
     <Compile Include="Reaseguro\Reporteador\db_Reporteador.Context.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

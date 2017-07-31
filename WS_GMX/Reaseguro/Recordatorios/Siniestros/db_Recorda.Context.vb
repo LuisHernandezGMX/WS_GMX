@@ -45,12 +45,6 @@ Partial Public Class RecordEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spU_FaseRecupera", id_FaseParameter, strFaseParameter)
     End Function
 
-    Public Overridable Function spd_estatus_stro(id_estatus As Nullable(Of Integer)) As ObjectResult(Of Nullable(Of Integer))
-        Dim id_estatusParameter As ObjectParameter = If(id_estatus.HasValue, New ObjectParameter("id_estatus", id_estatus), New ObjectParameter("id_estatus", GetType(Integer)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spd_estatus_stro", id_estatusParameter)
-    End Function
-
     Public Overridable Function spi_Estatus_Stro(estatus As String, id_fase As Nullable(Of Integer)) As ObjectResult(Of Nullable(Of Integer))
         Dim estatusParameter As ObjectParameter = If(estatus IsNot Nothing, New ObjectParameter("estatus", estatus), New ObjectParameter("estatus", GetType(String)))
 
@@ -69,12 +63,6 @@ Partial Public Class RecordEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spu_estatus_stro", id_estatusParameter, estatusParameter, id_faseParameter)
     End Function
 
-    Public Overridable Function spd_nivel_aviso(id_nivel As Nullable(Of Integer)) As ObjectResult(Of Nullable(Of Integer))
-        Dim id_nivelParameter As ObjectParameter = If(id_nivel.HasValue, New ObjectParameter("id_nivel", id_nivel), New ObjectParameter("id_nivel", GetType(Integer)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spd_nivel_aviso", id_nivelParameter)
-    End Function
-
     Public Overridable Function spi_Nivel_Aviso(desc_nivel As String, d_tolera As Nullable(Of Integer)) As ObjectResult(Of Nullable(Of Integer))
         Dim desc_nivelParameter As ObjectParameter = If(desc_nivel IsNot Nothing, New ObjectParameter("desc_nivel", desc_nivel), New ObjectParameter("desc_nivel", GetType(String)))
 
@@ -91,12 +79,6 @@ Partial Public Class RecordEntities
         Dim d_toleraParameter As ObjectParameter = If(d_tolera.HasValue, New ObjectParameter("d_tolera", d_tolera), New ObjectParameter("d_tolera", GetType(Integer)))
 
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spu_nivel_aviso", id_nivelParameter, desc_nivelParameter, d_toleraParameter)
-    End Function
-
-    Public Overridable Function spd_taviso_Usuario(idav As Nullable(Of Integer)) As ObjectResult(Of Nullable(Of Integer))
-        Dim idavParameter As ObjectParameter = If(idav.HasValue, New ObjectParameter("idav", idav), New ObjectParameter("idav", GetType(Integer)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spd_taviso_Usuario", idavParameter)
     End Function
 
     Public Overridable Function spi_taviso_Usuario(cod_usuario As String, cod_sector As Nullable(Of Decimal), id_nivel As Nullable(Of Integer)) As ObjectResult(Of Nullable(Of Integer))
@@ -127,6 +109,56 @@ Partial Public Class RecordEntities
         Dim activoParameter As ObjectParameter = If(activo.HasValue, New ObjectParameter("Activo", activo), New ObjectParameter("Activo", GetType(Boolean)))
 
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spU_ActivaJob", horaParameter, activoParameter)
+    End Function
+
+    Public Overridable Function sp_rptMovSinxReas(tipo_mov As Nullable(Of Integer), nro_stro As String, broker As String, aseg As String, reaseg As String, cod_ramo_conta As String, fec_desde As String, fec_hasta As String, poliza As String) As ObjectResult(Of sp_rptMovSinxReas_Result)
+        Dim tipo_movParameter As ObjectParameter = If(tipo_mov.HasValue, New ObjectParameter("tipo_mov", tipo_mov), New ObjectParameter("tipo_mov", GetType(Integer)))
+
+        Dim nro_stroParameter As ObjectParameter = If(nro_stro IsNot Nothing, New ObjectParameter("nro_stro", nro_stro), New ObjectParameter("nro_stro", GetType(String)))
+
+        Dim brokerParameter As ObjectParameter = If(broker IsNot Nothing, New ObjectParameter("broker", broker), New ObjectParameter("broker", GetType(String)))
+
+        Dim asegParameter As ObjectParameter = If(aseg IsNot Nothing, New ObjectParameter("aseg", aseg), New ObjectParameter("aseg", GetType(String)))
+
+        Dim reasegParameter As ObjectParameter = If(reaseg IsNot Nothing, New ObjectParameter("reaseg", reaseg), New ObjectParameter("reaseg", GetType(String)))
+
+        Dim cod_ramo_contaParameter As ObjectParameter = If(cod_ramo_conta IsNot Nothing, New ObjectParameter("cod_ramo_conta", cod_ramo_conta), New ObjectParameter("cod_ramo_conta", GetType(String)))
+
+        Dim fec_desdeParameter As ObjectParameter = If(fec_desde IsNot Nothing, New ObjectParameter("fec_desde", fec_desde), New ObjectParameter("fec_desde", GetType(String)))
+
+        Dim fec_hastaParameter As ObjectParameter = If(fec_hasta IsNot Nothing, New ObjectParameter("fec_hasta", fec_hasta), New ObjectParameter("fec_hasta", GetType(String)))
+
+        Dim polizaParameter As ObjectParameter = If(poliza IsNot Nothing, New ObjectParameter("poliza", poliza), New ObjectParameter("poliza", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of sp_rptMovSinxReas_Result)("sp_rptMovSinxReas", tipo_movParameter, nro_stroParameter, brokerParameter, asegParameter, reasegParameter, cod_ramo_contaParameter, fec_desdeParameter, fec_hastaParameter, polizaParameter)
+    End Function
+
+    Public Overridable Function ModJob(hora As String, fecha As String, habilita As Nullable(Of Boolean)) As ObjectResult(Of Nullable(Of Integer))
+        Dim horaParameter As ObjectParameter = If(hora IsNot Nothing, New ObjectParameter("hora", hora), New ObjectParameter("hora", GetType(String)))
+
+        Dim fechaParameter As ObjectParameter = If(fecha IsNot Nothing, New ObjectParameter("fecha", fecha), New ObjectParameter("fecha", GetType(String)))
+
+        Dim habilitaParameter As ObjectParameter = If(habilita.HasValue, New ObjectParameter("habilita", habilita), New ObjectParameter("habilita", GetType(Boolean)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("ModJob", horaParameter, fechaParameter, habilitaParameter)
+    End Function
+
+    Public Overridable Function spD_Estatus_Stro(id_estatus As Nullable(Of Integer)) As ObjectResult(Of Nullable(Of Integer))
+        Dim id_estatusParameter As ObjectParameter = If(id_estatus.HasValue, New ObjectParameter("id_estatus", id_estatus), New ObjectParameter("id_estatus", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spD_Estatus_Stro", id_estatusParameter)
+    End Function
+
+    Public Overridable Function spD_Nivel_Aviso(id_nivel As Nullable(Of Integer)) As ObjectResult(Of Nullable(Of Integer))
+        Dim id_nivelParameter As ObjectParameter = If(id_nivel.HasValue, New ObjectParameter("id_nivel", id_nivel), New ObjectParameter("id_nivel", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spD_Nivel_Aviso", id_nivelParameter)
+    End Function
+
+    Public Overridable Function spD_tAviso_Usuario(idav As Nullable(Of Integer)) As ObjectResult(Of Nullable(Of Integer))
+        Dim idavParameter As ObjectParameter = If(idav.HasValue, New ObjectParameter("idav", idav), New ObjectParameter("idav", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spD_tAviso_Usuario", idavParameter)
     End Function
 
 End Class

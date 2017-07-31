@@ -5,16 +5,32 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="RecordModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <Function Name="spd_estatus_stro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="ModJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="hora" Type="varchar" Mode="In" />
+          <Parameter Name="fecha" Type="varchar" Mode="In" />
+          <Parameter Name="habilita" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_rptMovSinxReas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tipo_mov" Type="int" Mode="In" />
+          <Parameter Name="nro_stro" Type="varchar" Mode="In" />
+          <Parameter Name="broker" Type="varchar" Mode="In" />
+          <Parameter Name="aseg" Type="varchar" Mode="In" />
+          <Parameter Name="reaseg" Type="varchar" Mode="In" />
+          <Parameter Name="cod_ramo_conta" Type="varchar" Mode="In" />
+          <Parameter Name="fec_desde" Type="varchar" Mode="In" />
+          <Parameter Name="fec_hasta" Type="varchar" Mode="In" />
+          <Parameter Name="poliza" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spD_Estatus_Stro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_estatus" Type="int" Mode="In" />
         </Function>
         <Function Name="spD_FaseRecupera" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_Fase" Type="int" Mode="In" />
         </Function>
-        <Function Name="spd_nivel_aviso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="spD_Nivel_Aviso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_nivel" Type="int" Mode="In" />
         </Function>
-        <Function Name="spd_taviso_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="spD_tAviso_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idav" Type="int" Mode="In" />
         </Function>
         <Function Name="spi_Estatus_Stro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -73,9 +89,6 @@
             <Parameter Name="id_Fase" Mode="In" Type="Int32" />
             <Parameter Name="strFase" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="spd_estatus_stro" ReturnType="Collection(Int32)">
-          <Parameter Name="id_estatus" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="spi_Estatus_Stro" ReturnType="Collection(Int32)">
             <Parameter Name="estatus" Mode="In" Type="String" />
             <Parameter Name="id_fase" Mode="In" Type="Int32" />
@@ -85,9 +98,6 @@
             <Parameter Name="estatus" Mode="In" Type="String" />
             <Parameter Name="id_fase" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="spd_nivel_aviso" ReturnType="Collection(Int32)">
-          <Parameter Name="id_nivel" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="spi_Nivel_Aviso" ReturnType="Collection(Int32)">
             <Parameter Name="desc_nivel" Mode="In" Type="String" />
             <Parameter Name="d_tolera" Mode="In" Type="Int32" />
@@ -96,9 +106,6 @@
             <Parameter Name="id_nivel" Mode="In" Type="Int32" />
             <Parameter Name="desc_nivel" Mode="In" Type="String" />
             <Parameter Name="d_tolera" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="spd_taviso_Usuario" ReturnType="Collection(Int32)">
-          <Parameter Name="idav" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spi_taviso_Usuario" ReturnType="Collection(Int32)">
             <Parameter Name="cod_usuario" Mode="In" Type="String" />
@@ -115,7 +122,77 @@
             <Parameter Name="Hora" Mode="In" Type="String" />
             <Parameter Name="Activo" Mode="In" Type="Boolean" />
           </FunctionImport>
+          <FunctionImport Name="sp_rptMovSinxReas" ReturnType="Collection(RecordModel.sp_rptMovSinxReas_Result)">
+            <Parameter Name="tipo_mov" Mode="In" Type="Int32" />
+            <Parameter Name="nro_stro" Mode="In" Type="String" />
+            <Parameter Name="broker" Mode="In" Type="String" />
+            <Parameter Name="aseg" Mode="In" Type="String" />
+            <Parameter Name="reaseg" Mode="In" Type="String" />
+            <Parameter Name="cod_ramo_conta" Mode="In" Type="String" />
+            <Parameter Name="fec_desde" Mode="In" Type="String" />
+            <Parameter Name="fec_hasta" Mode="In" Type="String" />
+            <Parameter Name="poliza" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ModJob" ReturnType="Collection(Int32)">
+            <Parameter Name="hora" Mode="In" Type="String" />
+            <Parameter Name="fecha" Mode="In" Type="String" />
+            <Parameter Name="habilita" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="spD_Estatus_Stro" ReturnType="Collection(Int32)">
+            <Parameter Name="id_estatus" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spD_Nivel_Aviso" ReturnType="Collection(Int32)">
+            <Parameter Name="id_nivel" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spD_tAviso_Usuario" ReturnType="Collection(Int32)">
+            <Parameter Name="idav" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="sp_rptMovSinxReas_Result">
+          <Property Type="Int32" Name="SINIESTRO" Nullable="false" />
+          <Property Type="Int32" Name="SUBSINIESTRO" Nullable="false" />
+          <Property Type="String" Name="SUCURSAL" Nullable="true" MaxLength="47" />
+          <Property Type="String" Name="RAMO" Nullable="true" MaxLength="87" />
+          <Property Type="Decimal" Name="POLIZA" Nullable="false" Precision="9" Scale="0" />
+          <Property Type="Int32" Name="SUFIJO" Nullable="false" />
+          <Property Type="Decimal" Name="ENDOSO" Nullable="false" Precision="8" Scale="0" />
+          <Property Type="Int32" Name="UBICACION" Nullable="false" />
+          <Property Type="String" Name="EVENTO_CAT" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="FEC_MOV" Nullable="true" Precision="16" />
+          <Property Type="String" Name="MONEDA" Nullable="false" MaxLength="20" />
+          <Property Type="Int32" Name="COD_RAMO_CONTABLE" Nullable="true" />
+          <Property Type="String" Name="CONTRATO" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="DESCRIP_CONTRATO" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="REASEGURADOR" Nullable="true" MaxLength="129" />
+          <Property Type="String" Name="CORREDOR" Nullable="true" MaxLength="129" />
+          <Property Type="String" Name="ESTIMACION" Nullable="true" MaxLength="35" />
+          <Property Type="String" Name="MOVIMIENTO" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="SOLICITUD_PAGO" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="MONTO_MOVIMIENTO" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MONTO_REASEGURO" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="NUM" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="MONTO_MOVIMIENTO_EQ" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="MONTO_REASEGURO_EQ" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="MONTO_RETENIDA_EQ" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="DateTime" Name="FECHA_OCURRENCIA" Nullable="true" Precision="16" />
+          <Property Type="String" Name="REG_REASEGURADOR" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="REG_CORREDOR" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ASEGURADO" Nullable="true" MaxLength="242" />
+          <Property Type="String" Name="COBERTURA" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="TIPO_CAMBIO" Nullable="true" Precision="18" Scale="4" />
+          <Property Type="Int32" Name="cod_cia_reas_cia" Nullable="true" />
+          <Property Type="Int32" Name="cod_agente" Nullable="true" />
+          <Property Type="Int32" Name="cod_tipo_contrato" Nullable="true" />
+          <Property Type="DateTime" Name="FEC_INI_VIG" Nullable="true" Precision="16" />
+          <Property Type="DateTime" Name="FEC_FIN_VIG" Nullable="true" Precision="16" />
+          <Property Type="String" Name="PAIS" Nullable="true" MaxLength="25" />
+          <Property Type="String" Name="CAUSA_STRO" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="DIR_STRO" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="FEC_AVISO" Nullable="true" Precision="16" />
+          <Property Type="String" Name="AJUSTADOR" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="RIESGO" Nullable="true" MaxLength="158" />
+          <Property Type="Int32" Name="NRO_CORRELA_ESTIM" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -125,16 +202,66 @@
           <FunctionImportMapping FunctionImportName="spD_FaseRecupera" FunctionName="RecordModel.Store.spD_FaseRecupera" />
           <FunctionImportMapping FunctionImportName="spI_FaseRecupera" FunctionName="RecordModel.Store.spI_FaseRecupera" />
           <FunctionImportMapping FunctionImportName="spU_FaseRecupera" FunctionName="RecordModel.Store.spU_FaseRecupera" />
-          <FunctionImportMapping FunctionImportName="spd_estatus_stro" FunctionName="RecordModel.Store.spd_estatus_stro" />
           <FunctionImportMapping FunctionImportName="spi_Estatus_Stro" FunctionName="RecordModel.Store.spi_Estatus_Stro" />
           <FunctionImportMapping FunctionImportName="spu_estatus_stro" FunctionName="RecordModel.Store.spu_estatus_stro" />
-          <FunctionImportMapping FunctionImportName="spd_nivel_aviso" FunctionName="RecordModel.Store.spd_nivel_aviso" />
           <FunctionImportMapping FunctionImportName="spi_Nivel_Aviso" FunctionName="RecordModel.Store.spi_Nivel_Aviso" />
           <FunctionImportMapping FunctionImportName="spu_nivel_aviso" FunctionName="RecordModel.Store.spu_nivel_aviso" />
-          <FunctionImportMapping FunctionImportName="spd_taviso_Usuario" FunctionName="RecordModel.Store.spd_taviso_Usuario" />
           <FunctionImportMapping FunctionImportName="spi_taviso_Usuario" FunctionName="RecordModel.Store.spi_taviso_Usuario" />
           <FunctionImportMapping FunctionImportName="spu_taviso_Usuario" FunctionName="RecordModel.Store.spu_taviso_Usuario" />
           <FunctionImportMapping FunctionImportName="spU_ActivaJob" FunctionName="RecordModel.Store.spU_ActivaJob" />
+          <FunctionImportMapping FunctionImportName="sp_rptMovSinxReas" FunctionName="RecordModel.Store.sp_rptMovSinxReas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RecordModel.sp_rptMovSinxReas_Result">
+                <ScalarProperty Name="SINIESTRO" ColumnName="SINIESTRO" />
+                <ScalarProperty Name="SUBSINIESTRO" ColumnName="SUBSINIESTRO" />
+                <ScalarProperty Name="SUCURSAL" ColumnName="SUCURSAL" />
+                <ScalarProperty Name="RAMO" ColumnName="RAMO" />
+                <ScalarProperty Name="POLIZA" ColumnName="POLIZA" />
+                <ScalarProperty Name="SUFIJO" ColumnName="SUFIJO" />
+                <ScalarProperty Name="ENDOSO" ColumnName="ENDOSO" />
+                <ScalarProperty Name="UBICACION" ColumnName="UBICACION" />
+                <ScalarProperty Name="EVENTO_CAT" ColumnName="EVENTO_CAT" />
+                <ScalarProperty Name="FEC_MOV" ColumnName="FEC_MOV" />
+                <ScalarProperty Name="MONEDA" ColumnName="MONEDA" />
+                <ScalarProperty Name="COD_RAMO_CONTABLE" ColumnName="COD_RAMO_CONTABLE" />
+                <ScalarProperty Name="CONTRATO" ColumnName="CONTRATO" />
+                <ScalarProperty Name="DESCRIP_CONTRATO" ColumnName="DESCRIP_CONTRATO" />
+                <ScalarProperty Name="REASEGURADOR" ColumnName="REASEGURADOR" />
+                <ScalarProperty Name="CORREDOR" ColumnName="CORREDOR" />
+                <ScalarProperty Name="ESTIMACION" ColumnName="ESTIMACION" />
+                <ScalarProperty Name="MOVIMIENTO" ColumnName="MOVIMIENTO" />
+                <ScalarProperty Name="SOLICITUD_PAGO" ColumnName="SOLICITUD_PAGO" />
+                <ScalarProperty Name="MONTO_MOVIMIENTO" ColumnName="MONTO_MOVIMIENTO" />
+                <ScalarProperty Name="MONTO_REASEGURO" ColumnName="MONTO_REASEGURO" />
+                <ScalarProperty Name="NUM" ColumnName="NUM" />
+                <ScalarProperty Name="MONTO_MOVIMIENTO_EQ" ColumnName="MONTO_MOVIMIENTO_EQ" />
+                <ScalarProperty Name="MONTO_REASEGURO_EQ" ColumnName="MONTO_REASEGURO_EQ" />
+                <ScalarProperty Name="MONTO_RETENIDA_EQ" ColumnName="MONTO_RETENIDA_EQ" />
+                <ScalarProperty Name="FECHA_OCURRENCIA" ColumnName="FECHA_OCURRENCIA" />
+                <ScalarProperty Name="REG_REASEGURADOR" ColumnName="REG_REASEGURADOR" />
+                <ScalarProperty Name="REG_CORREDOR" ColumnName="REG_CORREDOR" />
+                <ScalarProperty Name="ASEGURADO" ColumnName="ASEGURADO" />
+                <ScalarProperty Name="COBERTURA" ColumnName="COBERTURA" />
+                <ScalarProperty Name="TIPO_CAMBIO" ColumnName="TIPO_CAMBIO" />
+                <ScalarProperty Name="cod_cia_reas_cia" ColumnName="cod_cia_reas_cia" />
+                <ScalarProperty Name="cod_agente" ColumnName="cod_agente" />
+                <ScalarProperty Name="cod_tipo_contrato" ColumnName="cod_tipo_contrato" />
+                <ScalarProperty Name="FEC_INI_VIG" ColumnName="FEC_INI_VIG" />
+                <ScalarProperty Name="FEC_FIN_VIG" ColumnName="FEC_FIN_VIG" />
+                <ScalarProperty Name="PAIS" ColumnName="PAIS" />
+                <ScalarProperty Name="CAUSA_STRO" ColumnName="CAUSA_STRO" />
+                <ScalarProperty Name="DIR_STRO" ColumnName="DIR_STRO" />
+                <ScalarProperty Name="FEC_AVISO" ColumnName="FEC_AVISO" />
+                <ScalarProperty Name="AJUSTADOR" ColumnName="AJUSTADOR" />
+                <ScalarProperty Name="RIESGO" ColumnName="RIESGO" />
+                <ScalarProperty Name="NRO_CORRELA_ESTIM" ColumnName="NRO_CORRELA_ESTIM" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ModJob" FunctionName="RecordModel.Store.ModJob" />
+          <FunctionImportMapping FunctionImportName="spD_Estatus_Stro" FunctionName="RecordModel.Store.spD_Estatus_Stro" />
+          <FunctionImportMapping FunctionImportName="spD_Nivel_Aviso" FunctionName="RecordModel.Store.spD_Nivel_Aviso" />
+          <FunctionImportMapping FunctionImportName="spD_tAviso_Usuario" FunctionName="RecordModel.Store.spD_tAviso_Usuario" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
