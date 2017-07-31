@@ -81,17 +81,20 @@ Partial Public Class spS_OrdenPago_Result
     Public Property sn_DireccionArea As Boolean
     Public Property sn_DireccionArea_Aux As Boolean
     Public Property cod_usuario_director As String
+    Public Property sn_Subdirector As Boolean
+    Public Property sn_Subdirector_Aux As Boolean
+    Public Property cod_usuario_subdir As String
     Public Property sn_Contabilidad As Boolean
     Public Property sn_Contabilidad_Aux As Boolean
     Public Property cod_usuario_contabilidad As String
+    Public Property sn_Rechazo As Boolean
+    Public Property sn_Rechazo_Aux As Boolean
+    Public Property cod_usuario_rechazo As String
     Public Property GeneraOp_Solicitante As Nullable(Of Boolean)
     Public Property Autoriza_JefeInmediato As Nullable(Of Boolean)
     Public Property Autoriza_DirArea As Nullable(Of Boolean)
     Public Property Autoriza_Conta As Nullable(Of Boolean)
     Public Property Autoriza_Subdirector As Nullable(Of Boolean)
-    Public Property sn_Subdirector As Boolean
-    Public Property sn_Subdirector_Aux As Boolean
-    Public Property cod_usuario_subdir As String
     Public Property Impuesto As Nullable(Of Decimal)
     Public Property PathFirma As String
     Public Property sn_devolucion As Integer
