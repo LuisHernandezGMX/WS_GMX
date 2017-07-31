@@ -5,6 +5,11 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="RecordModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="ModJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="hora" Type="varchar" Mode="In" />
+          <Parameter Name="fecha" Type="varchar" Mode="In" />
+          <Parameter Name="habilita" Type="bit" Mode="In" />
+        </Function>
         <Function Name="sp_rptMovSinxReas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tipo_mov" Type="int" Mode="In" />
           <Parameter Name="nro_stro" Type="varchar" Mode="In" />
@@ -16,8 +21,17 @@
           <Parameter Name="fec_hasta" Type="varchar" Mode="In" />
           <Parameter Name="poliza" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="spD_Estatus_Stro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_estatus" Type="int" Mode="In" />
+        </Function>
         <Function Name="spD_FaseRecupera" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_Fase" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spD_Nivel_Aviso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_nivel" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spD_tAviso_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idav" Type="int" Mode="In" />
         </Function>
         <Function Name="spi_Estatus_Stro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="estatus" Type="varchar" Mode="In" />
@@ -75,9 +89,6 @@
             <Parameter Name="id_Fase" Mode="In" Type="Int32" />
             <Parameter Name="strFase" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="spd_estatus_stro" ReturnType="Collection(Int32)">
-          <Parameter Name="id_estatus" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="spi_Estatus_Stro" ReturnType="Collection(Int32)">
             <Parameter Name="estatus" Mode="In" Type="String" />
             <Parameter Name="id_fase" Mode="In" Type="Int32" />
@@ -87,9 +98,6 @@
             <Parameter Name="estatus" Mode="In" Type="String" />
             <Parameter Name="id_fase" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="spd_nivel_aviso" ReturnType="Collection(Int32)">
-          <Parameter Name="id_nivel" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="spi_Nivel_Aviso" ReturnType="Collection(Int32)">
             <Parameter Name="desc_nivel" Mode="In" Type="String" />
             <Parameter Name="d_tolera" Mode="In" Type="Int32" />
@@ -98,9 +106,6 @@
             <Parameter Name="id_nivel" Mode="In" Type="Int32" />
             <Parameter Name="desc_nivel" Mode="In" Type="String" />
             <Parameter Name="d_tolera" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="spd_taviso_Usuario" ReturnType="Collection(Int32)">
-          <Parameter Name="idav" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spi_taviso_Usuario" ReturnType="Collection(Int32)">
             <Parameter Name="cod_usuario" Mode="In" Type="String" />
@@ -127,6 +132,20 @@
             <Parameter Name="fec_desde" Mode="In" Type="String" />
             <Parameter Name="fec_hasta" Mode="In" Type="String" />
             <Parameter Name="poliza" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ModJob" ReturnType="Collection(Int32)">
+            <Parameter Name="hora" Mode="In" Type="String" />
+            <Parameter Name="fecha" Mode="In" Type="String" />
+            <Parameter Name="habilita" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="spD_Estatus_Stro" ReturnType="Collection(Int32)">
+            <Parameter Name="id_estatus" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spD_Nivel_Aviso" ReturnType="Collection(Int32)">
+            <Parameter Name="id_nivel" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spD_tAviso_Usuario" ReturnType="Collection(Int32)">
+            <Parameter Name="idav" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_rptMovSinxReas_Result">
@@ -239,6 +258,10 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ModJob" FunctionName="RecordModel.Store.ModJob" />
+          <FunctionImportMapping FunctionImportName="spD_Estatus_Stro" FunctionName="RecordModel.Store.spD_Estatus_Stro" />
+          <FunctionImportMapping FunctionImportName="spD_Nivel_Aviso" FunctionName="RecordModel.Store.spD_Nivel_Aviso" />
+          <FunctionImportMapping FunctionImportName="spD_tAviso_Usuario" FunctionName="RecordModel.Store.spD_tAviso_Usuario" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

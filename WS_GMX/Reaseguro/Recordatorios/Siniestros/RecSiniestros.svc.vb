@@ -71,7 +71,9 @@ Public Class RecSiniestros
     Public Function InsertaNivel(strNivel As String, DiasT As Integer) As List(Of Nullable(Of Int32)) Implements IRecSiniestros.InsertaNivel
         Dim Resultado As IList = Nothing
         Try
+
             Resultado = db.spi_Nivel_Aviso(strNivel, DiasT).ToList
+
         Catch ex As Exception
             Return Nothing
         End Try
@@ -134,6 +136,16 @@ Public Class RecSiniestros
         Dim Resultado As IList = Nothing
         Try
             Resultado = db.spU_ActivaJob(srtHora, blnActivo).ToList
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return Resultado
+    End Function
+
+    Public Function ActualizaHoraJob(strHoraIni As String, strFechaIni As String, Activado As Boolean) As List(Of Nullable(Of Int32)) Implements IRecSiniestros.ActualizaHoraJob
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.ModJob(strHoraIni, strFechaIni, Activado).ToList
         Catch ex As Exception
             Return Nothing
         End Try
