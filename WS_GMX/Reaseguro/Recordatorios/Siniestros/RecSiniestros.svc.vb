@@ -71,7 +71,9 @@ Public Class RecSiniestros
     Public Function InsertaNivel(strNivel As String, DiasT As Integer) As List(Of Nullable(Of Int32)) Implements IRecSiniestros.InsertaNivel
         Dim Resultado As IList = Nothing
         Try
+
             Resultado = db.spi_Nivel_Aviso(strNivel, DiasT).ToList
+
         Catch ex As Exception
             Return Nothing
         End Try
