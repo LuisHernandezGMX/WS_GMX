@@ -63,7 +63,7 @@
             <Parameter Name="CodUsuPermiso" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="spS_ContabilidadOP" ReturnType="Collection(OPModel.spS_ContabilidadOP_Result)">
-            <Parameter Name="nro_op" Mode="In" Type="Int32" />
+          <Parameter Name="nro_op" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spI_PolNoPago_Result">
@@ -71,6 +71,49 @@
         </ComplexType>
         <ComplexType Name="spD_PolNoPago_Result">
           <Property Type="String" Name="Resultado" Nullable="true" MaxLength="1000" />
+        </ComplexType>
+        <ComplexType Name="spS_ContabilidadOP_Result">
+          <Property Type="Int32" Name="nro_reas" Nullable="false" />
+          <Property Type="Int32" Name="id_imputacion" Nullable="false" />
+          <Property Type="String" Name="txt_clave" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="txt_clave_isr" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="cod_cpto_pri" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="String" Name="cod_deb_cred_pri" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="prima_cedida" Nullable="true" Precision="38" Scale="4" />
+          <Property Type="Decimal" Name="pje_pri" Nullable="true" Precision="38" Scale="4" />
+          <Property Type="Decimal" Name="prima" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="cod_cpto_com" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="String" Name="cod_deb_cred_com" Nullable="true" MaxLength="1" />
+          <Property Type="Decimal" Name="comisiones" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="pje_com" Nullable="true" Precision="38" Scale="4" />
+          <Property Type="Decimal" Name="comision" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="prima_neta" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="pje_isr" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="Decimal" Name="monto_isr" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="monto_isr_dev" Nullable="true" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="cod_broker" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="String" Name="broker" Nullable="false" MaxLength="120" />
+          <Property Type="Decimal" Name="cod_cia" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="String" Name="compañia" Nullable="false" MaxLength="120" />
+          <Property Type="Decimal" Name="cod_profit_center" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="Decimal" Name="cod_subprofit_center" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="String" Name="id_contrato" Nullable="false" MaxLength="10" />
+          <Property Type="Decimal" Name="nro_tramo" Nullable="false" Precision="2" Scale="0" />
+          <Property Type="Int32" Name="id_pv" Nullable="false" />
+          <Property Type="String" Name="Poliza" Nullable="true" MaxLength="154" />
+          <Property Type="Decimal" Name="cod_suc_stro" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="aaaa_ejercicio_stro" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="Int32" Name="nro_stro" Nullable="true" />
+          <Property Type="Decimal" Name="aaaamm_movimiento" Nullable="true" Precision="6" Scale="0" />
+          <Property Type="Int32" Name="cod_ramo_contable" Nullable="true" />
+          <Property Type="String" Name="ramo_contable" Nullable="false" MaxLength="50" />
+          <Property Type="Decimal" Name="nro_cuota" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="DateTime" Name="fecha_fac" Nullable="true" Precision="16" />
+          <Property Type="Decimal" Name="cod_major" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="cod_minor" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="cod_class_peril" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="sn_ogis" Nullable="true" Precision="1" Scale="0" />
+          <Property Type="Int16" Name="nro_layer" Nullable="true" />
         </ComplexType>
         <ComplexType Name="spS_OrdenPago_Result">
           <Property Type="Boolean" Name="tSEl_Val" Nullable="true" />
@@ -143,63 +186,23 @@
           <Property Type="Boolean" Name="sn_DireccionArea" Nullable="false" />
           <Property Type="Boolean" Name="sn_DireccionArea_Aux" Nullable="false" />
           <Property Type="String" Name="cod_usuario_director" Nullable="false" MaxLength="30" />
+          <Property Type="Boolean" Name="sn_Subdirector" Nullable="false" />
+          <Property Type="Boolean" Name="sn_Subdirector_Aux" Nullable="false" />
+          <Property Type="String" Name="cod_usuario_subdir" Nullable="false" MaxLength="30" />
           <Property Type="Boolean" Name="sn_Contabilidad" Nullable="false" />
           <Property Type="Boolean" Name="sn_Contabilidad_Aux" Nullable="false" />
           <Property Type="String" Name="cod_usuario_contabilidad" Nullable="false" MaxLength="30" />
+          <Property Type="Boolean" Name="sn_Rechazo" Nullable="false" />
+          <Property Type="Boolean" Name="sn_Rechazo_Aux" Nullable="false" />
+          <Property Type="String" Name="cod_usuario_rechazo" Nullable="false" MaxLength="30" />
           <Property Type="Boolean" Name="GeneraOp_Solicitante" Nullable="true" />
           <Property Type="Boolean" Name="Autoriza_JefeInmediato" Nullable="true" />
           <Property Type="Boolean" Name="Autoriza_DirArea" Nullable="true" />
           <Property Type="Boolean" Name="Autoriza_Conta" Nullable="true" />
           <Property Type="Boolean" Name="Autoriza_Subdirector" Nullable="true" />
-          <Property Type="Boolean" Name="sn_Subdirector" Nullable="false" />
-          <Property Type="Boolean" Name="sn_Subdirector_Aux" Nullable="false" />
-          <Property Type="String" Name="cod_usuario_subdir" Nullable="false" MaxLength="30" />
           <Property Type="Decimal" Name="Impuesto" Nullable="true" Precision="18" Scale="4" />
           <Property Type="String" Name="PathFirma" Nullable="true" MaxLength="8000" />
           <Property Type="Int32" Name="sn_devolucion" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="spS_ContabilidadOP_Result">
-          <Property Type="Int32" Name="nro_reas" Nullable="false" />
-          <Property Type="Int32" Name="id_imputacion" Nullable="false" />
-          <Property Type="String" Name="txt_clave" Nullable="false" MaxLength="20" />
-          <Property Type="String" Name="txt_clave_isr" Nullable="true" MaxLength="20" />
-          <Property Type="Decimal" Name="cod_cpto_pri" Nullable="true" Precision="3" Scale="0" />
-          <Property Type="String" Name="cod_deb_cred_pri" Nullable="true" MaxLength="1" />
-          <Property Type="Decimal" Name="prima_cedida" Nullable="true" Precision="38" Scale="4" />
-          <Property Type="Decimal" Name="pje_pri" Nullable="true" Precision="38" Scale="4" />
-          <Property Type="Decimal" Name="prima" Nullable="true" Precision="38" Scale="2" />
-          <Property Type="Decimal" Name="cod_cpto_com" Nullable="true" Precision="3" Scale="0" />
-          <Property Type="String" Name="cod_deb_cred_com" Nullable="true" MaxLength="1" />
-          <Property Type="Decimal" Name="comisiones" Nullable="true" Precision="19" />
-          <Property Type="Decimal" Name="pje_com" Nullable="true" Precision="38" Scale="4" />
-          <Property Type="Decimal" Name="comision" Nullable="true" Precision="38" Scale="2" />
-          <Property Type="Decimal" Name="prima_neta" Nullable="true" Precision="38" Scale="2" />
-          <Property Type="Decimal" Name="pje_isr" Nullable="true" Precision="4" Scale="0" />
-          <Property Type="Decimal" Name="monto_isr" Nullable="true" Precision="38" Scale="2" />
-          <Property Type="Decimal" Name="monto_isr_dev" Nullable="true" Precision="38" Scale="2" />
-          <Property Type="Decimal" Name="cod_broker" Nullable="false" Precision="4" Scale="0" />
-          <Property Type="String" Name="broker" Nullable="false" MaxLength="120" />
-          <Property Type="Decimal" Name="cod_cia" Nullable="false" Precision="4" Scale="0" />
-          <Property Type="String" Name="compañia" Nullable="false" MaxLength="120" />
-          <Property Type="Decimal" Name="cod_profit_center" Nullable="true" Precision="2" Scale="0" />
-          <Property Type="Decimal" Name="cod_subprofit_center" Nullable="true" Precision="4" Scale="0" />
-          <Property Type="String" Name="id_contrato" Nullable="false" MaxLength="10" />
-          <Property Type="Decimal" Name="nro_tramo" Nullable="false" Precision="2" Scale="0" />
-          <Property Type="Int32" Name="id_pv" Nullable="false" />
-          <Property Type="String" Name="Poliza" Nullable="true" MaxLength="154" />
-          <Property Type="Decimal" Name="cod_suc_stro" Nullable="true" Precision="3" Scale="0" />
-          <Property Type="Decimal" Name="aaaa_ejercicio_stro" Nullable="true" Precision="4" Scale="0" />
-          <Property Type="Int32" Name="nro_stro" Nullable="true" />
-          <Property Type="Decimal" Name="aaaamm_movimiento" Nullable="true" Precision="6" Scale="0" />
-          <Property Type="Int32" Name="cod_ramo_contable" Nullable="true" />
-          <Property Type="String" Name="ramo_contable" Nullable="false" MaxLength="50" />
-          <Property Type="Decimal" Name="nro_cuota" Nullable="true" Precision="2" Scale="0" />
-          <Property Type="DateTime" Name="fecha_fac" Nullable="true" Precision="16" />
-          <Property Type="Decimal" Name="cod_major" Nullable="true" Precision="3" Scale="0" />
-          <Property Type="Decimal" Name="cod_minor" Nullable="true" Precision="3" Scale="0" />
-          <Property Type="Decimal" Name="cod_class_peril" Nullable="true" Precision="3" Scale="0" />
-          <Property Type="Decimal" Name="sn_ogis" Nullable="true" Precision="1" Scale="0" />
-          <Property Type="Int16" Name="nro_layer" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -294,17 +297,20 @@
                 <ScalarProperty Name="sn_DireccionArea" ColumnName="sn_DireccionArea" />
                 <ScalarProperty Name="sn_DireccionArea_Aux" ColumnName="sn_DireccionArea_Aux" />
                 <ScalarProperty Name="cod_usuario_director" ColumnName="cod_usuario_director" />
+                <ScalarProperty Name="sn_Subdirector" ColumnName="sn_Subdirector" />
+                <ScalarProperty Name="sn_Subdirector_Aux" ColumnName="sn_Subdirector_Aux" />
+                <ScalarProperty Name="cod_usuario_subdir" ColumnName="cod_usuario_subdir" />
                 <ScalarProperty Name="sn_Contabilidad" ColumnName="sn_Contabilidad" />
                 <ScalarProperty Name="sn_Contabilidad_Aux" ColumnName="sn_Contabilidad_Aux" />
                 <ScalarProperty Name="cod_usuario_contabilidad" ColumnName="cod_usuario_contabilidad" />
+                <ScalarProperty Name="sn_Rechazo" ColumnName="sn_Rechazo" />
+                <ScalarProperty Name="sn_Rechazo_Aux" ColumnName="sn_Rechazo_Aux" />
+                <ScalarProperty Name="cod_usuario_rechazo" ColumnName="cod_usuario_rechazo" />
                 <ScalarProperty Name="GeneraOp_Solicitante" ColumnName="GeneraOp_Solicitante" />
                 <ScalarProperty Name="Autoriza_JefeInmediato" ColumnName="Autoriza_JefeInmediato" />
                 <ScalarProperty Name="Autoriza_DirArea" ColumnName="Autoriza_DirArea" />
                 <ScalarProperty Name="Autoriza_Conta" ColumnName="Autoriza_Conta" />
                 <ScalarProperty Name="Autoriza_Subdirector" ColumnName="Autoriza_Subdirector" />
-                <ScalarProperty Name="sn_Subdirector" ColumnName="sn_Subdirector" />
-                <ScalarProperty Name="sn_Subdirector_Aux" ColumnName="sn_Subdirector_Aux" />
-                <ScalarProperty Name="cod_usuario_subdir" ColumnName="cod_usuario_subdir" />
                 <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
                 <ScalarProperty Name="PathFirma" ColumnName="PathFirma" />
                 <ScalarProperty Name="sn_devolucion" ColumnName="sn_devolucion" />
