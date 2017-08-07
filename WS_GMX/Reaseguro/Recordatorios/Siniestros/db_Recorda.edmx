@@ -17,9 +17,9 @@
           <Parameter Name="aseg" Type="varchar" Mode="In" />
           <Parameter Name="reaseg" Type="varchar" Mode="In" />
           <Parameter Name="cod_ramo_conta" Type="varchar" Mode="In" />
+          <Parameter Name="poliza" Type="varchar" Mode="In" />
           <Parameter Name="fec_desde" Type="varchar" Mode="In" />
           <Parameter Name="fec_hasta" Type="varchar" Mode="In" />
-          <Parameter Name="poliza" Type="varchar" Mode="In" />
         </Function>
         <Function Name="spD_Estatus_Stro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id_estatus" Type="int" Mode="In" />
@@ -129,9 +129,9 @@
             <Parameter Name="aseg" Mode="In" Type="String" />
             <Parameter Name="reaseg" Mode="In" Type="String" />
             <Parameter Name="cod_ramo_conta" Mode="In" Type="String" />
+            <Parameter Name="poliza" Mode="In" Type="String" />
             <Parameter Name="fec_desde" Mode="In" Type="String" />
             <Parameter Name="fec_hasta" Mode="In" Type="String" />
-            <Parameter Name="poliza" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="ModJob" ReturnType="Collection(Int32)">
             <Parameter Name="hora" Mode="In" Type="String" />
@@ -139,13 +139,13 @@
             <Parameter Name="habilita" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="spD_Estatus_Stro" ReturnType="Collection(Int32)">
-            <Parameter Name="id_estatus" Mode="In" Type="Int32" />
+          <Parameter Name="id_estatus" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spD_Nivel_Aviso" ReturnType="Collection(Int32)">
-            <Parameter Name="id_nivel" Mode="In" Type="Int32" />
+          <Parameter Name="id_nivel" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spD_tAviso_Usuario" ReturnType="Collection(Int32)">
-            <Parameter Name="idav" Mode="In" Type="Int32" />
+          <Parameter Name="idav" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_rptMovSinxReas_Result">
@@ -158,7 +158,7 @@
           <Property Type="Decimal" Name="ENDOSO" Nullable="false" Precision="8" Scale="0" />
           <Property Type="Int32" Name="UBICACION" Nullable="false" />
           <Property Type="String" Name="EVENTO_CAT" Nullable="false" MaxLength="100" />
-          <Property Type="DateTime" Name="FEC_MOV" Nullable="true" Precision="16" />
+          <Property Type="String" Name="FEC_MOV" Nullable="true" />
           <Property Type="String" Name="MONEDA" Nullable="false" MaxLength="20" />
           <Property Type="Int32" Name="COD_RAMO_CONTABLE" Nullable="true" />
           <Property Type="String" Name="CONTRATO" Nullable="true" MaxLength="10" />
@@ -174,7 +174,7 @@
           <Property Type="Decimal" Name="MONTO_MOVIMIENTO_EQ" Nullable="true" Precision="18" Scale="2" />
           <Property Type="Decimal" Name="MONTO_REASEGURO_EQ" Nullable="true" Precision="38" Scale="2" />
           <Property Type="Decimal" Name="MONTO_RETENIDA_EQ" Nullable="true" Precision="38" Scale="2" />
-          <Property Type="DateTime" Name="FECHA_OCURRENCIA" Nullable="true" Precision="16" />
+          <Property Type="String" Name="FECHA_OCURRENCIA" Nullable="true" />
           <Property Type="String" Name="REG_REASEGURADOR" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="REG_CORREDOR" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="ASEGURADO" Nullable="true" MaxLength="242" />
@@ -183,12 +183,12 @@
           <Property Type="Int32" Name="cod_cia_reas_cia" Nullable="true" />
           <Property Type="Int32" Name="cod_agente" Nullable="true" />
           <Property Type="Int32" Name="cod_tipo_contrato" Nullable="true" />
-          <Property Type="DateTime" Name="FEC_INI_VIG" Nullable="true" Precision="16" />
-          <Property Type="DateTime" Name="FEC_FIN_VIG" Nullable="true" Precision="16" />
+          <Property Type="String" Name="FEC_INI_VIG" Nullable="true" />
+          <Property Type="String" Name="FEC_FIN_VIG" Nullable="true" />
           <Property Type="String" Name="PAIS" Nullable="true" MaxLength="25" />
           <Property Type="String" Name="CAUSA_STRO" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="DIR_STRO" Nullable="true" MaxLength="255" />
-          <Property Type="DateTime" Name="FEC_AVISO" Nullable="true" Precision="16" />
+          <Property Type="String" Name="FEC_AVISO" Nullable="true" />
           <Property Type="String" Name="AJUSTADOR" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="RIESGO" Nullable="true" MaxLength="158" />
           <Property Type="Int32" Name="NRO_CORRELA_ESTIM" Nullable="true" />

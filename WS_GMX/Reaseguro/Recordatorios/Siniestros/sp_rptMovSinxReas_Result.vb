@@ -20,7 +20,7 @@ Partial Public Class sp_rptMovSinxReas_Result
     Public Property ENDOSO As Decimal
     Public Property UBICACION As Integer
     Public Property EVENTO_CAT As String
-    Public Property FEC_MOV As Nullable(Of Date)
+    Public Property FEC_MOV As String
     Public Property MONEDA As String
     Public Property COD_RAMO_CONTABLE As Nullable(Of Integer)
     Public Property CONTRATO As String
@@ -36,7 +36,7 @@ Partial Public Class sp_rptMovSinxReas_Result
     Public Property MONTO_MOVIMIENTO_EQ As Nullable(Of Decimal)
     Public Property MONTO_REASEGURO_EQ As Nullable(Of Decimal)
     Public Property MONTO_RETENIDA_EQ As Nullable(Of Decimal)
-    Public Property FECHA_OCURRENCIA As Nullable(Of Date)
+    Public Property FECHA_OCURRENCIA As String
     Public Property REG_REASEGURADOR As String
     Public Property REG_CORREDOR As String
     Public Property ASEGURADO As String
@@ -45,12 +45,12 @@ Partial Public Class sp_rptMovSinxReas_Result
     Public Property cod_cia_reas_cia As Nullable(Of Integer)
     Public Property cod_agente As Nullable(Of Integer)
     Public Property cod_tipo_contrato As Nullable(Of Integer)
-    Public Property FEC_INI_VIG As Nullable(Of Date)
-    Public Property FEC_FIN_VIG As Nullable(Of Date)
+    Public Property FEC_INI_VIG As String
+    Public Property FEC_FIN_VIG As String
     Public Property PAIS As String
     Public Property CAUSA_STRO As String
     Public Property DIR_STRO As String
-    Public Property FEC_AVISO As Nullable(Of Date)
+    Public Property FEC_AVISO As String
     Public Property AJUSTADOR As String
     Public Property RIESGO As String
     Public Property NRO_CORRELA_ESTIM As Nullable(Of Integer)
