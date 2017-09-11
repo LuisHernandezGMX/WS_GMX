@@ -165,4 +165,22 @@ Public Class RecSiniestros
         Return Resultado
     End Function
 #End Region
+
+#Region "Ajustes"
+    Public Function GuardaAjustes(siniestro As Integer, moneda As String, reasegurador As String, corredor As String, monto_mov As Double, monto_rea As Double,
+                                   reg_rea As String, fec_ini_vig As Date, fec_fin_vig As Date, causa_stro As String, dir_stro As String,
+                                   ajustador As String) As List(Of Nullable(Of Int32)) Implements IRecSiniestros.GuardaAjustes
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.spI_AjustesSin(siniestro, moneda, reasegurador, corredor, monto_mov, monto_rea, reg_rea, fec_ini_vig, fec_fin_vig,
+                                          causa_stro, dir_stro, ajustador).ToList
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return Resultado
+    End Function
+
+
+#End Region
+
 End Class

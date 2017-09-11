@@ -161,4 +161,32 @@ Partial Public Class RecordEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spD_tAviso_Usuario", idavParameter)
     End Function
 
+    Public Overridable Function spI_AjustesSin(sINIESTRO As Nullable(Of Integer), mONEDA As String, rEASEGURADOR As String, cORREDOR As String, mONTO_MOVIMIENTO As Nullable(Of Decimal), mONTO_REASEGURO As Nullable(Of Decimal), rEG_REASEGURADOR As String, fEC_INI_VIG As Nullable(Of Date), fEC_FIN_VIG As Nullable(Of Date), cAUSA_STRO As String, dIR_STRO As String, aJUSTADOR As String) As ObjectResult(Of Nullable(Of Integer))
+        Dim sINIESTROParameter As ObjectParameter = If(sINIESTRO.HasValue, New ObjectParameter("SINIESTRO", sINIESTRO), New ObjectParameter("SINIESTRO", GetType(Integer)))
+
+        Dim mONEDAParameter As ObjectParameter = If(mONEDA IsNot Nothing, New ObjectParameter("MONEDA", mONEDA), New ObjectParameter("MONEDA", GetType(String)))
+
+        Dim rEASEGURADORParameter As ObjectParameter = If(rEASEGURADOR IsNot Nothing, New ObjectParameter("REASEGURADOR", rEASEGURADOR), New ObjectParameter("REASEGURADOR", GetType(String)))
+
+        Dim cORREDORParameter As ObjectParameter = If(cORREDOR IsNot Nothing, New ObjectParameter("CORREDOR", cORREDOR), New ObjectParameter("CORREDOR", GetType(String)))
+
+        Dim mONTO_MOVIMIENTOParameter As ObjectParameter = If(mONTO_MOVIMIENTO.HasValue, New ObjectParameter("MONTO_MOVIMIENTO", mONTO_MOVIMIENTO), New ObjectParameter("MONTO_MOVIMIENTO", GetType(Decimal)))
+
+        Dim mONTO_REASEGUROParameter As ObjectParameter = If(mONTO_REASEGURO.HasValue, New ObjectParameter("MONTO_REASEGURO", mONTO_REASEGURO), New ObjectParameter("MONTO_REASEGURO", GetType(Decimal)))
+
+        Dim rEG_REASEGURADORParameter As ObjectParameter = If(rEG_REASEGURADOR IsNot Nothing, New ObjectParameter("REG_REASEGURADOR", rEG_REASEGURADOR), New ObjectParameter("REG_REASEGURADOR", GetType(String)))
+
+        Dim fEC_INI_VIGParameter As ObjectParameter = If(fEC_INI_VIG.HasValue, New ObjectParameter("FEC_INI_VIG", fEC_INI_VIG), New ObjectParameter("FEC_INI_VIG", GetType(Date)))
+
+        Dim fEC_FIN_VIGParameter As ObjectParameter = If(fEC_FIN_VIG.HasValue, New ObjectParameter("FEC_FIN_VIG", fEC_FIN_VIG), New ObjectParameter("FEC_FIN_VIG", GetType(Date)))
+
+        Dim cAUSA_STROParameter As ObjectParameter = If(cAUSA_STRO IsNot Nothing, New ObjectParameter("CAUSA_STRO", cAUSA_STRO), New ObjectParameter("CAUSA_STRO", GetType(String)))
+
+        Dim dIR_STROParameter As ObjectParameter = If(dIR_STRO IsNot Nothing, New ObjectParameter("DIR_STRO", dIR_STRO), New ObjectParameter("DIR_STRO", GetType(String)))
+
+        Dim aJUSTADORParameter As ObjectParameter = If(aJUSTADOR IsNot Nothing, New ObjectParameter("AJUSTADOR", aJUSTADOR), New ObjectParameter("AJUSTADOR", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spI_AjustesSin", sINIESTROParameter, mONEDAParameter, rEASEGURADORParameter, cORREDORParameter, mONTO_MOVIMIENTOParameter, mONTO_REASEGUROParameter, rEG_REASEGURADORParameter, fEC_INI_VIGParameter, fEC_FIN_VIGParameter, cAUSA_STROParameter, dIR_STROParameter, aJUSTADORParameter)
+    End Function
+
 End Class

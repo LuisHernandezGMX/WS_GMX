@@ -33,6 +33,20 @@
         <Function Name="spD_tAviso_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idav" Type="int" Mode="In" />
         </Function>
+        <Function Name="spI_AjustesSin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SINIESTRO" Type="int" Mode="In" />
+          <Parameter Name="MONEDA" Type="varchar" Mode="In" />
+          <Parameter Name="REASEGURADOR" Type="varchar" Mode="In" />
+          <Parameter Name="CORREDOR" Type="varchar" Mode="In" />
+          <Parameter Name="MONTO_MOVIMIENTO" Type="decimal" Mode="In" />
+          <Parameter Name="MONTO_REASEGURO" Type="decimal" Mode="In" />
+          <Parameter Name="REG_REASEGURADOR" Type="varchar" Mode="In" />
+          <Parameter Name="FEC_INI_VIG" Type="smalldatetime" Mode="In" />
+          <Parameter Name="FEC_FIN_VIG" Type="smalldatetime" Mode="In" />
+          <Parameter Name="CAUSA_STRO" Type="varchar" Mode="In" />
+          <Parameter Name="DIR_STRO" Type="varchar" Mode="In" />
+          <Parameter Name="AJUSTADOR" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="spi_Estatus_Stro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="estatus" Type="varchar" Mode="In" />
           <Parameter Name="id_fase" Type="int" Mode="In" />
@@ -146,6 +160,20 @@
           </FunctionImport>
           <FunctionImport Name="spD_tAviso_Usuario" ReturnType="Collection(Int32)">
           <Parameter Name="idav" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spI_AjustesSin" ReturnType="Collection(Int32)">
+            <Parameter Name="SINIESTRO" Mode="In" Type="Int32" />
+            <Parameter Name="MONEDA" Mode="In" Type="String" />
+            <Parameter Name="REASEGURADOR" Mode="In" Type="String" />
+            <Parameter Name="CORREDOR" Mode="In" Type="String" />
+            <Parameter Name="MONTO_MOVIMIENTO" Mode="In" Type="Decimal" />
+            <Parameter Name="MONTO_REASEGURO" Mode="In" Type="Decimal" />
+            <Parameter Name="REG_REASEGURADOR" Mode="In" Type="String" />
+            <Parameter Name="FEC_INI_VIG" Mode="In" Type="DateTime" />
+            <Parameter Name="FEC_FIN_VIG" Mode="In" Type="DateTime" />
+            <Parameter Name="CAUSA_STRO" Mode="In" Type="String" />
+            <Parameter Name="DIR_STRO" Mode="In" Type="String" />
+            <Parameter Name="AJUSTADOR" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_rptMovSinxReas_Result">
@@ -262,6 +290,7 @@
           <FunctionImportMapping FunctionImportName="spD_Estatus_Stro" FunctionName="RecordModel.Store.spD_Estatus_Stro" />
           <FunctionImportMapping FunctionImportName="spD_Nivel_Aviso" FunctionName="RecordModel.Store.spD_Nivel_Aviso" />
           <FunctionImportMapping FunctionImportName="spD_tAviso_Usuario" FunctionName="RecordModel.Store.spD_tAviso_Usuario" />
+          <FunctionImportMapping FunctionImportName="spI_AjustesSin" FunctionName="RecordModel.Store.spI_AjustesSin" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
