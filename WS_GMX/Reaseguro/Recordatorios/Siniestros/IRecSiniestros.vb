@@ -58,4 +58,7 @@ Public Interface IRecSiniestros
                                       cod_ramo_conta As String, poliza As String, Optional fec_desde As String = vbNullString,
                                       Optional fec_hasta As String = vbNullString) As List(Of sp_rptMovSinxReas_Result)
 #End Region
+    <OperationContract()>
+    Function GuardaAjustes(siniestro As Integer, moneda As String, reasegurador As String, corredor As String, monto_mov As Double, monto_rea As Double,
+                           reg_rea As String, fec_ini_vig As Date, fec_fin_vig As Date, causa_stro As String, dir_stro As String, ajustador As String) As List(Of Nullable(Of Int32))
 End Interface
