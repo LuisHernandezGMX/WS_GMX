@@ -95,6 +95,7 @@ Partial Public Class spS_OrdenPago_Result
     Public Property Autoriza_DirArea As Nullable(Of Boolean)
     Public Property Autoriza_Conta As Nullable(Of Boolean)
     Public Property Autoriza_Subdirector As Nullable(Of Boolean)
+    Public Property Autoriza_Rechazo As Nullable(Of Boolean)
     Public Property Impuesto As Nullable(Of Decimal)
     Public Property PathFirma As String
     Public Property sn_devolucion As Integer

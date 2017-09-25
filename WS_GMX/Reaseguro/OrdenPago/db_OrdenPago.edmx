@@ -200,6 +200,7 @@
           <Property Type="Boolean" Name="Autoriza_DirArea" Nullable="true" />
           <Property Type="Boolean" Name="Autoriza_Conta" Nullable="true" />
           <Property Type="Boolean" Name="Autoriza_Subdirector" Nullable="true" />
+          <Property Type="Boolean" Name="Autoriza_Rechazo" Nullable="true" />
           <Property Type="Decimal" Name="Impuesto" Nullable="true" Precision="18" Scale="4" />
           <Property Type="String" Name="PathFirma" Nullable="true" MaxLength="8000" />
           <Property Type="Int32" Name="sn_devolucion" Nullable="false" />
@@ -311,6 +312,7 @@
                 <ScalarProperty Name="Autoriza_DirArea" ColumnName="Autoriza_DirArea" />
                 <ScalarProperty Name="Autoriza_Conta" ColumnName="Autoriza_Conta" />
                 <ScalarProperty Name="Autoriza_Subdirector" ColumnName="Autoriza_Subdirector" />
+                <ScalarProperty Name="Autoriza_Rechazo" ColumnName="Autoriza_Rechazo" />
                 <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
                 <ScalarProperty Name="PathFirma" ColumnName="PathFirma" />
                 <ScalarProperty Name="sn_devolucion" ColumnName="sn_devolucion" />
