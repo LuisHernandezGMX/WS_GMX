@@ -34,7 +34,7 @@ Public Interface IGenerales
 
     <OperationContract()>
     Function ObtienePolizas(cod_suc As Integer, cod_ramo As Integer, nro_pol As Double, str_pol As String, bln_garantias As Boolean,
-                            FechaIni As String, FechaFin As String, sn_Ajuste As Integer) As List(Of spS_ListaPoliza_Result)
+                            FechaIni As String, FechaFin As String, sn_Ajuste As Integer, Optional submod_web As Integer = -1) As List(Of spS_ListaPoliza_Result)
 
     <OperationContract()>
     Function ObtieneEndosos(str_pol As String, FecEmision As String) As List(Of spS_ListaEndoso_Result)

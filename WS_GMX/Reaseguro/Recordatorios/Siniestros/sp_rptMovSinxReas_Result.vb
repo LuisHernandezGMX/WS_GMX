@@ -11,6 +11,7 @@ Imports System
 Imports System.Collections.Generic
 
 Partial Public Class sp_rptMovSinxReas_Result
+    Public Property NUMREN As Nullable(Of Integer)
     Public Property SINIESTRO As Integer
     Public Property SUBSINIESTRO As Integer
     Public Property SUCURSAL As String
@@ -54,5 +55,6 @@ Partial Public Class sp_rptMovSinxReas_Result
     Public Property AJUSTADOR As String
     Public Property RIESGO As String
     Public Property NRO_CORRELA_ESTIM As Nullable(Of Integer)
+    Public Property ID_PV As Nullable(Of Integer)
 
 End Class
