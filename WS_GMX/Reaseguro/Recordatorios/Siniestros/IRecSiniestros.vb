@@ -61,4 +61,9 @@ Public Interface IRecSiniestros
     <OperationContract()>
     Function GuardaAjustes(siniestro As Integer, moneda As String, reasegurador As String, corredor As String, monto_mov As Double, monto_rea As Double,
                            reg_rea As String, fec_ini_vig As Date, fec_fin_vig As Date, causa_stro As String, dir_stro As String, ajustador As String) As List(Of Nullable(Of Int32))
+
+    <OperationContract()>
+    Function InsertaPolNoAC(id_pv As Integer, cod_usuario As String, cod_submod_web As Integer) As List(Of Nullable(Of Int32))
+    <OperationContract()>
+    Function EliminaPolNoAC(id_pv As Integer, cod_submod_web As Integer) As List(Of Nullable(Of Int32))
 End Interface

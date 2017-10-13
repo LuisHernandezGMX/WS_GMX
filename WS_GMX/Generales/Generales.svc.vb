@@ -125,10 +125,10 @@ Public Class Generales
     End Function
 
     Public Function ObtienePolizas(cod_suc As Integer, cod_ramo As Integer, nro_pol As Double, str_pol As String, bln_garantias As Boolean,
-                                   FechaIni As String, FechaFin As String, sn_Ajuste As Integer) As List(Of spS_ListaPoliza_Result) Implements IGenerales.ObtienePolizas
+                                   FechaIni As String, FechaFin As String, sn_Ajuste As Integer, Optional submod_web As Integer = -1) As List(Of spS_ListaPoliza_Result) Implements IGenerales.ObtienePolizas
         Dim Resultado As IList = Nothing
         Try
-            Resultado = db.spS_ListaPoliza(cod_suc, cod_ramo, nro_pol, str_pol, bln_garantias, FechaIni, FechaFin, sn_Ajuste).ToList
+            Resultado = db.spS_ListaPoliza(cod_suc, cod_ramo, nro_pol, str_pol, bln_garantias, FechaIni, FechaFin, sn_Ajuste, submod_web).ToList
         Catch ex As Exception
             Return Nothing
         End Try
