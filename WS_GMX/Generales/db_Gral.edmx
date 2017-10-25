@@ -30,6 +30,11 @@
           <Parameter Name="Condicion" Type="varchar" Mode="In" />
           <Parameter Name="strSel" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="spS_CatalogosSIR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="strCatalogo" Type="varchar" Mode="In" />
+          <Parameter Name="Condicion" Type="varchar" Mode="In" />
+          <Parameter Name="strSel" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="spS_cPAR_Parametros" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cPAR_Id" Type="int" Mode="In" />
         </Function>
@@ -152,6 +157,11 @@
             <Parameter Name="FechaFin" Mode="In" Type="String" />
             <Parameter Name="sn_Ajuste" Mode="In" Type="Int32" />
             <Parameter Name="submod_web" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spS_CatalogosSIR" ReturnType="Collection(GralModel.spS_CatalogosOP_Result2)">
+            <Parameter Name="strCatalogo" Mode="In" Type="String" />
+            <Parameter Name="Condicion" Mode="In" Type="String" />
+            <Parameter Name="strSel" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spS_CatalogosOP_Result">
@@ -549,6 +559,17 @@
                 <ScalarProperty Name="Suscriptor" ColumnName="Suscriptor" />
                 <ScalarProperty Name="sn_NoPago" ColumnName="sn_NoPago" />
                 <ScalarProperty Name="sn_NoAC" ColumnName="sn_NoAC" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_CatalogosSIR" FunctionName="GralModel.Store.spS_CatalogosSIR" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GralModel.spS_CatalogosOP_Result2">
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="OcultaCampo1" ColumnName="OcultaCampo1" />
+                <ScalarProperty Name="OcultaCampo2" ColumnName="OcultaCampo2" />
+                <ScalarProperty Name="OcultaCampo3" ColumnName="OcultaCampo3" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
