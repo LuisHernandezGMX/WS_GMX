@@ -117,7 +117,7 @@ Public Class Generales
     Public Function ObtieneCatalogo(strPrefijo As String, Optional strCondicion As String = "", Optional strSel As String = "") As List(Of spS_CatalogosOP_Result2) Implements IGenerales.ObtieneCatalogo
         Dim Resultado As IList = Nothing
         Try
-            Resultado = db.spS_CatalogosOP(strPrefijo, strCondicion, strSel).ToList
+            Resultado = db.spS_CatalogosSIR(strPrefijo, strCondicion, strSel).ToList
         Catch ex As Exception
             Return Nothing
         End Try

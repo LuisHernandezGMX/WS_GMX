@@ -167,4 +167,14 @@ Partial Public Class GralEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_ListaPoliza_Result)("spS_ListaPoliza", cod_sucParameter, cod_ramoParameter, nro_polParameter, str_polParameter, bln_GarantiasParameter, fechaIniParameter, fechaFinParameter, sn_AjusteParameter, submod_webParameter)
     End Function
 
+    Public Overridable Function spS_CatalogosSIR(strCatalogo As String, condicion As String, strSel As String) As ObjectResult(Of spS_CatalogosOP_Result2)
+        Dim strCatalogoParameter As ObjectParameter = If(strCatalogo IsNot Nothing, New ObjectParameter("strCatalogo", strCatalogo), New ObjectParameter("strCatalogo", GetType(String)))
+
+        Dim condicionParameter As ObjectParameter = If(condicion IsNot Nothing, New ObjectParameter("Condicion", condicion), New ObjectParameter("Condicion", GetType(String)))
+
+        Dim strSelParameter As ObjectParameter = If(strSel IsNot Nothing, New ObjectParameter("strSel", strSel), New ObjectParameter("strSel", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_CatalogosOP_Result2)("spS_CatalogosSIR", strCatalogoParameter, condicionParameter, strSelParameter)
+    End Function
+
 End Class
