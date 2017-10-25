@@ -35,5 +35,6 @@ Partial Public Class spS_ListaPoliza_Result
     Public Property cod_usuario_suscriptor As String
     Public Property Suscriptor As String
     Public Property sn_NoPago As Integer
+    Public Property sn_NoAC As Integer
 
 End Class

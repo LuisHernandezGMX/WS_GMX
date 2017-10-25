@@ -6,6 +6,7 @@ Public Class RecSiniestros
     Implements IRecSiniestros
     Public db As New RecordEntities
 
+
 #Region "Fase de Recuperacion"
     Public Function ActualizaFaseRecup(id_Fase As Int32, strFase As String) As List(Of Nullable(Of Int32)) Implements IRecSiniestros.ActualizaFaseRecup
         Dim Resultado As IList = Nothing
@@ -165,7 +166,6 @@ Public Class RecSiniestros
         Return Resultado
     End Function
 #End Region
-
 #Region "Ajustes"
     Public Function GuardaAjustes(siniestro As Integer, moneda As String, reasegurador As String, corredor As String, monto_mov As Double, monto_rea As Double,
                                    reg_rea As String, fec_ini_vig As Date, fec_fin_vig As Date, causa_stro As String, dir_stro As String,
@@ -182,5 +182,25 @@ Public Class RecSiniestros
 
 
 #End Region
+
+    Public Function InsertaPolNoAC(id_pv As Integer, cod_usuario As String, cod_submod_web As Integer) As List(Of Nullable(Of Int32)) Implements IRecSiniestros.InsertaPolNoAC
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.spI_PolNoAC(id_pv, cod_usuario, cod_submod_web).ToList
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return Resultado
+    End Function
+
+    Public Function EliminaPolNoAC(id_pv As Integer, cod_submod_web As Integer) As List(Of Nullable(Of Int32)) Implements IRecSiniestros.EliminaPolNoAC
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.spD_PolNoAC(id_pv, cod_submod_web).ToList
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return Resultado
+    End Function
 
 End Class

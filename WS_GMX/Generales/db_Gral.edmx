@@ -55,6 +55,7 @@
           <Parameter Name="FechaIni" Type="varchar" Mode="In" />
           <Parameter Name="FechaFin" Type="varchar" Mode="In" />
           <Parameter Name="sn_Ajuste" Type="int" Mode="In" />
+          <Parameter Name="submod_web" Type="int" Mode="In" />
         </Function>
         <Function Name="spS_MenuWeb" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cod_usuario" Type="varchar" Mode="In" />
@@ -85,16 +86,6 @@
             <Parameter Name="strCatalogo" Mode="In" Type="String" />
             <Parameter Name="Condicion" Mode="In" Type="String" />
             <Parameter Name="strSel" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="spS_ListaPoliza" ReturnType="Collection(GralModel.spS_ListaPoliza_Result)">
-            <Parameter Name="cod_suc" Mode="In" Type="Int32" />
-            <Parameter Name="cod_ramo" Mode="In" Type="Int32" />
-            <Parameter Name="nro_pol" Mode="In" Type="Decimal" />
-            <Parameter Name="str_pol" Mode="In" Type="String" />
-            <Parameter Name="bln_Garantias" Mode="In" Type="Boolean" />
-            <Parameter Name="FechaIni" Mode="In" Type="String" />
-            <Parameter Name="FechaFin" Mode="In" Type="String" />
-            <Parameter Name="sn_Ajuste" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="spS_cPAR_Parametros" ReturnType="Collection(String)">
           <Parameter Name="cPAR_Id" Mode="In" Type="Int32" />
@@ -151,6 +142,17 @@
             <Parameter Name="cPAR_Id" Mode="In" Type="Int32" />
             <Parameter Name="cPAR_Value" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="spS_ListaPoliza" ReturnType="Collection(GralModel.spS_ListaPoliza_Result)">
+            <Parameter Name="cod_suc" Mode="In" Type="Int32" />
+            <Parameter Name="cod_ramo" Mode="In" Type="Int32" />
+            <Parameter Name="nro_pol" Mode="In" Type="Decimal" />
+            <Parameter Name="str_pol" Mode="In" Type="String" />
+            <Parameter Name="bln_Garantias" Mode="In" Type="Boolean" />
+            <Parameter Name="FechaIni" Mode="In" Type="String" />
+            <Parameter Name="FechaFin" Mode="In" Type="String" />
+            <Parameter Name="sn_Ajuste" Mode="In" Type="Int32" />
+            <Parameter Name="submod_web" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spS_CatalogosOP_Result">
           <Property Type="String" Name="Clave" Nullable="false" MaxLength="29" />
@@ -169,32 +171,6 @@
           <Property Type="String" Name="OcultaCampo1" Nullable="false" MaxLength="156" />
           <Property Type="String" Name="OcultaCampo2" Nullable="false" MaxLength="156" />
           <Property Type="String" Name="OcultaCampo3" Nullable="false" MaxLength="156" />
-        </ComplexType>
-        <ComplexType Name="spS_ListaPoliza_Result">
-          <Property Type="Boolean" Name="tSEL_Val" Nullable="true" />
-          <Property Type="Decimal" Name="cod_suc" Nullable="false" Precision="3" Scale="0" />
-          <Property Type="Decimal" Name="cod_ramo" Nullable="false" Precision="3" Scale="0" />
-          <Property Type="Decimal" Name="nro_pol" Nullable="false" Precision="9" Scale="0" />
-          <Property Type="Decimal" Name="aaaa_endoso" Nullable="false" Precision="4" Scale="0" />
-          <Property Type="Decimal" Name="nro_endoso" Nullable="false" Precision="8" Scale="0" />
-          <Property Type="String" Name="Moneda" Nullable="false" MaxLength="3" />
-          <Property Type="DateTime" Name="fec_vig_desde" Nullable="false" Precision="16" />
-          <Property Type="DateTime" Name="fec_vig_hasta" Nullable="true" Precision="23" />
-          <Property Type="Decimal" Name="cod_grupo_endo" Nullable="true" Precision="2" Scale="0" />
-          <Property Type="String" Name="GrupoEndoso" Nullable="false" MaxLength="60" />
-          <Property Type="String" Name="TipoEndoso" Nullable="false" MaxLength="80" />
-          <Property Type="Int32" Name="id_pv" Nullable="false" />
-          <Property Type="Int32" Name="cod_aseg" Nullable="false" />
-          <Property Type="Int32" Name="nro_reas" Nullable="false" />
-          <Property Type="String" Name="Asegurado" Nullable="false" MaxLength="120" />
-          <Property Type="Decimal" Name="PrimaEmitida" Nullable="false" Precision="38" Scale="2" />
-          <Property Type="Decimal" Name="PrimaAplicada" Nullable="false" Precision="38" Scale="2" />
-          <Property Type="Decimal" Name="PrimaReaseguro" Nullable="false" Precision="38" Scale="2" />
-          <Property Type="String" Name="cod_usuario" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="Emisor" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="cod_usuario_suscriptor" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="Suscriptor" Nullable="false" MaxLength="30" />
-          <Property Type="Int32" Name="sn_NoPago" Nullable="false" />
         </ComplexType>
         <ComplexType Name="spS_ListaEndoso_Result">
           <Property Type="Int32" Name="id_pv" Nullable="false" />
@@ -327,6 +303,33 @@
         <ComplexType Name="spI_ErrorWeb_Result">
           <Property Type="String" Name="Resultado" Nullable="true" MaxLength="1000" />
         </ComplexType>
+        <ComplexType Name="spS_ListaPoliza_Result">
+          <Property Type="Boolean" Name="tSEL_Val" Nullable="true" />
+          <Property Type="Decimal" Name="cod_suc" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="cod_ramo" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="nro_pol" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="aaaa_endoso" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="nro_endoso" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="Moneda" Nullable="false" MaxLength="800" />
+          <Property Type="DateTime" Name="fec_vig_desde" Nullable="false" />
+          <Property Type="DateTime" Name="fec_vig_hasta" Nullable="true" />
+          <Property Type="Decimal" Name="cod_grupo_endo" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="String" Name="GrupoEndoso" Nullable="false" MaxLength="800" />
+          <Property Type="String" Name="TipoEndoso" Nullable="false" MaxLength="800" />
+          <Property Type="Int32" Name="id_pv" Nullable="false" />
+          <Property Type="Int32" Name="cod_aseg" Nullable="false" />
+          <Property Type="Int32" Name="nro_reas" Nullable="false" />
+          <Property Type="String" Name="Asegurado" Nullable="false" MaxLength="800" />
+          <Property Type="Decimal" Name="PrimaEmitida" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="PrimaAplicada" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="PrimaReaseguro" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="cod_usuario" Nullable="false" MaxLength="800" />
+          <Property Type="String" Name="Emisor" Nullable="false" MaxLength="800" />
+          <Property Type="String" Name="cod_usuario_suscriptor" Nullable="false" MaxLength="800" />
+          <Property Type="String" Name="Suscriptor" Nullable="false" MaxLength="800" />
+          <Property Type="Int32" Name="sn_NoPago" Nullable="false" />
+          <Property Type="Int32" Name="sn_NoAC" Nullable="false" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -341,36 +344,6 @@
                 <ScalarProperty Name="OcultaCampo1" ColumnName="OcultaCampo1" />
                 <ScalarProperty Name="OcultaCampo2" ColumnName="OcultaCampo2" />
                 <ScalarProperty Name="OcultaCampo3" ColumnName="OcultaCampo3" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="spS_ListaPoliza" FunctionName="GralModel.Store.spS_ListaPoliza">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="GralModel.spS_ListaPoliza_Result">
-                <ScalarProperty Name="tSEL_Val" ColumnName="tSEL_Val" />
-                <ScalarProperty Name="cod_suc" ColumnName="cod_suc" />
-                <ScalarProperty Name="cod_ramo" ColumnName="cod_ramo" />
-                <ScalarProperty Name="nro_pol" ColumnName="nro_pol" />
-                <ScalarProperty Name="aaaa_endoso" ColumnName="aaaa_endoso" />
-                <ScalarProperty Name="nro_endoso" ColumnName="nro_endoso" />
-                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
-                <ScalarProperty Name="fec_vig_desde" ColumnName="fec_vig_desde" />
-                <ScalarProperty Name="fec_vig_hasta" ColumnName="fec_vig_hasta" />
-                <ScalarProperty Name="cod_grupo_endo" ColumnName="cod_grupo_endo" />
-                <ScalarProperty Name="GrupoEndoso" ColumnName="GrupoEndoso" />
-                <ScalarProperty Name="TipoEndoso" ColumnName="TipoEndoso" />
-                <ScalarProperty Name="id_pv" ColumnName="id_pv" />
-                <ScalarProperty Name="cod_aseg" ColumnName="cod_aseg" />
-                <ScalarProperty Name="nro_reas" ColumnName="nro_reas" />
-                <ScalarProperty Name="Asegurado" ColumnName="Asegurado" />
-                <ScalarProperty Name="PrimaEmitida" ColumnName="PrimaEmitida" />
-                <ScalarProperty Name="PrimaAplicada" ColumnName="PrimaAplicada" />
-                <ScalarProperty Name="PrimaReaseguro" ColumnName="PrimaReaseguro" />
-                <ScalarProperty Name="cod_usuario" ColumnName="cod_usuario" />
-                <ScalarProperty Name="Emisor" ColumnName="Emisor" />
-                <ScalarProperty Name="cod_usuario_suscriptor" ColumnName="cod_usuario_suscriptor" />
-                <ScalarProperty Name="Suscriptor" ColumnName="Suscriptor" />
-                <ScalarProperty Name="sn_NoPago" ColumnName="sn_NoPago" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -548,6 +521,37 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spU_cPAR_Parametro" FunctionName="GralModel.Store.spU_cPAR_Parametro" />
+          <FunctionImportMapping FunctionImportName="spS_ListaPoliza" FunctionName="GralModel.Store.spS_ListaPoliza">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GralModel.spS_ListaPoliza_Result">
+                <ScalarProperty Name="tSEL_Val" ColumnName="tSEL_Val" />
+                <ScalarProperty Name="cod_suc" ColumnName="cod_suc" />
+                <ScalarProperty Name="cod_ramo" ColumnName="cod_ramo" />
+                <ScalarProperty Name="nro_pol" ColumnName="nro_pol" />
+                <ScalarProperty Name="aaaa_endoso" ColumnName="aaaa_endoso" />
+                <ScalarProperty Name="nro_endoso" ColumnName="nro_endoso" />
+                <ScalarProperty Name="Moneda" ColumnName="Moneda" />
+                <ScalarProperty Name="fec_vig_desde" ColumnName="fec_vig_desde" />
+                <ScalarProperty Name="fec_vig_hasta" ColumnName="fec_vig_hasta" />
+                <ScalarProperty Name="cod_grupo_endo" ColumnName="cod_grupo_endo" />
+                <ScalarProperty Name="GrupoEndoso" ColumnName="GrupoEndoso" />
+                <ScalarProperty Name="TipoEndoso" ColumnName="TipoEndoso" />
+                <ScalarProperty Name="id_pv" ColumnName="id_pv" />
+                <ScalarProperty Name="cod_aseg" ColumnName="cod_aseg" />
+                <ScalarProperty Name="nro_reas" ColumnName="nro_reas" />
+                <ScalarProperty Name="Asegurado" ColumnName="Asegurado" />
+                <ScalarProperty Name="PrimaEmitida" ColumnName="PrimaEmitida" />
+                <ScalarProperty Name="PrimaAplicada" ColumnName="PrimaAplicada" />
+                <ScalarProperty Name="PrimaReaseguro" ColumnName="PrimaReaseguro" />
+                <ScalarProperty Name="cod_usuario" ColumnName="cod_usuario" />
+                <ScalarProperty Name="Emisor" ColumnName="Emisor" />
+                <ScalarProperty Name="cod_usuario_suscriptor" ColumnName="cod_usuario_suscriptor" />
+                <ScalarProperty Name="Suscriptor" ColumnName="Suscriptor" />
+                <ScalarProperty Name="sn_NoPago" ColumnName="sn_NoPago" />
+                <ScalarProperty Name="sn_NoAC" ColumnName="sn_NoAC" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -111,28 +111,6 @@ Partial Public Class RecordEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spU_ActivaJob", horaParameter, activoParameter)
     End Function
 
-    Public Overridable Function sp_rptMovSinxReas(tipo_mov As Nullable(Of Integer), nro_stro As String, broker As String, aseg As String, reaseg As String, cod_ramo_conta As String, poliza As String, fec_desde As String, fec_hasta As String) As ObjectResult(Of sp_rptMovSinxReas_Result)
-        Dim tipo_movParameter As ObjectParameter = If(tipo_mov.HasValue, New ObjectParameter("tipo_mov", tipo_mov), New ObjectParameter("tipo_mov", GetType(Integer)))
-
-        Dim nro_stroParameter As ObjectParameter = If(nro_stro IsNot Nothing, New ObjectParameter("nro_stro", nro_stro), New ObjectParameter("nro_stro", GetType(String)))
-
-        Dim brokerParameter As ObjectParameter = If(broker IsNot Nothing, New ObjectParameter("broker", broker), New ObjectParameter("broker", GetType(String)))
-
-        Dim asegParameter As ObjectParameter = If(aseg IsNot Nothing, New ObjectParameter("aseg", aseg), New ObjectParameter("aseg", GetType(String)))
-
-        Dim reasegParameter As ObjectParameter = If(reaseg IsNot Nothing, New ObjectParameter("reaseg", reaseg), New ObjectParameter("reaseg", GetType(String)))
-
-        Dim cod_ramo_contaParameter As ObjectParameter = If(cod_ramo_conta IsNot Nothing, New ObjectParameter("cod_ramo_conta", cod_ramo_conta), New ObjectParameter("cod_ramo_conta", GetType(String)))
-
-        Dim polizaParameter As ObjectParameter = If(poliza IsNot Nothing, New ObjectParameter("poliza", poliza), New ObjectParameter("poliza", GetType(String)))
-
-        Dim fec_desdeParameter As ObjectParameter = If(fec_desde IsNot Nothing, New ObjectParameter("fec_desde", fec_desde), New ObjectParameter("fec_desde", GetType(String)))
-
-        Dim fec_hastaParameter As ObjectParameter = If(fec_hasta IsNot Nothing, New ObjectParameter("fec_hasta", fec_hasta), New ObjectParameter("fec_hasta", GetType(String)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of sp_rptMovSinxReas_Result)("sp_rptMovSinxReas", tipo_movParameter, nro_stroParameter, brokerParameter, asegParameter, reasegParameter, cod_ramo_contaParameter, polizaParameter, fec_desdeParameter, fec_hastaParameter)
-    End Function
-
     Public Overridable Function ModJob(hora As String, fecha As String, habilita As Nullable(Of Boolean)) As ObjectResult(Of Nullable(Of Integer))
         Dim horaParameter As ObjectParameter = If(hora IsNot Nothing, New ObjectParameter("hora", hora), New ObjectParameter("hora", GetType(String)))
 
@@ -187,6 +165,46 @@ Partial Public Class RecordEntities
         Dim aJUSTADORParameter As ObjectParameter = If(aJUSTADOR IsNot Nothing, New ObjectParameter("AJUSTADOR", aJUSTADOR), New ObjectParameter("AJUSTADOR", GetType(String)))
 
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spI_AjustesSin", sINIESTROParameter, mONEDAParameter, rEASEGURADORParameter, cORREDORParameter, mONTO_MOVIMIENTOParameter, mONTO_REASEGUROParameter, rEG_REASEGURADORParameter, fEC_INI_VIGParameter, fEC_FIN_VIGParameter, cAUSA_STROParameter, dIR_STROParameter, aJUSTADORParameter)
+    End Function
+
+    Public Overridable Function sp_rptMovSinxReas(tipo_mov As Nullable(Of Integer), nro_stro As String, broker As String, aseg As String, reaseg As String, cod_ramo_conta As String, poliza As String, fec_desde As String, fec_hasta As String) As ObjectResult(Of sp_rptMovSinxReas_Result)
+        Dim tipo_movParameter As ObjectParameter = If(tipo_mov.HasValue, New ObjectParameter("tipo_mov", tipo_mov), New ObjectParameter("tipo_mov", GetType(Integer)))
+
+        Dim nro_stroParameter As ObjectParameter = If(nro_stro IsNot Nothing, New ObjectParameter("nro_stro", nro_stro), New ObjectParameter("nro_stro", GetType(String)))
+
+        Dim brokerParameter As ObjectParameter = If(broker IsNot Nothing, New ObjectParameter("broker", broker), New ObjectParameter("broker", GetType(String)))
+
+        Dim asegParameter As ObjectParameter = If(aseg IsNot Nothing, New ObjectParameter("aseg", aseg), New ObjectParameter("aseg", GetType(String)))
+
+        Dim reasegParameter As ObjectParameter = If(reaseg IsNot Nothing, New ObjectParameter("reaseg", reaseg), New ObjectParameter("reaseg", GetType(String)))
+
+        Dim cod_ramo_contaParameter As ObjectParameter = If(cod_ramo_conta IsNot Nothing, New ObjectParameter("cod_ramo_conta", cod_ramo_conta), New ObjectParameter("cod_ramo_conta", GetType(String)))
+
+        Dim polizaParameter As ObjectParameter = If(poliza IsNot Nothing, New ObjectParameter("poliza", poliza), New ObjectParameter("poliza", GetType(String)))
+
+        Dim fec_desdeParameter As ObjectParameter = If(fec_desde IsNot Nothing, New ObjectParameter("fec_desde", fec_desde), New ObjectParameter("fec_desde", GetType(String)))
+
+        Dim fec_hastaParameter As ObjectParameter = If(fec_hasta IsNot Nothing, New ObjectParameter("fec_hasta", fec_hasta), New ObjectParameter("fec_hasta", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of sp_rptMovSinxReas_Result)("sp_rptMovSinxReas", tipo_movParameter, nro_stroParameter, brokerParameter, asegParameter, reasegParameter, cod_ramo_contaParameter, polizaParameter, fec_desdeParameter, fec_hastaParameter)
+    End Function
+
+    Public Overridable Function spI_PolNoAC(id_pv As Nullable(Of Integer), cod_usuario As String, cod_submodweb As Nullable(Of Integer)) As ObjectResult(Of Nullable(Of Integer))
+        Dim id_pvParameter As ObjectParameter = If(id_pv.HasValue, New ObjectParameter("id_pv", id_pv), New ObjectParameter("id_pv", GetType(Integer)))
+
+        Dim cod_usuarioParameter As ObjectParameter = If(cod_usuario IsNot Nothing, New ObjectParameter("cod_usuario", cod_usuario), New ObjectParameter("cod_usuario", GetType(String)))
+
+        Dim cod_submodwebParameter As ObjectParameter = If(cod_submodweb.HasValue, New ObjectParameter("cod_submodweb", cod_submodweb), New ObjectParameter("cod_submodweb", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spI_PolNoAC", id_pvParameter, cod_usuarioParameter, cod_submodwebParameter)
+    End Function
+
+    Public Overridable Function spD_PolNoAC(id_pv As String, cod_submod_web As Nullable(Of Integer)) As ObjectResult(Of Nullable(Of Integer))
+        Dim id_pvParameter As ObjectParameter = If(id_pv IsNot Nothing, New ObjectParameter("id_pv", id_pv), New ObjectParameter("id_pv", GetType(String)))
+
+        Dim cod_submod_webParameter As ObjectParameter = If(cod_submod_web.HasValue, New ObjectParameter("cod_submod_web", cod_submod_web), New ObjectParameter("cod_submod_web", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spD_PolNoAC", id_pvParameter, cod_submod_webParameter)
     End Function
 
 End Class
