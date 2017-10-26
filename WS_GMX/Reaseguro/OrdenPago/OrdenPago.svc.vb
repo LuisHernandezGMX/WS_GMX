@@ -41,7 +41,7 @@ Public Class OrdenPago
                                          FiltroRamoCont, FiltroUsuario, FiltroEstatus, FiltroFecGen, cod_moneda, FiltroAseg,
                                          FiltroMonto, FitroNatOP, intFirmas, CodUsuPermiso).ToList
         Catch ex As Exception
-            Return Nothing
+
         End Try
         Return Resultado
     End Function

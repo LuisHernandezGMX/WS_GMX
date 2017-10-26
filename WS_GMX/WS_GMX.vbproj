@@ -142,6 +142,17 @@
       <LastGenOutput>db_Firmas.vb</LastGenOutput>
     </Content>
     <Content Include="Reaseguro\FirmasDigital\FirmasDigital.svc" />
+    <Content Include="Reaseguro\MesaControl\db_MesaControl.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>db_MesaControl.edmx</DependentUpon>
+      <LastGenOutput>db_MesaControl.Context.vb</LastGenOutput>
+    </Content>
+    <Content Include="Reaseguro\MesaControl\db_MesaControl.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>db_MesaControl.edmx</DependentUpon>
+      <LastGenOutput>db_MesaControl.vb</LastGenOutput>
+    </Content>
+    <Content Include="Reaseguro\MesaControl\MesaControl.svc" />
     <Content Include="Reaseguro\OrdenPago\db_OrdenPago.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>db_OrdenPago.edmx</DependentUpon>
@@ -264,6 +275,25 @@
     </Compile>
     <Compile Include="Reaseguro\FirmasDigital\spS_UsuarioFirma_Result.vb">
       <DependentUpon>db_Firmas.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\MesaControl\db_MesaControl.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_MesaControl.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\MesaControl\db_MesaControl.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_MesaControl.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\MesaControl\db_MesaControl.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>db_MesaControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\MesaControl\IMesaControl.vb" />
+    <Compile Include="Reaseguro\MesaControl\MesaControl.svc.vb">
+      <DependentUpon>MesaControl.svc</DependentUpon>
     </Compile>
     <Compile Include="Reaseguro\OrdenPago\db_OrdenPago.Context.vb">
       <AutoGen>True</AutoGen>
@@ -419,6 +449,13 @@
     </EntityDeploy>
     <Content Include="Reaseguro\Reporteador\db_Reporteador.edmx.diagram">
       <DependentUpon>db_Reporteador.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Reaseguro\MesaControl\db_MesaControl.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>db_MesaControl.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Reaseguro\MesaControl\db_MesaControl.edmx.diagram">
+      <DependentUpon>db_MesaControl.edmx</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
