@@ -139,34 +139,6 @@ Partial Public Class RecordEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spD_tAviso_Usuario", idavParameter)
     End Function
 
-    Public Overridable Function spI_AjustesSin(sINIESTRO As Nullable(Of Integer), mONEDA As String, rEASEGURADOR As String, cORREDOR As String, mONTO_MOVIMIENTO As Nullable(Of Decimal), mONTO_REASEGURO As Nullable(Of Decimal), rEG_REASEGURADOR As String, fEC_INI_VIG As Nullable(Of Date), fEC_FIN_VIG As Nullable(Of Date), cAUSA_STRO As String, dIR_STRO As String, aJUSTADOR As String) As ObjectResult(Of Nullable(Of Integer))
-        Dim sINIESTROParameter As ObjectParameter = If(sINIESTRO.HasValue, New ObjectParameter("SINIESTRO", sINIESTRO), New ObjectParameter("SINIESTRO", GetType(Integer)))
-
-        Dim mONEDAParameter As ObjectParameter = If(mONEDA IsNot Nothing, New ObjectParameter("MONEDA", mONEDA), New ObjectParameter("MONEDA", GetType(String)))
-
-        Dim rEASEGURADORParameter As ObjectParameter = If(rEASEGURADOR IsNot Nothing, New ObjectParameter("REASEGURADOR", rEASEGURADOR), New ObjectParameter("REASEGURADOR", GetType(String)))
-
-        Dim cORREDORParameter As ObjectParameter = If(cORREDOR IsNot Nothing, New ObjectParameter("CORREDOR", cORREDOR), New ObjectParameter("CORREDOR", GetType(String)))
-
-        Dim mONTO_MOVIMIENTOParameter As ObjectParameter = If(mONTO_MOVIMIENTO.HasValue, New ObjectParameter("MONTO_MOVIMIENTO", mONTO_MOVIMIENTO), New ObjectParameter("MONTO_MOVIMIENTO", GetType(Decimal)))
-
-        Dim mONTO_REASEGUROParameter As ObjectParameter = If(mONTO_REASEGURO.HasValue, New ObjectParameter("MONTO_REASEGURO", mONTO_REASEGURO), New ObjectParameter("MONTO_REASEGURO", GetType(Decimal)))
-
-        Dim rEG_REASEGURADORParameter As ObjectParameter = If(rEG_REASEGURADOR IsNot Nothing, New ObjectParameter("REG_REASEGURADOR", rEG_REASEGURADOR), New ObjectParameter("REG_REASEGURADOR", GetType(String)))
-
-        Dim fEC_INI_VIGParameter As ObjectParameter = If(fEC_INI_VIG.HasValue, New ObjectParameter("FEC_INI_VIG", fEC_INI_VIG), New ObjectParameter("FEC_INI_VIG", GetType(Date)))
-
-        Dim fEC_FIN_VIGParameter As ObjectParameter = If(fEC_FIN_VIG.HasValue, New ObjectParameter("FEC_FIN_VIG", fEC_FIN_VIG), New ObjectParameter("FEC_FIN_VIG", GetType(Date)))
-
-        Dim cAUSA_STROParameter As ObjectParameter = If(cAUSA_STRO IsNot Nothing, New ObjectParameter("CAUSA_STRO", cAUSA_STRO), New ObjectParameter("CAUSA_STRO", GetType(String)))
-
-        Dim dIR_STROParameter As ObjectParameter = If(dIR_STRO IsNot Nothing, New ObjectParameter("DIR_STRO", dIR_STRO), New ObjectParameter("DIR_STRO", GetType(String)))
-
-        Dim aJUSTADORParameter As ObjectParameter = If(aJUSTADOR IsNot Nothing, New ObjectParameter("AJUSTADOR", aJUSTADOR), New ObjectParameter("AJUSTADOR", GetType(String)))
-
-        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spI_AjustesSin", sINIESTROParameter, mONEDAParameter, rEASEGURADORParameter, cORREDORParameter, mONTO_MOVIMIENTOParameter, mONTO_REASEGUROParameter, rEG_REASEGURADORParameter, fEC_INI_VIGParameter, fEC_FIN_VIGParameter, cAUSA_STROParameter, dIR_STROParameter, aJUSTADORParameter)
-    End Function
-
     Public Overridable Function sp_rptMovSinxReas(tipo_mov As Nullable(Of Integer), nro_stro As String, broker As String, aseg As String, reaseg As String, cod_ramo_conta As String, poliza As String, fec_desde As String, fec_hasta As String) As ObjectResult(Of sp_rptMovSinxReas_Result)
         Dim tipo_movParameter As ObjectParameter = If(tipo_mov.HasValue, New ObjectParameter("tipo_mov", tipo_mov), New ObjectParameter("tipo_mov", GetType(Integer)))
 
@@ -205,6 +177,58 @@ Partial Public Class RecordEntities
         Dim cod_submod_webParameter As ObjectParameter = If(cod_submod_web.HasValue, New ObjectParameter("cod_submod_web", cod_submod_web), New ObjectParameter("cod_submod_web", GetType(Integer)))
 
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spD_PolNoAC", id_pvParameter, cod_submod_webParameter)
+    End Function
+
+    Public Overridable Function sp_RepartoReaFac(id_pv As Nullable(Of Integer), no_stro As Nullable(Of Integer)) As ObjectResult(Of sp_RepartoReaFac_Result)
+        Dim id_pvParameter As ObjectParameter = If(id_pv.HasValue, New ObjectParameter("id_pv", id_pv), New ObjectParameter("id_pv", GetType(Integer)))
+
+        Dim no_stroParameter As ObjectParameter = If(no_stro.HasValue, New ObjectParameter("no_stro", no_stro), New ObjectParameter("no_stro", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of sp_RepartoReaFac_Result)("sp_RepartoReaFac", id_pvParameter, no_stroParameter)
+    End Function
+
+    Public Overridable Function spI_AjustesSin(sINIESTRO As Nullable(Of Integer), consecutivo As Nullable(Of Integer), rEASEGURADOR_ANT As String, rEASEGURADOR As String, cORREDOR_ANT As String, cORREDOR As String, rEG_REA_ANT As String, rEG_REASEGURADOR As String, fEC_INI_VIG_ANT As String, fEC_INI_VIG As String, fEC_FIN_VIG_ANT As String, fEC_FIN_VIG As String, cAUSA_STRO_ANT As String, cAUSA_STRO As String, dIR_STRO_ANT As String, dIR_STRO As String, aJUSTADOR_ANT As String, aJUSTADOR As String, fecha_Ajuste As String, usuario As String) As ObjectResult(Of Nullable(Of Integer))
+        Dim sINIESTROParameter As ObjectParameter = If(sINIESTRO.HasValue, New ObjectParameter("SINIESTRO", sINIESTRO), New ObjectParameter("SINIESTRO", GetType(Integer)))
+
+        Dim consecutivoParameter As ObjectParameter = If(consecutivo.HasValue, New ObjectParameter("Consecutivo", consecutivo), New ObjectParameter("Consecutivo", GetType(Integer)))
+
+        Dim rEASEGURADOR_ANTParameter As ObjectParameter = If(rEASEGURADOR_ANT IsNot Nothing, New ObjectParameter("REASEGURADOR_ANT", rEASEGURADOR_ANT), New ObjectParameter("REASEGURADOR_ANT", GetType(String)))
+
+        Dim rEASEGURADORParameter As ObjectParameter = If(rEASEGURADOR IsNot Nothing, New ObjectParameter("REASEGURADOR", rEASEGURADOR), New ObjectParameter("REASEGURADOR", GetType(String)))
+
+        Dim cORREDOR_ANTParameter As ObjectParameter = If(cORREDOR_ANT IsNot Nothing, New ObjectParameter("CORREDOR_ANT", cORREDOR_ANT), New ObjectParameter("CORREDOR_ANT", GetType(String)))
+
+        Dim cORREDORParameter As ObjectParameter = If(cORREDOR IsNot Nothing, New ObjectParameter("CORREDOR", cORREDOR), New ObjectParameter("CORREDOR", GetType(String)))
+
+        Dim rEG_REA_ANTParameter As ObjectParameter = If(rEG_REA_ANT IsNot Nothing, New ObjectParameter("REG_REA_ANT", rEG_REA_ANT), New ObjectParameter("REG_REA_ANT", GetType(String)))
+
+        Dim rEG_REASEGURADORParameter As ObjectParameter = If(rEG_REASEGURADOR IsNot Nothing, New ObjectParameter("REG_REASEGURADOR", rEG_REASEGURADOR), New ObjectParameter("REG_REASEGURADOR", GetType(String)))
+
+        Dim fEC_INI_VIG_ANTParameter As ObjectParameter = If(fEC_INI_VIG_ANT IsNot Nothing, New ObjectParameter("FEC_INI_VIG_ANT", fEC_INI_VIG_ANT), New ObjectParameter("FEC_INI_VIG_ANT", GetType(String)))
+
+        Dim fEC_INI_VIGParameter As ObjectParameter = If(fEC_INI_VIG IsNot Nothing, New ObjectParameter("FEC_INI_VIG", fEC_INI_VIG), New ObjectParameter("FEC_INI_VIG", GetType(String)))
+
+        Dim fEC_FIN_VIG_ANTParameter As ObjectParameter = If(fEC_FIN_VIG_ANT IsNot Nothing, New ObjectParameter("FEC_FIN_VIG_ANT", fEC_FIN_VIG_ANT), New ObjectParameter("FEC_FIN_VIG_ANT", GetType(String)))
+
+        Dim fEC_FIN_VIGParameter As ObjectParameter = If(fEC_FIN_VIG IsNot Nothing, New ObjectParameter("FEC_FIN_VIG", fEC_FIN_VIG), New ObjectParameter("FEC_FIN_VIG", GetType(String)))
+
+        Dim cAUSA_STRO_ANTParameter As ObjectParameter = If(cAUSA_STRO_ANT IsNot Nothing, New ObjectParameter("CAUSA_STRO_ANT", cAUSA_STRO_ANT), New ObjectParameter("CAUSA_STRO_ANT", GetType(String)))
+
+        Dim cAUSA_STROParameter As ObjectParameter = If(cAUSA_STRO IsNot Nothing, New ObjectParameter("CAUSA_STRO", cAUSA_STRO), New ObjectParameter("CAUSA_STRO", GetType(String)))
+
+        Dim dIR_STRO_ANTParameter As ObjectParameter = If(dIR_STRO_ANT IsNot Nothing, New ObjectParameter("DIR_STRO_ANT", dIR_STRO_ANT), New ObjectParameter("DIR_STRO_ANT", GetType(String)))
+
+        Dim dIR_STROParameter As ObjectParameter = If(dIR_STRO IsNot Nothing, New ObjectParameter("DIR_STRO", dIR_STRO), New ObjectParameter("DIR_STRO", GetType(String)))
+
+        Dim aJUSTADOR_ANTParameter As ObjectParameter = If(aJUSTADOR_ANT IsNot Nothing, New ObjectParameter("AJUSTADOR_ANT", aJUSTADOR_ANT), New ObjectParameter("AJUSTADOR_ANT", GetType(String)))
+
+        Dim aJUSTADORParameter As ObjectParameter = If(aJUSTADOR IsNot Nothing, New ObjectParameter("AJUSTADOR", aJUSTADOR), New ObjectParameter("AJUSTADOR", GetType(String)))
+
+        Dim fecha_AjusteParameter As ObjectParameter = If(fecha_Ajuste IsNot Nothing, New ObjectParameter("Fecha_Ajuste", fecha_Ajuste), New ObjectParameter("Fecha_Ajuste", GetType(String)))
+
+        Dim usuarioParameter As ObjectParameter = If(usuario IsNot Nothing, New ObjectParameter("Usuario", usuario), New ObjectParameter("Usuario", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spI_AjustesSin", sINIESTROParameter, consecutivoParameter, rEASEGURADOR_ANTParameter, rEASEGURADORParameter, cORREDOR_ANTParameter, cORREDORParameter, rEG_REA_ANTParameter, rEG_REASEGURADORParameter, fEC_INI_VIG_ANTParameter, fEC_INI_VIGParameter, fEC_FIN_VIG_ANTParameter, fEC_FIN_VIGParameter, cAUSA_STRO_ANTParameter, cAUSA_STROParameter, dIR_STRO_ANTParameter, dIR_STROParameter, aJUSTADOR_ANTParameter, aJUSTADORParameter, fecha_AjusteParameter, usuarioParameter)
     End Function
 
 End Class

@@ -167,13 +167,14 @@ Public Class RecSiniestros
     End Function
 #End Region
 #Region "Ajustes"
-    Public Function GuardaAjustes(siniestro As Integer, moneda As String, reasegurador As String, corredor As String, monto_mov As Double, monto_rea As Double,
-                                   reg_rea As String, fec_ini_vig As Date, fec_fin_vig As Date, causa_stro As String, dir_stro As String,
-                                   ajustador As String) As List(Of Nullable(Of Int32)) Implements IRecSiniestros.GuardaAjustes
+    Public Function GuardaAjustes(siniestro As Integer, consecutivo As Integer, reasegurador_ant As String, reasegurador As String, corredor_ant As String, corredor As String,
+                                  reg_rea_ant As String, reg_rea As String, fec_ini_vig_ant As String, fec_ini_vig As String, fec_fin_vig_ant As String, fec_fin_vig As String,
+                                  causa_stro_ant As String, causa_stro As String, dir_stro_ant As String, dir_stro As String, ajustador_ant As String, ajustador As String,
+                                  fecha_ajuste As String, usuarioLog As String) As List(Of Nullable(Of Int32)) Implements IRecSiniestros.GuardaAjustes
         Dim Resultado As IList = Nothing
         Try
-            Resultado = db.spI_AjustesSin(siniestro, moneda, reasegurador, corredor, monto_mov, monto_rea, reg_rea, fec_ini_vig, fec_fin_vig,
-                                          causa_stro, dir_stro, ajustador).ToList
+            Resultado = db.spI_AjustesSin(siniestro, consecutivo, reasegurador_ant, reasegurador, corredor_ant, corredor, reg_rea_ant, reg_rea, fec_ini_vig_ant, fec_ini_vig, fec_fin_vig_ant, fec_fin_vig,
+                                         causa_stro_ant, causa_stro, dir_stro_ant, dir_stro, ajustador_ant, ajustador, fecha_ajuste, usuarioLog).ToList
         Catch ex As Exception
             Return Nothing
         End Try
@@ -202,5 +203,19 @@ Public Class RecSiniestros
         End Try
         Return Resultado
     End Function
+
+#Region "Aviso de Cobro"
+
+    Public Function ObtieneRepartoFac(id_pv As Integer, nro_stro As String) As List(Of sp_RepartoReaFac_Result) Implements IRecSiniestros.ObtieneRepartoFac
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.sp_RepartoReaFac(id_pv, nro_stro).ToList
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return Resultado
+    End Function
+
+#End Region
 
 End Class
