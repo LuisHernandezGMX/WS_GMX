@@ -368,6 +368,9 @@
       <DependentUpon>FirmasDigital.svc</DependentUpon>
     </Compile>
     <Compile Include="Reaseguro\FirmasDigital\IFirmasDigital.vb" />
+    <Compile Include="Reaseguro\Recordatorios\Siniestros\sp_RepartoReaFac_Result.vb">
+      <DependentUpon>db_Recorda.tt</DependentUpon>
+    </Compile>
     <Compile Include="Reaseguro\Recordatorios\Siniestros\sp_rptMovSinxReas_Result.vb">
       <DependentUpon>db_Recorda.tt</DependentUpon>
     </Compile>
