@@ -58,5 +58,8 @@ Public Interface IGenerales
     Function ObtieneParametro(cPAR_Id As Integer) As String
 
     <OperationContract()>
+    Function ObtieneTiposdeCambio(Fecha As String) As List(Of spS_TipoCambioxMes_Result)
+
+    <OperationContract()>
     Function ActualizaParametro(cPAR_Id As Int32, cPAR_Value As String) As List(Of Nullable(Of Int32))
 End Interface

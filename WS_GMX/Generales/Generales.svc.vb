@@ -213,6 +213,16 @@ Public Class Generales
         Return strResultado
     End Function
 
+    Public Function ObtieneTiposdeCambio(Fecha As String) As List(Of spS_TipoCambioxMes_Result) Implements IGenerales.ObtieneTiposdeCambio
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.spS_TipoCambioxMes(Fecha).ToList
+            Return Resultado
+        Catch ex As Exception
+            Return Nothing
+        End Try
+
+    End Function
     Public Function ActualizaParametro(cPAR_Id As Int32, cPAR_Value As String) As List(Of Nullable(Of Int32)) Implements IGenerales.ActualizaParametro
         Dim Resultado As IList = Nothing
         Try

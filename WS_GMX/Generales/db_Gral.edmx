@@ -74,6 +74,9 @@
           <Parameter Name="ind_pag" Type="int" Mode="In" />
           <Parameter Name="cod_aseg" Type="int" Mode="In" />
         </Function>
+        <Function Name="spS_TipoCambioxMes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Fecha" Type="smalldatetime" Mode="In" />
+        </Function>
         <Function Name="spS_Usuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="cod_usuarioNT" Type="varchar" Mode="In" />
         </Function>
@@ -162,6 +165,9 @@
             <Parameter Name="strCatalogo" Mode="In" Type="String" />
             <Parameter Name="Condicion" Mode="In" Type="String" />
             <Parameter Name="strSel" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spS_TipoCambioxMes" ReturnType="Collection(GralModel.spS_TipoCambioxMes_Result)">
+            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spS_CatalogosOP_Result">
@@ -339,6 +345,10 @@
           <Property Type="String" Name="Suscriptor" Nullable="false" MaxLength="800" />
           <Property Type="Int32" Name="sn_NoPago" Nullable="false" />
           <Property Type="Int32" Name="sn_NoAC" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spS_TipoCambioxMes_Result">
+          <Property Type="Double" Name="Tc_Op" Nullable="true" />
+          <Property Type="Double" Name="Tc_Cie" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -570,6 +580,14 @@
                 <ScalarProperty Name="OcultaCampo1" ColumnName="OcultaCampo1" />
                 <ScalarProperty Name="OcultaCampo2" ColumnName="OcultaCampo2" />
                 <ScalarProperty Name="OcultaCampo3" ColumnName="OcultaCampo3" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_TipoCambioxMes" FunctionName="GralModel.Store.spS_TipoCambioxMes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="GralModel.spS_TipoCambioxMes_Result">
+                <ScalarProperty Name="Tc_Op" ColumnName="Tc_Op" />
+                <ScalarProperty Name="Tc_Cie" ColumnName="Tc_Cie" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

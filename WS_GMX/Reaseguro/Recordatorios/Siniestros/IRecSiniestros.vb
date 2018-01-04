@@ -59,11 +59,21 @@ Public Interface IRecSiniestros
                                       Optional fec_hasta As String = vbNullString) As List(Of sp_rptMovSinxReas_Result)
 #End Region
     <OperationContract()>
-    Function GuardaAjustes(siniestro As Integer, moneda As String, reasegurador As String, corredor As String, monto_mov As Double, monto_rea As Double,
-                           reg_rea As String, fec_ini_vig As Date, fec_fin_vig As Date, causa_stro As String, dir_stro As String, ajustador As String) As List(Of Nullable(Of Int32))
+    Function GuardaAjustes(siniestro As Integer, consecutivo As Integer, reasegurador_ant As String, reasegurador As String, corredor_ant As String, corredor As String,
+                                  reg_rea_ant As String, reg_rea As String, fec_ini_vig_ant As String, fec_ini_vig As String, fec_fin_vig_ant As String, fec_fin_vig As String,
+                                  causa_stro_ant As String, causa_stro As String, dir_stro_ant As String, dir_stro As String, ajustador_ant As String, ajustador As String,
+                                  fecha_ajuste As String, usuarioLog As String) As List(Of Nullable(Of Int32))
 
     <OperationContract()>
     Function InsertaPolNoAC(id_pv As Integer, cod_usuario As String, cod_submod_web As Integer) As List(Of Nullable(Of Int32))
     <OperationContract()>
     Function EliminaPolNoAC(id_pv As Integer, cod_submod_web As Integer) As List(Of Nullable(Of Int32))
+
+    <OperationContract()>
+    Function ObtienePolNoAC(cod_submod_web As Integer) As List(Of spS_EndososNoAC_Result)
+
+#Region "Aviso de Cobro"
+    <OperationContract()>
+    Function ObtieneRepartoFac(id_pv As Integer, nro_stro As String) As List(Of sp_RepartoReaFac_Result)
+#End Region
 End Interface
