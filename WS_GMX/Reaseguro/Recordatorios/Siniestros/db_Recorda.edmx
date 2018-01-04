@@ -84,6 +84,9 @@
           <Parameter Name="cod_sector" Type="numeric" Mode="In" />
           <Parameter Name="id_nivel" Type="int" Mode="In" />
         </Function>
+        <Function Name="spS_EndososNoAC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_submodweb" Type="int" Mode="In" />
+        </Function>
         <Function Name="spU_ActivaJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Hora" Type="varchar" Mode="In" />
           <Parameter Name="Activo" Type="bit" Mode="In" />
@@ -217,6 +220,9 @@
             <Parameter Name="Fecha_Ajuste" Mode="In" Type="String" />
             <Parameter Name="Usuario" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="spS_EndososNoAC" ReturnType="Collection(RecordModel.spS_EndososNoAC_Result)">
+            <Parameter Name="cod_submodweb" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="sp_rptMovSinxReas_Result">
           <Property Type="Int32" Name="NUMREN" Nullable="true" />
@@ -277,6 +283,19 @@
           <Property Type="Decimal" Name="Gastos_Hon" Nullable="true" Precision="13" Scale="2" />
           <Property Type="Decimal" Name="Salvamento" Nullable="true" Precision="13" Scale="2" />
           <Property Type="Decimal" Name="Total" Nullable="true" Precision="13" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="spS_EndososNoAC_Result">
+          <Property Type="Int32" Name="id_pv" Nullable="false" />
+          <Property Type="String" Name="Poliza" Nullable="true" MaxLength="154" />
+          <Property Type="Int32" Name="cod_aseg" Nullable="false" />
+          <Property Type="String" Name="Asegurado" Nullable="false" MaxLength="120" />
+          <Property Type="Decimal" Name="cod_grupo_endo" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="String" Name="GrupoEndoso" Nullable="false" MaxLength="60" />
+          <Property Type="Decimal" Name="cod_tipo_endo" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="String" Name="TipoEndoso" Nullable="false" MaxLength="80" />
+          <Property Type="String" Name="cod_usuario" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Usuario" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="Fecha" Nullable="true" MaxLength="10" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -369,6 +388,23 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="spI_AjustesSin" FunctionName="RecordModel.Store.spI_AjustesSin" />
+          <FunctionImportMapping FunctionImportName="spS_EndososNoAC" FunctionName="RecordModel.Store.spS_EndososNoAC">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="RecordModel.spS_EndososNoAC_Result">
+                <ScalarProperty Name="id_pv" ColumnName="id_pv" />
+                <ScalarProperty Name="Poliza" ColumnName="Poliza" />
+                <ScalarProperty Name="cod_aseg" ColumnName="cod_aseg" />
+                <ScalarProperty Name="Asegurado" ColumnName="Asegurado" />
+                <ScalarProperty Name="cod_grupo_endo" ColumnName="cod_grupo_endo" />
+                <ScalarProperty Name="GrupoEndoso" ColumnName="GrupoEndoso" />
+                <ScalarProperty Name="cod_tipo_endo" ColumnName="cod_tipo_endo" />
+                <ScalarProperty Name="TipoEndoso" ColumnName="TipoEndoso" />
+                <ScalarProperty Name="cod_usuario" ColumnName="cod_usuario" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

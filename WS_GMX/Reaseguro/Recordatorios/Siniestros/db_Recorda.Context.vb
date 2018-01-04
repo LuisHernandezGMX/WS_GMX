@@ -231,4 +231,10 @@ Partial Public Class RecordEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of Nullable(Of Integer))("spI_AjustesSin", sINIESTROParameter, consecutivoParameter, rEASEGURADOR_ANTParameter, rEASEGURADORParameter, cORREDOR_ANTParameter, cORREDORParameter, rEG_REA_ANTParameter, rEG_REASEGURADORParameter, fEC_INI_VIG_ANTParameter, fEC_INI_VIGParameter, fEC_FIN_VIG_ANTParameter, fEC_FIN_VIGParameter, cAUSA_STRO_ANTParameter, cAUSA_STROParameter, dIR_STRO_ANTParameter, dIR_STROParameter, aJUSTADOR_ANTParameter, aJUSTADORParameter, fecha_AjusteParameter, usuarioParameter)
     End Function
 
+    Public Overridable Function spS_EndososNoAC(cod_submodweb As Nullable(Of Integer)) As ObjectResult(Of spS_EndososNoAC_Result)
+        Dim cod_submodwebParameter As ObjectParameter = If(cod_submodweb.HasValue, New ObjectParameter("cod_submodweb", cod_submodweb), New ObjectParameter("cod_submodweb", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_EndososNoAC_Result)("spS_EndososNoAC", cod_submodwebParameter)
+    End Function
+
 End Class

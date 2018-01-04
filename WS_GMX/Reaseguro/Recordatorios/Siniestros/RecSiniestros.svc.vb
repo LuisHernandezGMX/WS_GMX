@@ -204,6 +204,16 @@ Public Class RecSiniestros
         Return Resultado
     End Function
 
+    Public Function ObtienePolNoAC(cod_submod_web As Integer) As List(Of spS_EndososNoAC_Result) Implements IRecSiniestros.ObtienePolNoAC
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.spS_EndososNoAC(cod_submod_web).ToList
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return Resultado
+    End Function
+
 #Region "Aviso de Cobro"
 
     Public Function ObtieneRepartoFac(id_pv As Integer, nro_stro As String) As List(Of sp_RepartoReaFac_Result) Implements IRecSiniestros.ObtieneRepartoFac

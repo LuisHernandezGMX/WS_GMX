@@ -69,6 +69,9 @@ Public Interface IRecSiniestros
     <OperationContract()>
     Function EliminaPolNoAC(id_pv As Integer, cod_submod_web As Integer) As List(Of Nullable(Of Int32))
 
+    <OperationContract()>
+    Function ObtienePolNoAC(cod_submod_web As Integer) As List(Of spS_EndososNoAC_Result)
+
 #Region "Aviso de Cobro"
     <OperationContract()>
     Function ObtieneRepartoFac(id_pv As Integer, nro_stro As String) As List(Of sp_RepartoReaFac_Result)
