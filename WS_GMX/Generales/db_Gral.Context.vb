@@ -177,4 +177,10 @@ Partial Public Class GralEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_CatalogosOP_Result2)("spS_CatalogosSIR", strCatalogoParameter, condicionParameter, strSelParameter)
     End Function
 
+    Public Overridable Function spS_TipoCambioxMes(fecha As Nullable(Of Date)) As ObjectResult(Of spS_TipoCambioxMes_Result)
+        Dim fechaParameter As ObjectParameter = If(fecha.HasValue, New ObjectParameter("Fecha", fecha), New ObjectParameter("Fecha", GetType(Date)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_TipoCambioxMes_Result)("spS_TipoCambioxMes", fechaParameter)
+    End Function
+
 End Class
