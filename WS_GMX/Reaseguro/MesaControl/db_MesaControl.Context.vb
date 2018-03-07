@@ -10,6 +10,8 @@
 Imports System
 Imports System.Data.Entity
 Imports System.Data.Entity.Infrastructure
+Imports System.Data.Entity.Core.Objects
+Imports System.Linq
 
 Partial Public Class MCtrlEntities
     Inherits DbContext
@@ -22,5 +24,139 @@ Partial Public Class MCtrlEntities
         Throw New UnintentionalCodeFirstException()
     End Sub
 
+
+    Public Overridable Function spS_IndicadoresMC(id_folio As Nullable(Of Integer)) As ObjectResult(Of spS_IndicadoresMC_Result)
+        Dim id_folioParameter As ObjectParameter = If(id_folio.HasValue, New ObjectParameter("id_folio", id_folio), New ObjectParameter("id_folio", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_IndicadoresMC_Result)("spS_IndicadoresMC", id_folioParameter)
+    End Function
+
+    Public Overridable Function spS_MesaControl(id_folio As String, cod_suc_ofi As Nullable(Of Integer), fecCorte_ini As String, fecCorte_fin As String, cod_moneda As Nullable(Of Integer), cod_usuario As String, estatus As Nullable(Of Integer), strAsegurado As String, strGiro As String, strAgrupador As String, strRamo As String, strBroker As String, strCia As String) As ObjectResult(Of spS_MesaControl_Result)
+        Dim id_folioParameter As ObjectParameter = If(id_folio IsNot Nothing, New ObjectParameter("id_folio", id_folio), New ObjectParameter("id_folio", GetType(String)))
+
+        Dim cod_suc_ofiParameter As ObjectParameter = If(cod_suc_ofi.HasValue, New ObjectParameter("cod_suc_ofi", cod_suc_ofi), New ObjectParameter("cod_suc_ofi", GetType(Integer)))
+
+        Dim fecCorte_iniParameter As ObjectParameter = If(fecCorte_ini IsNot Nothing, New ObjectParameter("fecCorte_ini", fecCorte_ini), New ObjectParameter("fecCorte_ini", GetType(String)))
+
+        Dim fecCorte_finParameter As ObjectParameter = If(fecCorte_fin IsNot Nothing, New ObjectParameter("fecCorte_fin", fecCorte_fin), New ObjectParameter("fecCorte_fin", GetType(String)))
+
+        Dim cod_monedaParameter As ObjectParameter = If(cod_moneda.HasValue, New ObjectParameter("cod_moneda", cod_moneda), New ObjectParameter("cod_moneda", GetType(Integer)))
+
+        Dim cod_usuarioParameter As ObjectParameter = If(cod_usuario IsNot Nothing, New ObjectParameter("cod_usuario", cod_usuario), New ObjectParameter("cod_usuario", GetType(String)))
+
+        Dim estatusParameter As ObjectParameter = If(estatus.HasValue, New ObjectParameter("estatus", estatus), New ObjectParameter("estatus", GetType(Integer)))
+
+        Dim strAseguradoParameter As ObjectParameter = If(strAsegurado IsNot Nothing, New ObjectParameter("strAsegurado", strAsegurado), New ObjectParameter("strAsegurado", GetType(String)))
+
+        Dim strGiroParameter As ObjectParameter = If(strGiro IsNot Nothing, New ObjectParameter("strGiro", strGiro), New ObjectParameter("strGiro", GetType(String)))
+
+        Dim strAgrupadorParameter As ObjectParameter = If(strAgrupador IsNot Nothing, New ObjectParameter("strAgrupador", strAgrupador), New ObjectParameter("strAgrupador", GetType(String)))
+
+        Dim strRamoParameter As ObjectParameter = If(strRamo IsNot Nothing, New ObjectParameter("strRamo", strRamo), New ObjectParameter("strRamo", GetType(String)))
+
+        Dim strBrokerParameter As ObjectParameter = If(strBroker IsNot Nothing, New ObjectParameter("strBroker", strBroker), New ObjectParameter("strBroker", GetType(String)))
+
+        Dim strCiaParameter As ObjectParameter = If(strCia IsNot Nothing, New ObjectParameter("strCia", strCia), New ObjectParameter("strCia", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_MesaControl_Result)("spS_MesaControl", id_folioParameter, cod_suc_ofiParameter, fecCorte_iniParameter, fecCorte_finParameter, cod_monedaParameter, cod_usuarioParameter, estatusParameter, strAseguradoParameter, strGiroParameter, strAgrupadorParameter, strRamoParameter, strBrokerParameter, strCiaParameter)
+    End Function
+
+    Public Overridable Function spS_DistribucionMC(id_folio As Nullable(Of Integer)) As ObjectResult(Of spS_DistribucionMC_Result)
+        Dim id_folioParameter As ObjectParameter = If(id_folio.HasValue, New ObjectParameter("id_folio", id_folio), New ObjectParameter("id_folio", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_DistribucionMC_Result)("spS_DistribucionMC", id_folioParameter)
+    End Function
+
+    Public Overridable Function spS_GruposMC(id_folio As Nullable(Of Integer)) As ObjectResult(Of spS_GruposMC_Result)
+        Dim id_folioParameter As ObjectParameter = If(id_folio.HasValue, New ObjectParameter("id_folio", id_folio), New ObjectParameter("id_folio", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_GruposMC_Result)("spS_GruposMC", id_folioParameter)
+    End Function
+
+    Public Overridable Function spS_IntermediarioMC(id_folio As Nullable(Of Integer)) As ObjectResult(Of spS_IntermediarioMC_Result)
+        Dim id_folioParameter As ObjectParameter = If(id_folio.HasValue, New ObjectParameter("id_folio", id_folio), New ObjectParameter("id_folio", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_IntermediarioMC_Result)("spS_IntermediarioMC", id_folioParameter)
+    End Function
+
+    Public Overridable Function spS_ReaseguradorMC(id_folio As Nullable(Of Integer)) As ObjectResult(Of spS_ReaseguradorMC_Result)
+        Dim id_folioParameter As ObjectParameter = If(id_folio.HasValue, New ObjectParameter("id_folio", id_folio), New ObjectParameter("id_folio", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_ReaseguradorMC_Result)("spS_ReaseguradorMC", id_folioParameter)
+    End Function
+
+    Public Overridable Function spS_RiesgosMC(id_folio As Nullable(Of Integer)) As ObjectResult(Of spS_RiesgosMC_Result)
+        Dim id_folioParameter As ObjectParameter = If(id_folio.HasValue, New ObjectParameter("id_folio", id_folio), New ObjectParameter("id_folio", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_RiesgosMC_Result)("spS_RiesgosMC", id_folioParameter)
+    End Function
+
+    Public Overridable Function spS_SubjetividadMC(id_folio As Nullable(Of Integer)) As ObjectResult(Of spS_SubjetividadMC_Result)
+        Dim id_folioParameter As ObjectParameter = If(id_folio.HasValue, New ObjectParameter("id_folio", id_folio), New ObjectParameter("id_folio", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_SubjetividadMC_Result)("spS_SubjetividadMC", id_folioParameter)
+    End Function
+
+    Public Overridable Function spS_IdFolioMC(folio As String) As ObjectResult(Of spS_IdFolioMC_Result)
+        Dim folioParameter As ObjectParameter = If(folio IsNot Nothing, New ObjectParameter("folio", folio), New ObjectParameter("folio", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_IdFolioMC_Result)("spS_IdFolioMC", folioParameter)
+    End Function
+
+    Public Overridable Function spS_PolizasAsegurado(txt_aseg As String) As ObjectResult(Of spS_PolizasAsegurado_Result)
+        Dim txt_asegParameter As ObjectParameter = If(txt_aseg IsNot Nothing, New ObjectParameter("txt_aseg", txt_aseg), New ObjectParameter("txt_aseg", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_PolizasAsegurado_Result)("spS_PolizasAsegurado", txt_asegParameter)
+    End Function
+
+    Public Overridable Function spS_RiesgoPoliza(cod_suc As Nullable(Of Integer), cod_ramo As Nullable(Of Integer), nro_pol As Nullable(Of Integer), aaaa_endoso As Nullable(Of Integer), nro_endoso As Nullable(Of Integer), cod_item As Nullable(Of Integer), strSel As String) As ObjectResult(Of spS_RiesgoPoliza_Result)
+        Dim cod_sucParameter As ObjectParameter = If(cod_suc.HasValue, New ObjectParameter("cod_suc", cod_suc), New ObjectParameter("cod_suc", GetType(Integer)))
+
+        Dim cod_ramoParameter As ObjectParameter = If(cod_ramo.HasValue, New ObjectParameter("cod_ramo", cod_ramo), New ObjectParameter("cod_ramo", GetType(Integer)))
+
+        Dim nro_polParameter As ObjectParameter = If(nro_pol.HasValue, New ObjectParameter("nro_pol", nro_pol), New ObjectParameter("nro_pol", GetType(Integer)))
+
+        Dim aaaa_endosoParameter As ObjectParameter = If(aaaa_endoso.HasValue, New ObjectParameter("aaaa_endoso", aaaa_endoso), New ObjectParameter("aaaa_endoso", GetType(Integer)))
+
+        Dim nro_endosoParameter As ObjectParameter = If(nro_endoso.HasValue, New ObjectParameter("nro_endoso", nro_endoso), New ObjectParameter("nro_endoso", GetType(Integer)))
+
+        Dim cod_itemParameter As ObjectParameter = If(cod_item.HasValue, New ObjectParameter("cod_item", cod_item), New ObjectParameter("cod_item", GetType(Integer)))
+
+        Dim strSelParameter As ObjectParameter = If(strSel IsNot Nothing, New ObjectParameter("strSel", strSel), New ObjectParameter("strSel", GetType(String)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_RiesgoPoliza_Result)("spS_RiesgoPoliza", cod_sucParameter, cod_ramoParameter, nro_polParameter, aaaa_endosoParameter, nro_endosoParameter, cod_itemParameter, strSelParameter)
+    End Function
+
+    Public Overridable Function spS_RepartoMC(id_folio As Nullable(Of Integer)) As ObjectResult(Of spS_RepartoMC_Result)
+        Dim id_folioParameter As ObjectParameter = If(id_folio.HasValue, New ObjectParameter("id_folio", id_folio), New ObjectParameter("id_folio", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_RepartoMC_Result)("spS_RepartoMC", id_folioParameter)
+    End Function
+
+    Public Overridable Function spS_UbicacionesPoliza(cod_suc As Nullable(Of Integer), cod_ramo As Nullable(Of Integer), nro_pol As Nullable(Of Integer), aaaa_endoso As Nullable(Of Integer), nro_endoso As Nullable(Of Integer)) As ObjectResult(Of spS_UbicacionesPoliza_Result)
+        Dim cod_sucParameter As ObjectParameter = If(cod_suc.HasValue, New ObjectParameter("cod_suc", cod_suc), New ObjectParameter("cod_suc", GetType(Integer)))
+
+        Dim cod_ramoParameter As ObjectParameter = If(cod_ramo.HasValue, New ObjectParameter("cod_ramo", cod_ramo), New ObjectParameter("cod_ramo", GetType(Integer)))
+
+        Dim nro_polParameter As ObjectParameter = If(nro_pol.HasValue, New ObjectParameter("nro_pol", nro_pol), New ObjectParameter("nro_pol", GetType(Integer)))
+
+        Dim aaaa_endosoParameter As ObjectParameter = If(aaaa_endoso.HasValue, New ObjectParameter("aaaa_endoso", aaaa_endoso), New ObjectParameter("aaaa_endoso", GetType(Integer)))
+
+        Dim nro_endosoParameter As ObjectParameter = If(nro_endoso.HasValue, New ObjectParameter("nro_endoso", nro_endoso), New ObjectParameter("nro_endoso", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_UbicacionesPoliza_Result)("spS_UbicacionesPoliza", cod_sucParameter, cod_ramoParameter, nro_polParameter, aaaa_endosoParameter, nro_endosoParameter)
+    End Function
+
+    Public Overridable Function spS_ProgramaCapasMC(id_folio As Nullable(Of Integer)) As ObjectResult(Of spS_ProgramaCapasMC_Result)
+        Dim id_folioParameter As ObjectParameter = If(id_folio.HasValue, New ObjectParameter("id_folio", id_folio), New ObjectParameter("id_folio", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_ProgramaCapasMC_Result)("spS_ProgramaCapasMC", id_folioParameter)
+    End Function
+
+    Public Overridable Function spS_CapasMC(id_folio As Nullable(Of Integer)) As ObjectResult(Of spS_CapasMC_Result)
+        Dim id_folioParameter As ObjectParameter = If(id_folio.HasValue, New ObjectParameter("id_folio", id_folio), New ObjectParameter("id_folio", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_CapasMC_Result)("spS_CapasMC", id_folioParameter)
+    End Function
 
 End Class

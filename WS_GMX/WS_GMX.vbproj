@@ -252,6 +252,9 @@
     <Compile Include="Generales\spS_Pagador_Result.vb">
       <DependentUpon>db_Gral.tt</DependentUpon>
     </Compile>
+    <Compile Include="Generales\spS_TipoCambioxMes_Result.vb">
+      <DependentUpon>db_Gral.tt</DependentUpon>
+    </Compile>
     <Compile Include="Generales\spS_Usuario_Result.vb">
       <DependentUpon>db_Gral.tt</DependentUpon>
     </Compile>
@@ -294,6 +297,51 @@
     <Compile Include="Reaseguro\MesaControl\IMesaControl.vb" />
     <Compile Include="Reaseguro\MesaControl\MesaControl.svc.vb">
       <DependentUpon>MesaControl.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\MesaControl\spS_CapasMC_Result.vb">
+      <DependentUpon>db_MesaControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\MesaControl\spS_DistribucionMC_Result.vb">
+      <DependentUpon>db_MesaControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\MesaControl\spS_GruposMC_Result.vb">
+      <DependentUpon>db_MesaControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\MesaControl\spS_IdFolioMC_Result.vb">
+      <DependentUpon>db_MesaControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\MesaControl\spS_IndicadoresMC_Result.vb">
+      <DependentUpon>db_MesaControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\MesaControl\spS_IntermediarioMC_Result.vb">
+      <DependentUpon>db_MesaControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\MesaControl\spS_MesaControl_Result.vb">
+      <DependentUpon>db_MesaControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\MesaControl\spS_PolizasAsegurado_Result.vb">
+      <DependentUpon>db_MesaControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\MesaControl\spS_ProgramaCapasMC_Result.vb">
+      <DependentUpon>db_MesaControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\MesaControl\spS_ReaseguradorMC_Result.vb">
+      <DependentUpon>db_MesaControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\MesaControl\spS_RepartoMC_Result.vb">
+      <DependentUpon>db_MesaControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\MesaControl\spS_RiesgoPoliza_Result.vb">
+      <DependentUpon>db_MesaControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\MesaControl\spS_RiesgosMC_Result.vb">
+      <DependentUpon>db_MesaControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\MesaControl\spS_SubjetividadMC_Result.vb">
+      <DependentUpon>db_MesaControl.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\MesaControl\spS_UbicacionesPoliza_Result.vb">
+      <DependentUpon>db_MesaControl.tt</DependentUpon>
     </Compile>
     <Compile Include="Reaseguro\OrdenPago\db_OrdenPago.Context.vb">
       <AutoGen>True</AutoGen>
@@ -368,6 +416,9 @@
       <DependentUpon>FirmasDigital.svc</DependentUpon>
     </Compile>
     <Compile Include="Reaseguro\FirmasDigital\IFirmasDigital.vb" />
+    <Compile Include="Reaseguro\Recordatorios\Siniestros\spS_EndososNoAC_Result.vb">
+      <DependentUpon>db_Recorda.tt</DependentUpon>
+    </Compile>
     <Compile Include="Reaseguro\Recordatorios\Siniestros\sp_RepartoReaFac_Result.vb">
       <DependentUpon>db_Recorda.tt</DependentUpon>
     </Compile>

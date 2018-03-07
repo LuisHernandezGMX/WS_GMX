@@ -4,20 +4,869 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DESAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DESAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="spS_CapasMC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_folio" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spS_DistribucionMC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_folio" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spS_GruposMC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_folio" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spS_IdFolioMC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="folio" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spS_IndicadoresMC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_folio" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spS_IntermediarioMC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_folio" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spS_MesaControl" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_folio" Type="varchar" Mode="In" />
+          <Parameter Name="cod_suc_ofi" Type="int" Mode="In" />
+          <Parameter Name="fecCorte_ini" Type="varchar" Mode="In" />
+          <Parameter Name="fecCorte_fin" Type="varchar" Mode="In" />
+          <Parameter Name="cod_moneda" Type="int" Mode="In" />
+          <Parameter Name="cod_usuario" Type="varchar" Mode="In" />
+          <Parameter Name="estatus" Type="int" Mode="In" />
+          <Parameter Name="strAsegurado" Type="varchar(max)" Mode="In" />
+          <Parameter Name="strGiro" Type="varchar(max)" Mode="In" />
+          <Parameter Name="strAgrupador" Type="varchar" Mode="In" />
+          <Parameter Name="strRamo" Type="varchar" Mode="In" />
+          <Parameter Name="strBroker" Type="varchar" Mode="In" />
+          <Parameter Name="strCia" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spS_PolizasAsegurado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="txt_aseg" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spS_ProgramaCapasMC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_folio" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spS_ReaseguradorMC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_folio" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spS_RepartoMC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_folio" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spS_RiesgoPoliza" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_suc" Type="int" Mode="In" />
+          <Parameter Name="cod_ramo" Type="int" Mode="In" />
+          <Parameter Name="nro_pol" Type="int" Mode="In" />
+          <Parameter Name="aaaa_endoso" Type="int" Mode="In" />
+          <Parameter Name="nro_endoso" Type="int" Mode="In" />
+          <Parameter Name="cod_item" Type="int" Mode="In" />
+          <Parameter Name="strSel" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="spS_RiesgosMC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_folio" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spS_SubjetividadMC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_folio" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spS_UbicacionesPoliza" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cod_suc" Type="int" Mode="In" />
+          <Parameter Name="cod_ramo" Type="int" Mode="In" />
+          <Parameter Name="nro_pol" Type="int" Mode="In" />
+          <Parameter Name="aaaa_endoso" Type="int" Mode="In" />
+          <Parameter Name="nro_endoso" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="DESAModelStoreContainer" />
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DESAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="MCtrlEntities" annotation:LazyLoadingEnabled="true" />
+        <EntityContainer Name="MCtrlEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="spS_IndicadoresMC" ReturnType="Collection(DESAModel.spS_IndicadoresMC_Result)">
+          <Parameter Name="id_folio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spS_MesaControl" ReturnType="Collection(DESAModel.spS_MesaControl_Result)">
+            <Parameter Name="id_folio" Mode="In" Type="String" />
+            <Parameter Name="cod_suc_ofi" Mode="In" Type="Int32" />
+            <Parameter Name="fecCorte_ini" Mode="In" Type="String" />
+            <Parameter Name="fecCorte_fin" Mode="In" Type="String" />
+            <Parameter Name="cod_moneda" Mode="In" Type="Int32" />
+            <Parameter Name="cod_usuario" Mode="In" Type="String" />
+            <Parameter Name="estatus" Mode="In" Type="Int32" />
+            <Parameter Name="strAsegurado" Mode="In" Type="String" />
+            <Parameter Name="strGiro" Mode="In" Type="String" />
+            <Parameter Name="strAgrupador" Mode="In" Type="String" />
+            <Parameter Name="strRamo" Mode="In" Type="String" />
+            <Parameter Name="strBroker" Mode="In" Type="String" />
+            <Parameter Name="strCia" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spS_DistribucionMC" ReturnType="Collection(DESAModel.spS_DistribucionMC_Result)">
+          <Parameter Name="id_folio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spS_GruposMC" ReturnType="Collection(DESAModel.spS_GruposMC_Result)">
+          <Parameter Name="id_folio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spS_IntermediarioMC" ReturnType="Collection(DESAModel.spS_IntermediarioMC_Result)">
+          <Parameter Name="id_folio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spS_ReaseguradorMC" ReturnType="Collection(DESAModel.spS_ReaseguradorMC_Result)">
+          <Parameter Name="id_folio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spS_RiesgosMC" ReturnType="Collection(DESAModel.spS_RiesgosMC_Result)">
+          <Parameter Name="id_folio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spS_SubjetividadMC" ReturnType="Collection(DESAModel.spS_SubjetividadMC_Result)">
+          <Parameter Name="id_folio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spS_IdFolioMC" ReturnType="Collection(DESAModel.spS_IdFolioMC_Result)">
+          <Parameter Name="folio" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spS_PolizasAsegurado" ReturnType="Collection(DESAModel.spS_PolizasAsegurado_Result)">
+          <Parameter Name="txt_aseg" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spS_RiesgoPoliza" ReturnType="Collection(DESAModel.spS_RiesgoPoliza_Result)">
+            <Parameter Name="cod_suc" Mode="In" Type="Int32" />
+            <Parameter Name="cod_ramo" Mode="In" Type="Int32" />
+            <Parameter Name="nro_pol" Mode="In" Type="Int32" />
+            <Parameter Name="aaaa_endoso" Mode="In" Type="Int32" />
+            <Parameter Name="nro_endoso" Mode="In" Type="Int32" />
+            <Parameter Name="cod_item" Mode="In" Type="Int32" />
+            <Parameter Name="strSel" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spS_RepartoMC" ReturnType="Collection(DESAModel.spS_RepartoMC_Result)">
+          <Parameter Name="id_folio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spS_UbicacionesPoliza" ReturnType="Collection(DESAModel.spS_UbicacionesPoliza_Result)">
+            <Parameter Name="cod_suc" Mode="In" Type="Int32" />
+            <Parameter Name="cod_ramo" Mode="In" Type="Int32" />
+            <Parameter Name="nro_pol" Mode="In" Type="Int32" />
+            <Parameter Name="aaaa_endoso" Mode="In" Type="Int32" />
+            <Parameter Name="nro_endoso" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spS_ProgramaCapasMC" ReturnType="Collection(DESAModel.spS_ProgramaCapasMC_Result)">
+          <Parameter Name="id_folio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spS_CapasMC" ReturnType="Collection(DESAModel.spS_CapasMC_Result)">
+          <Parameter Name="id_folio" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="spS_IndicadoresMC_Result">
+          <Property Type="Int16" Name="cod_proceso" Nullable="false" />
+          <Property Type="String" Name="fase" Nullable="false" MaxLength="9" />
+          <Property Type="String" Name="cod_estatus" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="proceso" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="fecha_inicio" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="fecha_fin" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="lapso" Nullable="false" />
+          <Property Type="String" Name="notas" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spS_IdFolioMC_Result">
+          <Property Type="Int32" Name="id_folio" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spS_PolizasAsegurado_Result">
+          <Property Type="Int32" Name="id_pv" Nullable="false" />
+          <Property Type="Decimal" Name="cod_suc" Nullable="false" Precision="3" Scale="0" />
+          <Property Type="String" Name="sucursal" Nullable="false" MaxLength="40" />
+          <Property Type="Decimal" Name="cod_ramo" Nullable="false" Precision="3" Scale="0" />
+          <Property Type="String" Name="ramo" Nullable="false" MaxLength="80" />
+          <Property Type="Decimal" Name="nro_pol" Nullable="false" Precision="9" Scale="0" />
+          <Property Type="Decimal" Name="aaaa_endoso" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="String" Name="fec_vig_desde" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="fec_vig_hasta" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="fec_emi" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="cod_aseg" Nullable="false" />
+          <Property Type="String" Name="asegurado" Nullable="false" MaxLength="242" />
+          <Property Type="String" Name="rfc" Nullable="true" MaxLength="20" />
+          <Property Type="Decimal" Name="cod_moneda" Nullable="false" Precision="2" Scale="0" />
+          <Property Type="String" Name="moneda" Nullable="false" MaxLength="20" />
+          <Property Type="Decimal" Name="cod_tipo_agente" Nullable="false" Precision="1" Scale="0" />
+          <Property Type="String" Name="tipo_agente" Nullable="false" MaxLength="15" />
+          <Property Type="Int32" Name="cod_agente" Nullable="false" />
+          <Property Type="String" Name="agente" Nullable="false" MaxLength="242" />
+          <Property Type="String" Name="cod_usuario_suscriptor" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="suscriptor" Nullable="false" MaxLength="30" />
+          <Property Type="Decimal" Name="cod_grupo_endo" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="String" Name="grupo_endoso" Nullable="false" MaxLength="60" />
+          <Property Type="Decimal" Name="cod_tipo_endo" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="String" Name="tipo_endoso" Nullable="false" MaxLength="80" />
+        </ComplexType>
+        <ComplexType Name="spS_UbicacionesPoliza_Result">
+          <Property Type="Int32" Name="id_pv" Nullable="false" />
+          <Property Type="Decimal" Name="cod_suc" Nullable="false" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="cod_ramo" Nullable="false" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="nro_pol" Nullable="false" Precision="9" Scale="0" />
+          <Property Type="Decimal" Name="aaaa_endoso" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="Decimal" Name="nro_endoso" Nullable="false" Precision="8" Scale="0" />
+          <Property Type="Int32" Name="cod_item" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="spS_RiesgoPoliza_Result">
+          <Property Type="String" Name="id" Nullable="true" MaxLength="180" />
+          <Property Type="Int32" Name="id_pv" Nullable="false" />
+          <Property Type="String" Name="poliza" Nullable="true" MaxLength="154" />
+          <Property Type="Int32" Name="cod_item" Nullable="false" />
+          <Property Type="Decimal" Name="cod_ramo" Nullable="false" Precision="3" Scale="0" />
+          <Property Type="String" Name="ramo_desc" Nullable="false" MaxLength="80" />
+          <Property Type="Decimal" Name="cod_subramo" Nullable="false" Precision="3" Scale="0" />
+          <Property Type="String" Name="subramo_desc" Nullable="false" MaxLength="80" />
+          <Property Type="Decimal" Name="cod_riesgo" Nullable="true" Precision="9" Scale="0" />
+          <Property Type="String" Name="riesgo_desc" Nullable="false" MaxLength="150" />
+          <Property Type="Decimal" Name="cod_ind_cob" Nullable="false" Precision="9" Scale="0" />
+          <Property Type="String" Name="cobertura_desc" Nullable="true" MaxLength="100" />
+          <Property Type="Decimal" Name="sn_facultativo" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="sn_adicional" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Int32" Name="valores_totales" Nullable="false" />
+          <Property Type="Decimal" Name="suma_asegurada" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_neta" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_inc" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_fhm" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_tev" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_rc" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_casco" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_guerra" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_com_age" Nullable="false" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="com_agente" Nullable="true" Precision="30" Scale="10" />
+          <Property Type="Decimal" Name="prc_com_adi_age" Nullable="false" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="com_adi_agente" Nullable="true" Precision="30" Scale="10" />
+          <Property Type="Decimal" Name="cuota" Nullable="true" Precision="38" Scale="20" />
+          <Property Type="Decimal" Name="prc_FeeGMX" Nullable="false" Precision="4" Scale="4" />
+          <Property Type="Decimal" Name="mnt_FeeGMX" Nullable="false" Precision="10" Scale="10" />
+          <Property Type="Decimal" Name="prc_ComFac" Nullable="false" Precision="4" Scale="4" />
+          <Property Type="Decimal" Name="mnt_ComFac" Nullable="false" Precision="10" Scale="10" />
+        </ComplexType>
+        <ComplexType Name="spS_RepartoMC_Result">
+          <Property Type="Int32" Name="cod_grupo" Nullable="false" />
+          <Property Type="Int32" Name="cod_reparto" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="prc_part" Nullable="false" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="sn_lider" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="suma_asegurada" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_neta" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_inc" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_fhm" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_tev" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_rc" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_casco" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_guerra" Nullable="false" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="spS_RiesgosMC_Result">
+          <Property Type="Decimal" Name="sn_seleccionado" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Int32" Name="cod_inciso" Nullable="false" />
+          <Property Type="Decimal" Name="cod_ramo" Nullable="false" Precision="3" Scale="0" />
+          <Property Type="String" Name="ramo_desc" Nullable="false" MaxLength="80" />
+          <Property Type="Decimal" Name="cod_subramo" Nullable="false" Precision="3" Scale="0" />
+          <Property Type="String" Name="subramo_desc" Nullable="false" MaxLength="80" />
+          <Property Type="Decimal" Name="cod_riesgo" Nullable="true" Precision="9" Scale="0" />
+          <Property Type="String" Name="riesgo_desc" Nullable="false" MaxLength="150" />
+          <Property Type="Decimal" Name="cod_ind_cob" Nullable="true" Precision="4" Scale="0" />
+          <Property Type="String" Name="cobertura_desc" Nullable="false" MaxLength="100" />
+          <Property Type="Decimal" Name="sn_facultativo" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="sn_adicional" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="valores_totales" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="suma_asegurada" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_neta" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_inc" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_fhm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_tev" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_rc" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_casco" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_guerra" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_com_age" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="com_agente" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_com_adi_age" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="com_adi_agente" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="cuota" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="prc_FeeGMX" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="mnt_FeeGMX" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_ComFac" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="mnt_ComFac" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="spS_ProgramaCapasMC_Result">
+          <Property Type="Int32" Name="cod_grupo" Nullable="false" />
+          <Property Type="Int32" Name="cod_capa" Nullable="false" />
+          <Property Type="Decimal" Name="valor_capa" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_capa" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="exceso_capa" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_part" Nullable="true" Precision="7" Scale="4" />
+        </ComplexType>
+        <ComplexType Name="spS_GruposMC_Result">
+          <Property Type="Int32" Name="cod_grupo" Nullable="false" />
+          <Property Type="Int32" Name="cod_agrupador" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="300" />
+          <Property Type="Decimal" Name="sn_no_proporcional" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="suma_asegurada" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_neta" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_inc" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_fhm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_tev" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_rc" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_casco" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_guerra" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="incisos" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="ramos" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="html_rangos" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="html_capas" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="html_grafica" Nullable="true" MaxLength="Max" />
+        </ComplexType>
+        <ComplexType Name="spS_CapasMC_Result">
+          <Property Type="Int32" Name="cod_grupo" Nullable="false" />
+          <Property Type="Int32" Name="cod_capa" Nullable="false" />
+          <Property Type="Decimal" Name="valor_capa" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_capa" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_part" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="prc_com_reas" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="comision_reas" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="spS_DistribucionMC_Result">
+          <Property Type="Int32" Name="cod_grupo" Nullable="false" />
+          <Property Type="Int32" Name="cod_capa" Nullable="false" />
+          <Property Type="Decimal" Name="cod_ramo" Nullable="false" Precision="3" Scale="0" />
+          <Property Type="Int32" Name="cod_distribucion" Nullable="false" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="300" />
+          <Property Type="Decimal" Name="prc_part" Nullable="false" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="prc_partGMX" Nullable="false" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="suma_asegurada" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_neta" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_inc" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_fhm" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_tev" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_rc" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_casco" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_guerra" Nullable="false" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="spS_IntermediarioMC_Result">
+          <Property Type="Int32" Name="cod_grupo" Nullable="false" />
+          <Property Type="Int32" Name="cod_capa" Nullable="false" />
+          <Property Type="Decimal" Name="cod_ramo" Nullable="false" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="cod_broker" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="120" />
+          <Property Type="Decimal" Name="prc_partCoas" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="prc_part" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="suma_asegurada" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_neta" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_com" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="comision" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="pnr" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_inc" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_com_inc" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="com_inc" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="pnr_inc" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_fhm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_com_fhm" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="com_fhm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="pnr_fhm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_tev" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_com_tev" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="com_tev" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="pnr_tev" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_rc" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_com_rc" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="com_rc" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="pnr_rc" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_casco" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_com_casco" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="com_casco" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="pnr_casco" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_guerra" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_com_guerra" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="com_guerra" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="pnr_guerra" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_corretaje" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="corretaje" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="estatus" Nullable="false" />
+          <Property Type="String" Name="observaciones" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spS_ReaseguradorMC_Result">
+          <Property Type="Int32" Name="cod_grupo" Nullable="false" />
+          <Property Type="Int32" Name="cod_capa" Nullable="false" />
+          <Property Type="Decimal" Name="cod_ramo" Nullable="false" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="cod_broker" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="Decimal" Name="cod_cia" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="String" Name="Descripcion" Nullable="false" MaxLength="120" />
+          <Property Type="String" Name="cod_naic" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="calif" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="age_Calif" Nullable="false" MaxLength="500" />
+          <Property Type="Decimal" Name="prc_part100" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="prc_part" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="suma_asegurada" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_neta" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_com" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="comision" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="pnr" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_inc" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_com_inc" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="com_inc" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="pnr_inc" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_fhm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_com_fhm" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="com_fhm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="pnr_fhm" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_tev" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_com_tev" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="com_tev" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="pnr_tev" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_rc" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_com_rc" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="com_rc" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="pnr_rc" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_casco" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_com_casco" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="com_casco" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="pnr_casco" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prima_guerra" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="prc_com_guerra" Nullable="true" Precision="7" Scale="4" />
+          <Property Type="Decimal" Name="com_guerra" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="pnr_guerra" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="estatus" Nullable="false" />
+          <Property Type="String" Name="observaciones" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="spS_SubjetividadMC_Result">
+          <Property Type="Int32" Name="cod_grupo" Nullable="false" />
+          <Property Type="Int32" Name="cod_capa" Nullable="false" />
+          <Property Type="Decimal" Name="cod_ramo" Nullable="false" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="cod_broker" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="Decimal" Name="cod_cia" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="Int32" Name="Num" Nullable="false" />
+          <Property Type="String" Name="Fecha" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="FechaReal" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Subjetividad" Nullable="false" />
+          <Property Type="Decimal" Name="sn_Subjetividad" Nullable="true" Precision="3" Scale="0" />
+        </ComplexType>
+        <ComplexType Name="spS_MesaControl_Result">
+          <Property Type="Int32" Name="id_folio" Nullable="false" />
+          <Property Type="String" Name="folio" Nullable="true" MaxLength="3000" />
+          <Property Type="String" Name="num_oferta" Nullable="true" MaxLength="1000" />
+          <Property Type="Int32" Name="cod_aseg" Nullable="true" />
+          <Property Type="String" Name="nom_corto_aseg" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="nombre_asegurado" Nullable="true" />
+          <Property Type="String" Name="rfc" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="domicilio_fiscal" Nullable="true" />
+          <Property Type="String" Name="domicilio_riesgo" Nullable="true" />
+          <Property Type="Decimal" Name="cod_moneda" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="String" Name="moneda" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="fec_inivig" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="fec_finvig" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="fec_emi" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="cod_suc_ofi" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="String" Name="sucursal_ofi" Nullable="false" MaxLength="40" />
+          <Property Type="String" Name="cod_suscriptor" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="suscriptor" Nullable="false" MaxLength="30" />
+          <Property Type="Decimal" Name="cod_tipo_agente" Nullable="true" Precision="1" Scale="0" />
+          <Property Type="String" Name="tipoagente" Nullable="false" MaxLength="15" />
+          <Property Type="Int32" Name="cod_agente" Nullable="true" />
+          <Property Type="String" Name="agente" Nullable="false" MaxLength="242" />
+          <Property Type="Decimal" Name="cod_suc" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="String" Name="sucursal" Nullable="false" MaxLength="40" />
+          <Property Type="Decimal" Name="cod_ramo" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="String" Name="ramo" Nullable="false" MaxLength="80" />
+          <Property Type="Decimal" Name="nro_pol" Nullable="false" Precision="9" Scale="0" />
+          <Property Type="Decimal" Name="aaaa_endoso" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="Decimal" Name="nro_endoso" Nullable="false" Precision="8" Scale="0" />
+          <Property Type="Decimal" Name="cod_grupo_endo" Nullable="true" Precision="2" Scale="0" />
+          <Property Type="String" Name="grupo_endoso" Nullable="false" MaxLength="60" />
+          <Property Type="Decimal" Name="cod_tipo_endo" Nullable="true" Precision="3" Scale="0" />
+          <Property Type="String" Name="tipo_endoso" Nullable="false" MaxLength="80" />
+          <Property Type="Decimal" Name="cod_giro_negocio" Nullable="true" Precision="7" Scale="0" />
+          <Property Type="String" Name="giro_negocio" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="giro_asegurado" Nullable="true" />
+          <Property Type="String" Name="observaciones" Nullable="true" />
+          <Property Type="String" Name="fec_creacion" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="cod_usuario_crea" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="fec_modificacion" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="cod_usuario_modifica" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="fec_baja" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="cod_usuario_baja" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="cod_avance" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DESAModelStoreContainer" CdmEntityContainer="MCtrlEntities" />
+        <EntityContainerMapping StorageEntityContainer="DESAModelStoreContainer" CdmEntityContainer="MCtrlEntities" >
+          <FunctionImportMapping FunctionImportName="spS_IndicadoresMC" FunctionName="DESAModel.Store.spS_IndicadoresMC">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DESAModel.spS_IndicadoresMC_Result">
+                <ScalarProperty Name="cod_proceso" ColumnName="cod_proceso" />
+                <ScalarProperty Name="fase" ColumnName="fase" />
+                <ScalarProperty Name="cod_estatus" ColumnName="cod_estatus" />
+                <ScalarProperty Name="proceso" ColumnName="proceso" />
+                <ScalarProperty Name="fecha_inicio" ColumnName="fecha_inicio" />
+                <ScalarProperty Name="fecha_fin" ColumnName="fecha_fin" />
+                <ScalarProperty Name="lapso" ColumnName="lapso" />
+                <ScalarProperty Name="notas" ColumnName="notas" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_MesaControl" FunctionName="DESAModel.Store.spS_MesaControl">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DESAModel.spS_MesaControl_Result">
+                <ScalarProperty Name="id_folio" ColumnName="id_folio" />
+                <ScalarProperty Name="folio" ColumnName="folio" />
+                <ScalarProperty Name="num_oferta" ColumnName="num_oferta" />
+                <ScalarProperty Name="cod_aseg" ColumnName="cod_aseg" />
+                <ScalarProperty Name="nom_corto_aseg" ColumnName="nom_corto_aseg" />
+                <ScalarProperty Name="nombre_asegurado" ColumnName="nombre_asegurado" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="domicilio_fiscal" ColumnName="domicilio_fiscal" />
+                <ScalarProperty Name="domicilio_riesgo" ColumnName="domicilio_riesgo" />
+                <ScalarProperty Name="cod_moneda" ColumnName="cod_moneda" />
+                <ScalarProperty Name="moneda" ColumnName="moneda" />
+                <ScalarProperty Name="fec_inivig" ColumnName="fec_inivig" />
+                <ScalarProperty Name="fec_finvig" ColumnName="fec_finvig" />
+                <ScalarProperty Name="fec_emi" ColumnName="fec_emi" />
+                <ScalarProperty Name="cod_suc_ofi" ColumnName="cod_suc_ofi" />
+                <ScalarProperty Name="sucursal_ofi" ColumnName="sucursal_ofi" />
+                <ScalarProperty Name="cod_suscriptor" ColumnName="cod_suscriptor" />
+                <ScalarProperty Name="suscriptor" ColumnName="suscriptor" />
+                <ScalarProperty Name="cod_tipo_agente" ColumnName="cod_tipo_agente" />
+                <ScalarProperty Name="tipoagente" ColumnName="tipoagente" />
+                <ScalarProperty Name="cod_agente" ColumnName="cod_agente" />
+                <ScalarProperty Name="agente" ColumnName="agente" />
+                <ScalarProperty Name="cod_suc" ColumnName="cod_suc" />
+                <ScalarProperty Name="sucursal" ColumnName="sucursal" />
+                <ScalarProperty Name="cod_ramo" ColumnName="cod_ramo" />
+                <ScalarProperty Name="ramo" ColumnName="ramo" />
+                <ScalarProperty Name="nro_pol" ColumnName="nro_pol" />
+                <ScalarProperty Name="aaaa_endoso" ColumnName="aaaa_endoso" />
+                <ScalarProperty Name="nro_endoso" ColumnName="nro_endoso" />
+                <ScalarProperty Name="cod_grupo_endo" ColumnName="cod_grupo_endo" />
+                <ScalarProperty Name="grupo_endoso" ColumnName="grupo_endoso" />
+                <ScalarProperty Name="cod_tipo_endo" ColumnName="cod_tipo_endo" />
+                <ScalarProperty Name="tipo_endoso" ColumnName="tipo_endoso" />
+                <ScalarProperty Name="cod_giro_negocio" ColumnName="cod_giro_negocio" />
+                <ScalarProperty Name="giro_negocio" ColumnName="giro_negocio" />
+                <ScalarProperty Name="giro_asegurado" ColumnName="giro_asegurado" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="fec_creacion" ColumnName="fec_creacion" />
+                <ScalarProperty Name="cod_usuario_crea" ColumnName="cod_usuario_crea" />
+                <ScalarProperty Name="fec_modificacion" ColumnName="fec_modificacion" />
+                <ScalarProperty Name="cod_usuario_modifica" ColumnName="cod_usuario_modifica" />
+                <ScalarProperty Name="fec_baja" ColumnName="fec_baja" />
+                <ScalarProperty Name="cod_usuario_baja" ColumnName="cod_usuario_baja" />
+                <ScalarProperty Name="cod_avance" ColumnName="cod_avance" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_DistribucionMC" FunctionName="DESAModel.Store.spS_DistribucionMC">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DESAModel.spS_DistribucionMC_Result">
+                <ScalarProperty Name="cod_grupo" ColumnName="cod_grupo" />
+                <ScalarProperty Name="cod_capa" ColumnName="cod_capa" />
+                <ScalarProperty Name="cod_ramo" ColumnName="cod_ramo" />
+                <ScalarProperty Name="cod_distribucion" ColumnName="cod_distribucion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="prc_part" ColumnName="prc_part" />
+                <ScalarProperty Name="prc_partGMX" ColumnName="prc_partGMX" />
+                <ScalarProperty Name="suma_asegurada" ColumnName="suma_asegurada" />
+                <ScalarProperty Name="prima_neta" ColumnName="prima_neta" />
+                <ScalarProperty Name="prima_inc" ColumnName="prima_inc" />
+                <ScalarProperty Name="prima_fhm" ColumnName="prima_fhm" />
+                <ScalarProperty Name="prima_tev" ColumnName="prima_tev" />
+                <ScalarProperty Name="prima_rc" ColumnName="prima_rc" />
+                <ScalarProperty Name="prima_casco" ColumnName="prima_casco" />
+                <ScalarProperty Name="prima_guerra" ColumnName="prima_guerra" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_GruposMC" FunctionName="DESAModel.Store.spS_GruposMC">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DESAModel.spS_GruposMC_Result">
+                <ScalarProperty Name="cod_grupo" ColumnName="cod_grupo" />
+                <ScalarProperty Name="cod_agrupador" ColumnName="cod_agrupador" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="sn_no_proporcional" ColumnName="sn_no_proporcional" />
+                <ScalarProperty Name="suma_asegurada" ColumnName="suma_asegurada" />
+                <ScalarProperty Name="prima_neta" ColumnName="prima_neta" />
+                <ScalarProperty Name="prima_inc" ColumnName="prima_inc" />
+                <ScalarProperty Name="prima_fhm" ColumnName="prima_fhm" />
+                <ScalarProperty Name="prima_tev" ColumnName="prima_tev" />
+                <ScalarProperty Name="prima_rc" ColumnName="prima_rc" />
+                <ScalarProperty Name="prima_casco" ColumnName="prima_casco" />
+                <ScalarProperty Name="prima_guerra" ColumnName="prima_guerra" />
+                <ScalarProperty Name="incisos" ColumnName="incisos" />
+                <ScalarProperty Name="ramos" ColumnName="ramos" />
+                <ScalarProperty Name="html_rangos" ColumnName="html_rangos" />
+                <ScalarProperty Name="html_capas" ColumnName="html_capas" />
+                <ScalarProperty Name="html_grafica" ColumnName="html_grafica" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_IntermediarioMC" FunctionName="DESAModel.Store.spS_IntermediarioMC">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DESAModel.spS_IntermediarioMC_Result">
+                <ScalarProperty Name="cod_grupo" ColumnName="cod_grupo" />
+                <ScalarProperty Name="cod_capa" ColumnName="cod_capa" />
+                <ScalarProperty Name="cod_ramo" ColumnName="cod_ramo" />
+                <ScalarProperty Name="cod_broker" ColumnName="cod_broker" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="prc_partCoas" ColumnName="prc_partCoas" />
+                <ScalarProperty Name="prc_part" ColumnName="prc_part" />
+                <ScalarProperty Name="suma_asegurada" ColumnName="suma_asegurada" />
+                <ScalarProperty Name="prima_neta" ColumnName="prima_neta" />
+                <ScalarProperty Name="prc_com" ColumnName="prc_com" />
+                <ScalarProperty Name="comision" ColumnName="comision" />
+                <ScalarProperty Name="pnr" ColumnName="pnr" />
+                <ScalarProperty Name="prima_inc" ColumnName="prima_inc" />
+                <ScalarProperty Name="prc_com_inc" ColumnName="prc_com_inc" />
+                <ScalarProperty Name="com_inc" ColumnName="com_inc" />
+                <ScalarProperty Name="pnr_inc" ColumnName="pnr_inc" />
+                <ScalarProperty Name="prima_fhm" ColumnName="prima_fhm" />
+                <ScalarProperty Name="prc_com_fhm" ColumnName="prc_com_fhm" />
+                <ScalarProperty Name="com_fhm" ColumnName="com_fhm" />
+                <ScalarProperty Name="pnr_fhm" ColumnName="pnr_fhm" />
+                <ScalarProperty Name="prima_tev" ColumnName="prima_tev" />
+                <ScalarProperty Name="prc_com_tev" ColumnName="prc_com_tev" />
+                <ScalarProperty Name="com_tev" ColumnName="com_tev" />
+                <ScalarProperty Name="pnr_tev" ColumnName="pnr_tev" />
+                <ScalarProperty Name="prima_rc" ColumnName="prima_rc" />
+                <ScalarProperty Name="prc_com_rc" ColumnName="prc_com_rc" />
+                <ScalarProperty Name="com_rc" ColumnName="com_rc" />
+                <ScalarProperty Name="pnr_rc" ColumnName="pnr_rc" />
+                <ScalarProperty Name="prima_casco" ColumnName="prima_casco" />
+                <ScalarProperty Name="prc_com_casco" ColumnName="prc_com_casco" />
+                <ScalarProperty Name="com_casco" ColumnName="com_casco" />
+                <ScalarProperty Name="pnr_casco" ColumnName="pnr_casco" />
+                <ScalarProperty Name="prima_guerra" ColumnName="prima_guerra" />
+                <ScalarProperty Name="prc_com_guerra" ColumnName="prc_com_guerra" />
+                <ScalarProperty Name="com_guerra" ColumnName="com_guerra" />
+                <ScalarProperty Name="pnr_guerra" ColumnName="pnr_guerra" />
+                <ScalarProperty Name="prc_corretaje" ColumnName="prc_corretaje" />
+                <ScalarProperty Name="corretaje" ColumnName="corretaje" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_ReaseguradorMC" FunctionName="DESAModel.Store.spS_ReaseguradorMC">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DESAModel.spS_ReaseguradorMC_Result">
+                <ScalarProperty Name="cod_grupo" ColumnName="cod_grupo" />
+                <ScalarProperty Name="cod_capa" ColumnName="cod_capa" />
+                <ScalarProperty Name="cod_ramo" ColumnName="cod_ramo" />
+                <ScalarProperty Name="cod_broker" ColumnName="cod_broker" />
+                <ScalarProperty Name="cod_cia" ColumnName="cod_cia" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="cod_naic" ColumnName="cod_naic" />
+                <ScalarProperty Name="calif" ColumnName="calif" />
+                <ScalarProperty Name="age_Calif" ColumnName="age_Calif" />
+                <ScalarProperty Name="prc_part100" ColumnName="prc_part100" />
+                <ScalarProperty Name="prc_part" ColumnName="prc_part" />
+                <ScalarProperty Name="suma_asegurada" ColumnName="suma_asegurada" />
+                <ScalarProperty Name="prima_neta" ColumnName="prima_neta" />
+                <ScalarProperty Name="prc_com" ColumnName="prc_com" />
+                <ScalarProperty Name="comision" ColumnName="comision" />
+                <ScalarProperty Name="pnr" ColumnName="pnr" />
+                <ScalarProperty Name="prima_inc" ColumnName="prima_inc" />
+                <ScalarProperty Name="prc_com_inc" ColumnName="prc_com_inc" />
+                <ScalarProperty Name="com_inc" ColumnName="com_inc" />
+                <ScalarProperty Name="pnr_inc" ColumnName="pnr_inc" />
+                <ScalarProperty Name="prima_fhm" ColumnName="prima_fhm" />
+                <ScalarProperty Name="prc_com_fhm" ColumnName="prc_com_fhm" />
+                <ScalarProperty Name="com_fhm" ColumnName="com_fhm" />
+                <ScalarProperty Name="pnr_fhm" ColumnName="pnr_fhm" />
+                <ScalarProperty Name="prima_tev" ColumnName="prima_tev" />
+                <ScalarProperty Name="prc_com_tev" ColumnName="prc_com_tev" />
+                <ScalarProperty Name="com_tev" ColumnName="com_tev" />
+                <ScalarProperty Name="pnr_tev" ColumnName="pnr_tev" />
+                <ScalarProperty Name="prima_rc" ColumnName="prima_rc" />
+                <ScalarProperty Name="prc_com_rc" ColumnName="prc_com_rc" />
+                <ScalarProperty Name="com_rc" ColumnName="com_rc" />
+                <ScalarProperty Name="pnr_rc" ColumnName="pnr_rc" />
+                <ScalarProperty Name="prima_casco" ColumnName="prima_casco" />
+                <ScalarProperty Name="prc_com_casco" ColumnName="prc_com_casco" />
+                <ScalarProperty Name="com_casco" ColumnName="com_casco" />
+                <ScalarProperty Name="pnr_casco" ColumnName="pnr_casco" />
+                <ScalarProperty Name="prima_guerra" ColumnName="prima_guerra" />
+                <ScalarProperty Name="prc_com_guerra" ColumnName="prc_com_guerra" />
+                <ScalarProperty Name="com_guerra" ColumnName="com_guerra" />
+                <ScalarProperty Name="pnr_guerra" ColumnName="pnr_guerra" />
+                <ScalarProperty Name="estatus" ColumnName="estatus" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_RiesgosMC" FunctionName="DESAModel.Store.spS_RiesgosMC">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DESAModel.spS_RiesgosMC_Result">
+                <ScalarProperty Name="sn_seleccionado" ColumnName="sn_seleccionado" />
+                <ScalarProperty Name="cod_inciso" ColumnName="cod_inciso" />
+                <ScalarProperty Name="cod_ramo" ColumnName="cod_ramo" />
+                <ScalarProperty Name="ramo_desc" ColumnName="ramo_desc" />
+                <ScalarProperty Name="cod_subramo" ColumnName="cod_subramo" />
+                <ScalarProperty Name="subramo_desc" ColumnName="subramo_desc" />
+                <ScalarProperty Name="cod_riesgo" ColumnName="cod_riesgo" />
+                <ScalarProperty Name="riesgo_desc" ColumnName="riesgo_desc" />
+                <ScalarProperty Name="cod_ind_cob" ColumnName="cod_ind_cob" />
+                <ScalarProperty Name="cobertura_desc" ColumnName="cobertura_desc" />
+                <ScalarProperty Name="sn_facultativo" ColumnName="sn_facultativo" />
+                <ScalarProperty Name="sn_adicional" ColumnName="sn_adicional" />
+                <ScalarProperty Name="valores_totales" ColumnName="valores_totales" />
+                <ScalarProperty Name="suma_asegurada" ColumnName="suma_asegurada" />
+                <ScalarProperty Name="prima_neta" ColumnName="prima_neta" />
+                <ScalarProperty Name="prima_inc" ColumnName="prima_inc" />
+                <ScalarProperty Name="prima_fhm" ColumnName="prima_fhm" />
+                <ScalarProperty Name="prima_tev" ColumnName="prima_tev" />
+                <ScalarProperty Name="prima_rc" ColumnName="prima_rc" />
+                <ScalarProperty Name="prima_casco" ColumnName="prima_casco" />
+                <ScalarProperty Name="prima_guerra" ColumnName="prima_guerra" />
+                <ScalarProperty Name="prc_com_age" ColumnName="prc_com_age" />
+                <ScalarProperty Name="com_agente" ColumnName="com_agente" />
+                <ScalarProperty Name="prc_com_adi_age" ColumnName="prc_com_adi_age" />
+                <ScalarProperty Name="com_adi_agente" ColumnName="com_adi_agente" />
+                <ScalarProperty Name="cuota" ColumnName="cuota" />
+                <ScalarProperty Name="prc_FeeGMX" ColumnName="prc_FeeGMX" />
+                <ScalarProperty Name="mnt_FeeGMX" ColumnName="mnt_FeeGMX" />
+                <ScalarProperty Name="prc_ComFac" ColumnName="prc_ComFac" />
+                <ScalarProperty Name="mnt_ComFac" ColumnName="mnt_ComFac" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_SubjetividadMC" FunctionName="DESAModel.Store.spS_SubjetividadMC">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DESAModel.spS_SubjetividadMC_Result">
+                <ScalarProperty Name="cod_grupo" ColumnName="cod_grupo" />
+                <ScalarProperty Name="cod_capa" ColumnName="cod_capa" />
+                <ScalarProperty Name="cod_ramo" ColumnName="cod_ramo" />
+                <ScalarProperty Name="cod_broker" ColumnName="cod_broker" />
+                <ScalarProperty Name="cod_cia" ColumnName="cod_cia" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="FechaReal" ColumnName="FechaReal" />
+                <ScalarProperty Name="Subjetividad" ColumnName="Subjetividad" />
+                <ScalarProperty Name="sn_Subjetividad" ColumnName="sn_Subjetividad" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_IdFolioMC" FunctionName="DESAModel.Store.spS_IdFolioMC" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DESAModel.spS_IdFolioMC_Result">
+                <ScalarProperty Name="id_folio" ColumnName="id_folio" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_PolizasAsegurado" FunctionName="DESAModel.Store.spS_PolizasAsegurado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DESAModel.spS_PolizasAsegurado_Result">
+                <ScalarProperty Name="id_pv" ColumnName="id_pv" />
+                <ScalarProperty Name="cod_suc" ColumnName="cod_suc" />
+                <ScalarProperty Name="sucursal" ColumnName="sucursal" />
+                <ScalarProperty Name="cod_ramo" ColumnName="cod_ramo" />
+                <ScalarProperty Name="ramo" ColumnName="ramo" />
+                <ScalarProperty Name="nro_pol" ColumnName="nro_pol" />
+                <ScalarProperty Name="aaaa_endoso" ColumnName="aaaa_endoso" />
+                <ScalarProperty Name="fec_vig_desde" ColumnName="fec_vig_desde" />
+                <ScalarProperty Name="fec_vig_hasta" ColumnName="fec_vig_hasta" />
+                <ScalarProperty Name="fec_emi" ColumnName="fec_emi" />
+                <ScalarProperty Name="cod_aseg" ColumnName="cod_aseg" />
+                <ScalarProperty Name="asegurado" ColumnName="asegurado" />
+                <ScalarProperty Name="rfc" ColumnName="rfc" />
+                <ScalarProperty Name="cod_moneda" ColumnName="cod_moneda" />
+                <ScalarProperty Name="moneda" ColumnName="moneda" />
+                <ScalarProperty Name="cod_tipo_agente" ColumnName="cod_tipo_agente" />
+                <ScalarProperty Name="tipo_agente" ColumnName="tipo_agente" />
+                <ScalarProperty Name="cod_agente" ColumnName="cod_agente" />
+                <ScalarProperty Name="agente" ColumnName="agente" />
+                <ScalarProperty Name="cod_usuario_suscriptor" ColumnName="cod_usuario_suscriptor" />
+                <ScalarProperty Name="suscriptor" ColumnName="suscriptor" />
+                <ScalarProperty Name="cod_grupo_endo" ColumnName="cod_grupo_endo" />
+                <ScalarProperty Name="grupo_endoso" ColumnName="grupo_endoso" />
+                <ScalarProperty Name="cod_tipo_endo" ColumnName="cod_tipo_endo" />
+                <ScalarProperty Name="tipo_endoso" ColumnName="tipo_endoso" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_RiesgoPoliza" FunctionName="DESAModel.Store.spS_RiesgoPoliza">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DESAModel.spS_RiesgoPoliza_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_pv" ColumnName="id_pv" />
+                <ScalarProperty Name="poliza" ColumnName="poliza" />
+                <ScalarProperty Name="cod_item" ColumnName="cod_item" />
+                <ScalarProperty Name="cod_ramo" ColumnName="cod_ramo" />
+                <ScalarProperty Name="ramo_desc" ColumnName="ramo_desc" />
+                <ScalarProperty Name="cod_subramo" ColumnName="cod_subramo" />
+                <ScalarProperty Name="subramo_desc" ColumnName="subramo_desc" />
+                <ScalarProperty Name="cod_riesgo" ColumnName="cod_riesgo" />
+                <ScalarProperty Name="riesgo_desc" ColumnName="riesgo_desc" />
+                <ScalarProperty Name="cod_ind_cob" ColumnName="cod_ind_cob" />
+                <ScalarProperty Name="cobertura_desc" ColumnName="cobertura_desc" />
+                <ScalarProperty Name="sn_facultativo" ColumnName="sn_facultativo" />
+                <ScalarProperty Name="sn_adicional" ColumnName="sn_adicional" />
+                <ScalarProperty Name="valores_totales" ColumnName="valores_totales" />
+                <ScalarProperty Name="suma_asegurada" ColumnName="suma_asegurada" />
+                <ScalarProperty Name="prima_neta" ColumnName="prima_neta" />
+                <ScalarProperty Name="prima_inc" ColumnName="prima_inc" />
+                <ScalarProperty Name="prima_fhm" ColumnName="prima_fhm" />
+                <ScalarProperty Name="prima_tev" ColumnName="prima_tev" />
+                <ScalarProperty Name="prima_rc" ColumnName="prima_rc" />
+                <ScalarProperty Name="prima_casco" ColumnName="prima_casco" />
+                <ScalarProperty Name="prima_guerra" ColumnName="prima_guerra" />
+                <ScalarProperty Name="prc_com_age" ColumnName="prc_com_age" />
+                <ScalarProperty Name="com_agente" ColumnName="com_agente" />
+                <ScalarProperty Name="prc_com_adi_age" ColumnName="prc_com_adi_age" />
+                <ScalarProperty Name="com_adi_agente" ColumnName="com_adi_agente" />
+                <ScalarProperty Name="cuota" ColumnName="cuota" />
+                <ScalarProperty Name="prc_FeeGMX" ColumnName="prc_FeeGMX" />
+                <ScalarProperty Name="mnt_FeeGMX" ColumnName="mnt_FeeGMX" />
+                <ScalarProperty Name="prc_ComFac" ColumnName="prc_ComFac" />
+                <ScalarProperty Name="mnt_ComFac" ColumnName="mnt_ComFac" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_RepartoMC" FunctionName="DESAModel.Store.spS_RepartoMC">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DESAModel.spS_RepartoMC_Result">
+                <ScalarProperty Name="cod_grupo" ColumnName="cod_grupo" />
+                <ScalarProperty Name="cod_reparto" ColumnName="cod_reparto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="prc_part" ColumnName="prc_part" />
+                <ScalarProperty Name="sn_lider" ColumnName="sn_lider" />
+                <ScalarProperty Name="suma_asegurada" ColumnName="suma_asegurada" />
+                <ScalarProperty Name="prima_neta" ColumnName="prima_neta" />
+                <ScalarProperty Name="prima_inc" ColumnName="prima_inc" />
+                <ScalarProperty Name="prima_fhm" ColumnName="prima_fhm" />
+                <ScalarProperty Name="prima_tev" ColumnName="prima_tev" />
+                <ScalarProperty Name="prima_rc" ColumnName="prima_rc" />
+                <ScalarProperty Name="prima_casco" ColumnName="prima_casco" />
+                <ScalarProperty Name="prima_guerra" ColumnName="prima_guerra" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_UbicacionesPoliza" FunctionName="DESAModel.Store.spS_UbicacionesPoliza">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DESAModel.spS_UbicacionesPoliza_Result">
+                <ScalarProperty Name="id_pv" ColumnName="id_pv" />
+                <ScalarProperty Name="cod_suc" ColumnName="cod_suc" />
+                <ScalarProperty Name="cod_ramo" ColumnName="cod_ramo" />
+                <ScalarProperty Name="nro_pol" ColumnName="nro_pol" />
+                <ScalarProperty Name="aaaa_endoso" ColumnName="aaaa_endoso" />
+                <ScalarProperty Name="nro_endoso" ColumnName="nro_endoso" />
+                <ScalarProperty Name="cod_item" ColumnName="cod_item" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_ProgramaCapasMC" FunctionName="DESAModel.Store.spS_ProgramaCapasMC">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DESAModel.spS_ProgramaCapasMC_Result">
+                <ScalarProperty Name="cod_grupo" ColumnName="cod_grupo" />
+                <ScalarProperty Name="cod_capa" ColumnName="cod_capa" />
+                <ScalarProperty Name="valor_capa" ColumnName="valor_capa" />
+                <ScalarProperty Name="prima_capa" ColumnName="prima_capa" />
+                <ScalarProperty Name="exceso_capa" ColumnName="exceso_capa" />
+                <ScalarProperty Name="prc_part" ColumnName="prc_part" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_CapasMC" FunctionName="DESAModel.Store.spS_CapasMC">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DESAModel.spS_CapasMC_Result">
+                <ScalarProperty Name="cod_grupo" ColumnName="cod_grupo" />
+                <ScalarProperty Name="cod_capa" ColumnName="cod_capa" />
+                <ScalarProperty Name="valor_capa" ColumnName="valor_capa" />
+                <ScalarProperty Name="prima_capa" ColumnName="prima_capa" />
+                <ScalarProperty Name="prc_part" ColumnName="prc_part" />
+                <ScalarProperty Name="prc_com_reas" ColumnName="prc_com_reas" />
+                <ScalarProperty Name="comision_reas" ColumnName="comision_reas" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
