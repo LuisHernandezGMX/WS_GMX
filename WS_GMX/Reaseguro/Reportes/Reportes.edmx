@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="UATModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="spS_AjusteHistBdx" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="fec_desde" Type="varchar" Mode="In" />
+          <Parameter Name="fec_hasta" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="UATModelStoreContainer" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UATModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="UATEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="spS_AjusteHistBdx" ReturnType="Collection(UATModel.spS_AjusteHistBdx_Result2)">
+            <Parameter Name="fec_desde" Mode="In" Type="String" />
+            <Parameter Name="fec_hasta" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="spS_AjusteHistBdx_Result">
+          <Property Type="String" Name="SUCURSAL" Nullable="true" MaxLength="47" />
+          <Property Type="Int32" Name="SUBSINIESTRO" Nullable="false" />
+          <Property Type="String" Name="SUCURSAL1" Nullable="true" MaxLength="47" />
+          <Property Type="String" Name="RAMO" Nullable="true" MaxLength="87" />
+          <Property Type="Decimal" Name="POLIZA" Nullable="false" Precision="9" Scale="0" />
+          <Property Type="Int32" Name="SUFIJO" Nullable="false" />
+          <Property Type="Decimal" Name="ENDOSO" Nullable="false" Precision="8" Scale="0" />
+          <Property Type="String" Name="MONEDA" Nullable="false" MaxLength="20" />
+          <Property Type="DateTime" Name="FECHA_DISTRIBUCION" Nullable="true" Precision="16" />
+          <Property Type="String" Name="SOLICITUD" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="MONTO_MOVIMIENTO" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="AJUSTE" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spS_AjusteHistBdx_Result1">
+          <Property Type="Int32" Name="SINIESTRO" Nullable="false" />
+          <Property Type="Int32" Name="SUBSINIESTRO" Nullable="false" />
+          <Property Type="String" Name="SUCURSAL" Nullable="true" MaxLength="47" />
+          <Property Type="String" Name="RAMO" Nullable="true" MaxLength="87" />
+          <Property Type="Decimal" Name="POLIZA" Nullable="false" Precision="9" Scale="0" />
+          <Property Type="Int32" Name="SUFIJO" Nullable="false" />
+          <Property Type="Decimal" Name="ENDOSO" Nullable="false" Precision="8" Scale="0" />
+          <Property Type="String" Name="MONEDA" Nullable="false" MaxLength="20" />
+          <Property Type="DateTime" Name="FECHA_DISTRIBUCION" Nullable="true" Precision="16" />
+          <Property Type="String" Name="SOLICITUD" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="MONTO_MOVIMIENTO" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="AJUSTE" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spS_AjusteHistBdx_Result2">
+          <Property Type="Int32" Name="SINIESTRO" Nullable="false" />
+          <Property Type="Int32" Name="SUBSINIESTRO" Nullable="false" />
+          <Property Type="String" Name="SUCURSAL" Nullable="true" MaxLength="47" />
+          <Property Type="String" Name="RAMO" Nullable="true" MaxLength="87" />
+          <Property Type="Decimal" Name="POLIZA" Nullable="false" Precision="9" Scale="0" />
+          <Property Type="Int32" Name="SUFIJO" Nullable="false" />
+          <Property Type="Decimal" Name="ENDOSO" Nullable="false" Precision="8" Scale="0" />
+          <Property Type="String" Name="MONEDA" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="FECHA_DISTRIBUCION" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="SOLICITUD" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="MONTO_MOVIMIENTO" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="String" Name="AJUSTE" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UATModelStoreContainer" CdmEntityContainer="UATEntities" >
+          <FunctionImportMapping FunctionImportName="spS_AjusteHistBdx" FunctionName="UATModel.Store.spS_AjusteHistBdx">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="UATModel.spS_AjusteHistBdx_Result2">
+                <ScalarProperty Name="SINIESTRO" ColumnName="SINIESTRO" />
+                <ScalarProperty Name="SUBSINIESTRO" ColumnName="SUBSINIESTRO" />
+                <ScalarProperty Name="SUCURSAL" ColumnName="SUCURSAL" />
+                <ScalarProperty Name="RAMO" ColumnName="RAMO" />
+                <ScalarProperty Name="POLIZA" ColumnName="POLIZA" />
+                <ScalarProperty Name="SUFIJO" ColumnName="SUFIJO" />
+                <ScalarProperty Name="ENDOSO" ColumnName="ENDOSO" />
+                <ScalarProperty Name="MONEDA" ColumnName="MONEDA" />
+                <ScalarProperty Name="FECHA_DISTRIBUCION" ColumnName="FECHA_DISTRIBUCION" />
+                <ScalarProperty Name="SOLICITUD" ColumnName="SOLICITUD" />
+                <ScalarProperty Name="MONTO_MOVIMIENTO" ColumnName="MONTO_MOVIMIENTO" />
+                <ScalarProperty Name="AJUSTE" ColumnName="AJUSTE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
