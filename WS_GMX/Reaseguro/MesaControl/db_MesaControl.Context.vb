@@ -159,4 +159,10 @@ Partial Public Class MCtrlEntities
         Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_CapasMC_Result)("spS_CapasMC", id_folioParameter)
     End Function
 
+    Public Overridable Function spS_PagosMC(id_folio As Nullable(Of Integer)) As ObjectResult(Of spS_PagosMC_Result)
+        Dim id_folioParameter As ObjectParameter = If(id_folio.HasValue, New ObjectParameter("id_folio", id_folio), New ObjectParameter("id_folio", GetType(Integer)))
+
+        Return DirectCast(Me, IObjectContextAdapter).ObjectContext.ExecuteFunction(Of spS_PagosMC_Result)("spS_PagosMC", id_folioParameter)
+    End Function
+
 End Class

@@ -55,5 +55,7 @@ Partial Public Class spS_MesaControl_Result
     Public Property fec_baja As String
     Public Property cod_usuario_baja As String
     Public Property cod_avance As Nullable(Of Integer)
+    Public Property cod_usuario_resp As String
+    Public Property responsable As String
 
 End Class

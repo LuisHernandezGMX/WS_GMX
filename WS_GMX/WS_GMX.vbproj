@@ -186,6 +186,17 @@
       <LastGenOutput>db_Reporteador.vb</LastGenOutput>
     </Content>
     <Content Include="Reaseguro\Reporteador\Reporteador.svc" />
+    <Content Include="Reaseguro\Reportes\Bordereaux.svc" />
+    <Content Include="Reaseguro\Reportes\Reportes.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Reportes.edmx</DependentUpon>
+      <LastGenOutput>Reportes.Context.vb</LastGenOutput>
+    </Content>
+    <Content Include="Reaseguro\Reportes\Reportes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Reportes.edmx</DependentUpon>
+      <LastGenOutput>Reportes.vb</LastGenOutput>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -319,6 +330,9 @@
     <Compile Include="Reaseguro\MesaControl\spS_MesaControl_Result.vb">
       <DependentUpon>db_MesaControl.tt</DependentUpon>
     </Compile>
+    <Compile Include="Reaseguro\MesaControl\spS_PagosMC_Result.vb">
+      <DependentUpon>db_MesaControl.tt</DependentUpon>
+    </Compile>
     <Compile Include="Reaseguro\MesaControl\spS_PolizasAsegurado_Result.vb">
       <DependentUpon>db_MesaControl.tt</DependentUpon>
     </Compile>
@@ -447,6 +461,34 @@
     <Compile Include="Reaseguro\Reporteador\spS_VersionReporte_Result.vb">
       <DependentUpon>db_Reporteador.tt</DependentUpon>
     </Compile>
+    <Compile Include="Reaseguro\Reportes\Bordereaux.svc.vb">
+      <DependentUpon>Bordereaux.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\Reportes\IBordereaux.vb" />
+    <Compile Include="Reaseguro\Reportes\Reportes.Context.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reportes.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\Reportes\Reportes.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reportes.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\Reportes\Reportes.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reportes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\Reportes\spS_AjusteHistBdx_Result.vb">
+      <DependentUpon>Reportes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\Reportes\spS_AjusteHistBdx_Result1.vb">
+      <DependentUpon>Reportes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Reaseguro\Reportes\spS_AjusteHistBdx_Result2.vb">
+      <DependentUpon>Reportes.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -510,6 +552,13 @@
     </EntityDeploy>
     <Content Include="Reaseguro\MesaControl\db_MesaControl.edmx.diagram">
       <DependentUpon>db_MesaControl.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Reaseguro\Reportes\Reportes.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Reportes.Designer.vb</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Reaseguro\Reportes\Reportes.edmx.diagram">
+      <DependentUpon>Reportes.edmx</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

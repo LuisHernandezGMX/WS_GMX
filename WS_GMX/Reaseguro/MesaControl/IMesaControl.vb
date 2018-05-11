@@ -43,6 +43,9 @@ Public Interface IMesaControl
     Function ObtieneSubjetividad(id_folio As Integer) As List(Of spS_SubjetividadMC_Result)
 
     <OperationContract()>
+    Function ObtienePagos(id_folio As Integer) As List(Of spS_PagosMC_Result)
+
+    <OperationContract()>
     Function ObtienePolizasAseg(txt_aseg As String) As List(Of spS_PolizasAsegurado_Result)
 
     <OperationContract()>

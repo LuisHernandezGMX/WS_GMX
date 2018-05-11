@@ -125,6 +125,16 @@ Public Class MesaControl
         Return Resultado
     End Function
 
+    Public Function ObtienePagos(id_folio As Integer) As List(Of spS_PagosMC_Result) Implements IMesaControl.ObtienePagos
+        Dim Resultado As IList = Nothing
+        Try
+            Resultado = db.spS_PagosMC(id_folio).ToList
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return Resultado
+    End Function
+
     Public Function ObtienePolizasAseg(txt_aseg As String) As List(Of spS_PolizasAsegurado_Result) Implements IMesaControl.ObtienePolizasAseg
         Dim Resultado As IList = Nothing
         Try
