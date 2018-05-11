@@ -38,6 +38,9 @@
           <Parameter Name="strBroker" Type="varchar" Mode="In" />
           <Parameter Name="strCia" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="spS_PagosMC" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id_folio" Type="int" Mode="In" />
+        </Function>
         <Function Name="spS_PolizasAsegurado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="txt_aseg" Type="varchar" Mode="In" />
         </Function>
@@ -144,6 +147,9 @@
           </FunctionImport>
           <FunctionImport Name="spS_CapasMC" ReturnType="Collection(DESAModel.spS_CapasMC_Result)">
           <Parameter Name="id_folio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spS_PagosMC" ReturnType="Collection(DESAModel.spS_PagosMC_Result)">
+            <Parameter Name="id_folio" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spS_IndicadoresMC_Result">
@@ -472,6 +478,19 @@
           <Property Type="String" Name="fec_baja" Nullable="true" MaxLength="10" />
           <Property Type="String" Name="cod_usuario_baja" Nullable="true" MaxLength="30" />
           <Property Type="Int32" Name="cod_avance" Nullable="true" />
+          <Property Type="String" Name="cod_usuario_resp" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="responsable" Nullable="false" MaxLength="30" />
+        </ComplexType>
+        <ComplexType Name="spS_PagosMC_Result">
+          <Property Type="Int32" Name="cod_grupo" Nullable="false" />
+          <Property Type="Int32" Name="cod_capa" Nullable="false" />
+          <Property Type="Decimal" Name="cod_ramo" Nullable="false" Precision="3" Scale="0" />
+          <Property Type="Decimal" Name="cod_broker" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="Decimal" Name="cod_cia" Nullable="false" Precision="4" Scale="0" />
+          <Property Type="Int32" Name="nro_cuota" Nullable="false" />
+          <Property Type="String" Name="fecha" Nullable="true" MaxLength="10" />
+          <Property Type="Decimal" Name="importe" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="pje_importe" Nullable="true" Precision="7" Scale="4" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -540,6 +559,8 @@
                 <ScalarProperty Name="fec_baja" ColumnName="fec_baja" />
                 <ScalarProperty Name="cod_usuario_baja" ColumnName="cod_usuario_baja" />
                 <ScalarProperty Name="cod_avance" ColumnName="cod_avance" />
+                <ScalarProperty Name="cod_usuario_resp" ColumnName="cod_usuario_resp" />
+                <ScalarProperty Name="responsable" ColumnName="responsable" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -863,6 +884,21 @@
                 <ScalarProperty Name="prc_part" ColumnName="prc_part" />
                 <ScalarProperty Name="prc_com_reas" ColumnName="prc_com_reas" />
                 <ScalarProperty Name="comision_reas" ColumnName="comision_reas" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spS_PagosMC" FunctionName="DESAModel.Store.spS_PagosMC">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DESAModel.spS_PagosMC_Result">
+                <ScalarProperty Name="cod_grupo" ColumnName="cod_grupo" />
+                <ScalarProperty Name="cod_capa" ColumnName="cod_capa" />
+                <ScalarProperty Name="cod_ramo" ColumnName="cod_ramo" />
+                <ScalarProperty Name="cod_broker" ColumnName="cod_broker" />
+                <ScalarProperty Name="cod_cia" ColumnName="cod_cia" />
+                <ScalarProperty Name="nro_cuota" ColumnName="nro_cuota" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
+                <ScalarProperty Name="pje_importe" ColumnName="pje_importe" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
